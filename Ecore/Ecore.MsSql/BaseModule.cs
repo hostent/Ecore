@@ -1,4 +1,5 @@
 ﻿using Ecore.Frame;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -69,10 +70,10 @@ namespace Ecore.MsSql
                 conn = new SqlConnection(Constr_sql);
             }
             //等mysql 出驱动
-            //else if (SqlType == DbType.Mysql)
-            //{
-            //    conn = new MySqlConnection(Constr_sql);
-            //}
+            else if (SqlType == DbType.Mysql)
+            {
+                conn = new MySqlConnection(Constr_sql);
+            }
 
             return conn;
         }

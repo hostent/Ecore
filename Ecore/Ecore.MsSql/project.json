@@ -4,7 +4,8 @@
   "dependencies": {
     "Ecore.Frame": "1.0.0-*",
     "NETStandard.Library": "1.6.0",
-    "Dapper": "1.50.2"
+    "Dapper": "1.50.2",
+    "MySql.Data.EntityFrameworkCore": "7.0.5-IR21"
   },
 
   "frameworks": {

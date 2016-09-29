@@ -5,10 +5,14 @@ using System.Threading.Tasks;
 
 namespace EMin.Sale.Logic
 {
-    public class Class1
+    public class DbContext
     {
-        public Class1()
+        public DbContext()
         {
         }
+
+
+
+
     }
 }
