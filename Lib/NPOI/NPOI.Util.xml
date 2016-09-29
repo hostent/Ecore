@@ -1,0 +1,2371 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NPOI.Util</name>
+    </assembly>
+    <members>
+        <member name="T:NPOI.Util.LittleEndian">
+            <summary>
+            a utility class for handling little-endian numbers, which the 80x86 world is
+            replete with. The methods are all static, and input/output is from/to byte
+            arrays, or from InputStreams.
+            </summary>
+            <remarks>
+            @author     Marc Johnson (mjohnson at apache dot org)
+            @author     Andrew Oliver (acoliver at apache dot org)
+            </remarks>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.Util.LittleEndian"/> class.
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.GetByteArray(System.Byte[],System.Int32,System.Int32)">
+             <summary>
+             Copy a portion of a byte array
+             </summary>
+             <param name="data"> the original byte array</param>
+             <param name="offset">Where to start copying from.</param>
+             <param name="size">Number of bytes to copy.</param>
+             <returns>The byteArray value</returns>
+            <exception cref="T:System.IndexOutOfRangeException">
+            if copying would cause access ofdata outside array bounds.
+            </exception>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.GetShort(System.Byte[])">
+            <summary>
+            get a short value from a byte array
+            </summary>
+            <param name="data">a starting offset into the byte array</param>
+            <returns>the short (16-bit) value</returns>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.GetShort(System.Byte[],System.Int32)">
+            <summary>
+            get a short value from a byte array
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <returns>the short (16-bit) value</returns>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.GetUInt(System.Byte[])">
+            <summary>
+            Gets the U int.
+            </summary>
+            <param name="data">the byte array</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.GetUInt(System.Byte[],System.Int32)">
+            <summary>
+            Gets the U int.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.GetUByte(System.Byte[])">
+            <summary>
+            Gets the unsigned byte.
+            </summary>
+            <param name="data">the byte array</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.GetUByte(System.Byte[],System.Int32)">
+            <summary>
+            Gets the unsigned byte.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.GetUShort(System.Byte[])">
+            <summary>
+            get a short value from a byte array
+            </summary>
+            <param name="data">the unsigned short (16-bit) value in an integer</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.GetUShort(System.Byte[],System.Int32)">
+            <summary>
+            get an unsigned short value from a byte array
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <returns>the unsigned short (16-bit) value in an integer</returns>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutDouble(System.Byte[],System.Double)">
+            <summary>
+            Puts the double.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutDouble(System.Byte[],System.Int32,System.Double)">
+            <summary>
+            Puts the double.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutInt(System.Byte[],System.Int32)">
+            <summary>
+            Puts the int.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutInt(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Puts the int.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutUInt(System.Byte[],System.UInt32)">
+            <summary>
+            Puts the uint.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutUInt(System.Byte[],System.Int32,System.UInt32)">
+            <summary>
+            Puts the uint.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutLong(System.Byte[],System.Int64)">
+            <summary>
+            Puts the long.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutLong(System.Byte[],System.Int32,System.Int64)">
+            <summary>
+            Puts the long.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutULong(System.Byte[],System.UInt64)">
+            <summary>
+            Puts the long.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutULong(System.Byte[],System.Int32,System.UInt64)">
+            <summary>
+            Puts the ulong.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutNumber(System.Byte[],System.Int32,System.Int64,System.Int32)">
+            <summary>
+            Puts the number.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <param name="value">The value.</param>
+            <param name="size">The size.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutNumber(System.Byte[],System.Int32,System.UInt64,System.Int32)">
+            <summary>
+            Puts the number.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <param name="value">The value.</param>
+            <param name="size">The size.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutShort(System.Byte[],System.Int16)">
+            <summary>
+            Puts the short.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutShort(System.Byte[],System.Int32,System.Int16)">
+            <summary>
+            Puts the short.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutShortArray(System.Byte[],System.Int32,System.Int16[])">
+            <summary>
+            Puts the short array.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutByte(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Added for consistency with other put~() methods
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutUShort(System.Byte[],System.Int32)">
+            <summary>
+            Puts the U short.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.PutUShort(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Puts the U short.
+            </summary>
+            <param name="data">the byte array</param>
+            <param name="offset">a starting offset into the byte array</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.ReadFromStream(System.IO.Stream,System.Int32)">
+            <summary>
+            Reads from stream.
+            </summary>
+            <param name="stream">The stream.</param>
+            <param name="size">The size.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.ReadInt(System.IO.Stream)">
+            <summary>
+            Reads the int.
+            </summary>
+            <param name="stream">The stream.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.ReadLong(System.IO.Stream)">
+            <summary>
+            Reads the long.
+            </summary>
+            <param name="stream">The stream.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.ReadULong(System.IO.Stream)">
+            <summary>
+            Reads the long.
+            </summary>
+            <param name="stream">The stream.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.ReadShort(System.IO.Stream)">
+            <summary>
+            Reads the short.
+            </summary>
+            <param name="stream">The stream.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.LittleEndian.UByteToInt(System.Byte)">
+            <summary>
+            Us the byte to int.
+            </summary>
+            <param name="b">The b.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NPOI.Util.HexDump">
+            <summary>
+            dump data in hexadecimal format; derived from a HexDump utility I
+            wrote in June 2001.
+            @author Marc Johnson
+            @author Glen Stampoultzis  (glens at apache.org)
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.HexDump.ShortToHex(System.Int32)">
+            <summary>
+            Shorts to hex.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>char array of 2 (zero padded) uppercase hex chars and prefixed with '0x'</returns>
+        </member>
+        <member name="M:NPOI.Util.HexDump.ByteToHex(System.Int32)">
+            <summary>
+            Bytes to hex.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>char array of 1 (zero padded) uppercase hex chars and prefixed with '0x'</returns>
+        </member>
+        <member name="M:NPOI.Util.HexDump.IntToHex(System.Int32)">
+            <summary>
+            Ints to hex.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>char array of 4 (zero padded) uppercase hex chars and prefixed with '0x'</returns>
+        </member>
+        <member name="M:NPOI.Util.HexDump.LongToHex(System.Int64)">
+            <summary>
+            char array of 4 (zero padded) uppercase hex chars and prefixed with '0x'
+            </summary>
+            <param name="value">The value.</param>
+            <returns>char array of 4 (zero padded) uppercase hex chars and prefixed with '0x'</returns>
+        </member>
+        <member name="M:NPOI.Util.HexDump.ToHexChars(System.Int64,System.Int32)">
+            <summary>
+            Toes the hex chars.
+            </summary>
+            <param name="pValue">The p value.</param>
+            <param name="nBytes">The n bytes.</param>
+            <returns>char array of uppercase hex chars, zero padded and prefixed with '0x'</returns>
+        </member>
+        <member name="M:NPOI.Util.ShortField.#ctor(System.Int32)">
+             <summary>
+             construct the ShortField with its offset into its containing
+             byte array
+             </summary>
+             <param name="offset">offset of the field within its byte array</param>
+            <exception cref="T:System.IndexOutOfRangeException">if offset is negative</exception>
+        </member>
+        <member name="M:NPOI.Util.ShortField.#ctor(System.Int32,System.Int16)">
+            <summary>
+            construct the ShortField with its offset into its containing byte array and initialize its value
+            </summary>
+            <param name="offset">offset of the field within its byte array</param>
+            <param name="value">the initial value</param>
+            <exception cref="T:System.IndexOutOfRangeException">if offset is negative</exception> 
+        </member>
+        <member name="M:NPOI.Util.ShortField.#ctor(System.Int32,System.Byte[])">
+            <summary>
+            Construct the ShortField with its offset into its containing
+            byte array and initialize its value from its byte array
+            </summary>
+            <param name="offset">offset of the field within its byte array</param>
+            <param name="data">the byte array to read the value from</param>
+            <exception cref="T:System.IndexOutOfRangeException">if the offset is not
+            within the range of 0..(data.length - 1)</exception> 
+        </member>
+        <member name="M:NPOI.Util.ShortField.#ctor(System.Int32,System.Int16,System.Byte[]@)">
+            <summary>
+            construct the ShortField with its offset into its containing
+            byte array, initialize its value, and write its value to its
+            byte array
+            </summary>
+            <param name="offset">offset of the field within its byte array</param>
+            <param name="value">the initial value</param>
+            <param name="data">the byte array to write the value to</param>
+            <exception cref="T:System.IndexOutOfRangeException">if offset is negative</exception>
+        </member>
+        <member name="M:NPOI.Util.ShortField.Set(System.Int16,System.Byte[]@)">
+            <summary>
+            set the ShortField's current value and write it to a byte array
+            </summary>
+            <param name="value">value to be set</param>
+            <param name="data">the byte array to write the value to</param>
+            <exception cref="T:System.IndexOutOfRangeException">if the offset is out
+            of range</exception>
+        </member>
+        <member name="M:NPOI.Util.ShortField.ReadFromBytes(System.Byte[])">
+            <summary>
+            set the value from its offset into an array of bytes
+            </summary>
+            <param name="data">the byte array from which the value is to be read</param>
+            <exception cref="T:System.IndexOutOfRangeException">if the offset is out
+            of range</exception>
+        </member>
+        <member name="M:NPOI.Util.ShortField.ReadFromStream(System.IO.Stream)">
+            <summary>
+            set the value from an Stream
+            </summary>
+            <param name="stream">the Stream from which the value is to be
+            read</param>
+            <exception cref="T:System.IO.IOException">if an IOException is thrown from reading
+            the Stream</exception>
+            <exception cref="T:NPOI.Util.BufferUnderrunException">if there is not enough data
+            available from the Stream</exception>
+        </member>
+        <member name="M:NPOI.Util.ShortField.WriteToBytes(System.Byte[])">
+            <summary>
+            write the value out to an array of bytes at the appropriate
+            offset
+            </summary>
+            <param name="data">the array of bytes to which the value is to be
+            written</param>
+            <exception cref="T:System.IndexOutOfRangeException">if the offset is out
+            of range</exception>
+        </member>
+        <member name="M:NPOI.Util.ShortField.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="P:NPOI.Util.ShortField.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+            <value>The value.</value>
+        </member>
+        <member name="F:NPOI.Util.POILogFactory._loggers">
+            Map of POILogger instances, with classes as keys
+        </member>
+        <member name="F:NPOI.Util.POILogFactory._nullLogger">
+            A common instance of NullLogger, as it does nothing
+             we only need the one
+        </member>
+        <member name="F:NPOI.Util.POILogFactory._loggerClassName">
+            The name of the class to use. Initialised the
+             first time we need it
+        </member>
+        <member name="M:NPOI.Util.POILogFactory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.Util.POILogFactory"/> class.
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.POILogFactory.GetLogger(System.Type)">
+            <summary>
+            Get a logger, based on a class name
+            </summary>
+            <param name="type">the class whose name defines the log</param>
+            <returns>a POILogger for the specified class</returns>
+        </member>
+        <member name="M:NPOI.Util.POILogFactory.GetLogger(System.String)">
+            <summary>
+            Get a logger, based on a String
+            </summary>
+            <param name="cat">the String that defines the log</param>
+            <returns>a POILogger for the specified class</returns>
+        </member>
+        <member name="M:NPOI.Util.IO.PushbackStream.ReadByte">
+            <summary>
+            Reads a byte from the stream and advances the position within the stream by one byte, or returns -1 if at the end of the stream.
+            </summary>
+            <returns>
+            The unsigned byte cast to an Int32, or -1 if at the end of the stream.
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support reading.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:NPOI.Util.IO.PushbackStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            When overridden in a derived class, reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.
+            </summary>
+            <param name="buffer">An array of bytes. When this method returns, the buffer contains the specified byte array with the values between <paramref name="offset"/> and (<paramref name="offset"/> + <paramref name="count"/> - 1) replaced by the bytes read from the current source.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin storing the data read from the current stream.</param>
+            <param name="count">The maximum number of bytes to be read from the current stream.</param>
+            <returns>
+            The total number of bytes read into the buffer. This can be less than the number of bytes requested if that many bytes are not currently available, or zero (0) if the end of the stream has been reached.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            The sum of <paramref name="offset"/> and <paramref name="count"/> is larger than the buffer length.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            	<paramref name="buffer"/> is null.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            	<paramref name="offset"/> or <paramref name="count"/> is negative.
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support reading.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:NPOI.Util.IO.PushbackStream.Unread(System.Int32)">
+            <summary>
+            Unreads the specified b.
+            </summary>
+            <param name="b">The b.</param>
+        </member>
+        <member name="M:NPOI.Util.IO.PushbackStream.Close">
+            <summary>
+            Closes the current stream and releases any resources (such as sockets and file handles) associated with the current stream.
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.IO.PushbackStream.Flush">
+            <summary>
+            When overridden in a derived class, clears all buffers for this stream and causes any buffered data to be written to the underlying device.
+            </summary>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+        </member>
+        <member name="M:NPOI.Util.IO.PushbackStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>
+            When overridden in a derived class, sets the position within the current stream.
+            </summary>
+            <param name="offset">A byte offset relative to the <paramref name="origin"/> parameter.</param>
+            <param name="origin">A value of type <see cref="T:System.IO.SeekOrigin"/> indicating the reference point used to obtain the new position.</param>
+            <returns>
+            The new position within the current stream.
+            </returns>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support seeking, such as if the stream is constructed from a pipe or console output.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:NPOI.Util.IO.PushbackStream.SetLength(System.Int64)">
+            <summary>
+            When overridden in a derived class, sets the length of the current stream.
+            </summary>
+            <param name="value">The desired length of the current stream in bytes.</param>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support both writing and seeking, such as if the stream is constructed from a pipe or console output.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:NPOI.Util.IO.PushbackStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            When overridden in a derived class, writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies <paramref name="count"/> bytes from <paramref name="buffer"/> to the current stream.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin copying bytes to the current stream.</param>
+            <param name="count">The number of bytes to be written to the current stream.</param>
+            <exception cref="T:System.ArgumentException">
+            The sum of <paramref name="offset"/> and <paramref name="count"/> is greater than the buffer length.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            	<paramref name="buffer"/> is null.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            	<paramref name="offset"/> or <paramref name="count"/> is negative.
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support writing.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:NPOI.Util.IO.PushbackStream.WriteByte(System.Byte)">
+            <summary>
+            Writes a byte to the current position in the stream and advances the position within the stream by one byte.
+            </summary>
+            <param name="value">The byte to write to the stream.</param>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support writing, or the stream is already closed.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="P:NPOI.Util.IO.PushbackStream.CanRead">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports reading.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports reading; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:NPOI.Util.IO.PushbackStream.CanSeek">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports seeking.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports seeking; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:NPOI.Util.IO.PushbackStream.CanWrite">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports writing.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports writing; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:NPOI.Util.IO.PushbackStream.Length">
+            <summary>
+            When overridden in a derived class, gets the length in bytes of the stream.
+            </summary>
+            <value></value>
+            <returns>
+            A long value representing the length of the stream in bytes.
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+            A class derived from Stream does not support seeking.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="P:NPOI.Util.IO.PushbackStream.Position">
+            <summary>
+            When overridden in a derived class, gets or sets the position within the current stream.
+            </summary>
+            <value></value>
+            <returns>
+            The current position within the stream.
+            </returns>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support seeking.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:NPOI.Util.LongField.#ctor(System.Int32)">
+            <summary>
+            construct the <see cref="T:NPOI.Util.LongField"/> with its offset into its containing byte array
+            </summary>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="M:NPOI.Util.LongField.#ctor(System.Int32,System.Int64)">
+            <summary>
+            construct the LongField with its offset into its containing
+            byte array and initialize its value
+            </summary>
+            <param name="offset">offset of the field within its byte array</param>
+            <param name="value">the initial value</param>
+        </member>
+        <member name="M:NPOI.Util.LongField.#ctor(System.Int32,System.Byte[])">
+            <summary>
+            Construct the <see cref="T:NPOI.Util.LongField"/> class with its offset into its containing
+            byte array and initialize its value from its byte array
+            </summary>
+            <param name="offset">The offset of the field within its byte array</param>
+            <param name="data">the byte array to read the value from</param>
+        </member>
+        <member name="M:NPOI.Util.LongField.#ctor(System.Int32,System.Int64,System.Byte[])">
+            <summary>
+            construct the <see cref="T:NPOI.Util.LongField"/> class with its offset into its containing
+            byte array, initialize its value, and write the value to a byte
+            array
+            </summary>
+            <param name="offset">offset of the field within its byte array</param>
+            <param name="value">the initial value</param>
+            <param name="data">the byte array to write the value to</param>
+        </member>
+        <member name="M:NPOI.Util.LongField.Set(System.Int64,System.Byte[])">
+            <summary>
+            set the LongField's current value and write it to a byte array
+            </summary>
+            <param name="value">value to be set</param>
+            <param name="data">the byte array to write the value to</param>
+        </member>
+        <member name="M:NPOI.Util.LongField.ReadFromBytes(System.Byte[])">
+            <summary>
+            set the value from its offset into an array of bytes
+            </summary>
+            <param name="data">the byte array from which the value is to be read</param>
+        </member>
+        <member name="M:NPOI.Util.LongField.ReadFromStream(System.IO.Stream)">
+            <summary>
+            set the value from an Stream
+            </summary>
+            <param name="stream">the Stream from which the value is to be</param>
+        </member>
+        <member name="M:NPOI.Util.LongField.WriteToBytes(System.Byte[])">
+            <summary>
+            write the value out to an array of bytes at the appropriate offset
+            </summary>
+            <param name="data">the array of bytes to which the value is to be written</param>
+        </member>
+        <member name="M:NPOI.Util.LongField.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="P:NPOI.Util.LongField.Value">
+            <summary>
+            Getg or sets the LongField's current value
+            </summary>
+            <value>The current value</value>
+        </member>
+        <member name="T:NPOI.Util.ClassID">
+            <summary>
+            Represents a class ID (16 bytes). Unlike other little-endian
+            type the {@link ClassID} is not just 16 bytes stored in the wrong
+            order. Instead, it is a double word (4 bytes) followed by two
+            words (2 bytes each) followed by 8 bytes.
+            @author Rainer Klute 
+            <a href="mailto:klute@rainer-klute.de">klute@rainer-klute.de</a>
+            @version $Id: ClassID.java 489730 2006-12-22 19:18:16Z bayard $
+            @since 2002-02-09
+            </summary>
+        </member>
+        <member name="F:NPOI.Util.ClassID.bytes">
+            The bytes making out the class ID in correct order,
+            i.e. big-endian.
+        </member>
+        <member name="M:NPOI.Util.ClassID.#ctor(System.Byte[],System.Int32)">
+            <summary>
+            Creates a <see cref="T:NPOI.Util.ClassID"/> and Reads its value from a byte array.
+            </summary>
+            <param name="src">The byte array to Read from.</param>
+            <param name="offset">The offset of the first byte to Read.</param>
+        </member>
+        <member name="M:NPOI.Util.ClassID.#ctor">
+            <summary>
+            Creates a <see cref="T:NPOI.Util.ClassID"/> and initializes its value with 0x00 bytes.
+            </summary>
+        </member>
+        <member name="F:NPOI.Util.ClassID.LENGTH">
+            The number of bytes occupied by this object in the byte
+            stream. 
+        </member>
+        <member name="M:NPOI.Util.ClassID.Read(System.Byte[],System.Int32)">
+            <summary>
+            Reads the class ID's value from a byte array by turning little-endian into big-endian.
+            </summary>
+            <param name="src">The byte array to Read from</param>
+            <param name="offset">The offset within the </param>
+            <returns>A byte array containing the class ID.</returns>
+        </member>
+        <member name="M:NPOI.Util.ClassID.Write(System.Byte[],System.Int32)">
+            <summary>
+            Writes the class ID to a byte array in the little-endian format.
+            </summary>
+            <param name="dst">The byte array to Write to.</param>
+            <param name="offset">The offset within the </param>
+        </member>
+        <member name="M:NPOI.Util.ClassID.Equals(System.Object)">
+            <summary>
+            Checks whether this ClassID is equal to another
+            object.
+            </summary>
+            <param name="o">the object to compare this PropertySet with</param>
+            <returns>true if the objects are equal, else
+            false</returns>
+        </member>
+        <member name="M:NPOI.Util.ClassID.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns>
+            A hash code for the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="M:NPOI.Util.ClassID.ToString">
+            <summary>
+            Returns a human-Readable representation of the Class ID in standard
+            format <c>"{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"</c>.
+            </summary>
+            <returns>
+            A String representation of the Class ID represented by this object..
+            </returns>
+        </member>
+        <member name="P:NPOI.Util.ClassID.Length">
+            <summary>
+            Gets the length.
+            </summary>
+            <value>The number of bytes occupied by this object in the byte stream.</value>
+        </member>
+        <member name="P:NPOI.Util.ClassID.Bytes">
+            <summary>
+            Gets or sets the bytes making out the class ID. They are returned in correct order, i.e. big-endian.
+            </summary>
+            <value>the bytes making out the class ID..</value>
+        </member>
+        <member name="T:NPOI.Util.ByteField">
+            <summary>
+            representation of a byte (8-bit) field at a fixed location within a
+            byte array
+            @author Marc Johnson (mjohnson at apache dot org    
+            </summary>
+        </member>
+        <member name="T:NPOI.Util.FixedField">
+            <summary>
+            behavior of a field at a fixed location within a byte array
+            @author Marc Johnson (mjohnson at apache dot org
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.FixedField.ReadFromBytes(System.Byte[])">
+            <summary>
+            set the value from its offset into an array of bytes
+            </summary>
+            <param name="data">the byte array from which the value is to be read</param>
+        </member>
+        <member name="M:NPOI.Util.FixedField.ReadFromStream(System.IO.Stream)">
+            <summary>
+            set the value from an Stream
+            </summary>
+            <param name="stream">the Stream from which the value is to be read</param>
+        </member>
+        <member name="M:NPOI.Util.FixedField.ToString">
+            <summary>
+            return the value as a String
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.FixedField.WriteToBytes(System.Byte[])">
+            <summary>
+            write the value out to an array of bytes at the appropriate offset
+            </summary>
+            <param name="data">the array of bytes to which the value is to be written</param>
+        </member>
+        <member name="M:NPOI.Util.ByteField.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.Util.ByteField"/> class.
+            </summary>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="M:NPOI.Util.ByteField.#ctor(System.Int32,System.Byte)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.Util.ByteField"/> class.
+            </summary>
+            <param name="offset">The offset.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.ByteField.#ctor(System.Int32,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.Util.ByteField"/> class.
+            </summary>
+            <param name="offset">The offset.</param>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:NPOI.Util.ByteField.#ctor(System.Int32,System.Byte,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.Util.ByteField"/> class.
+            </summary>
+            <param name="offset">The offset.</param>
+            <param name="_value">The _value.</param>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:NPOI.Util.ByteField.ReadFromBytes(System.Byte[])">
+            <summary>
+            set the value from its offset into an array of bytes
+            </summary>
+            <param name="data">the byte array from which the value is to be read</param>
+        </member>
+        <member name="M:NPOI.Util.ByteField.ReadFromStream(System.IO.Stream)">
+            <summary>
+            set the value from an Stream
+            </summary>
+            <param name="stream">the Stream from which the value is to be read</param>
+        </member>
+        <member name="M:NPOI.Util.ByteField.Set(System.Byte,System.Byte[])">
+            <summary>
+            set the ByteField's current value and write it to a byte array
+            </summary>
+            <param name="value">value to be set</param>
+            <param name="data">the byte array to write the value to</param>
+        </member>
+        <member name="M:NPOI.Util.ByteField.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="M:NPOI.Util.ByteField.WriteToBytes(System.Byte[])">
+            <summary>
+            write the value out to an array of bytes at the appropriate offset
+            </summary>
+            <param name="data">the array of bytes to which the value is to be written</param>
+        </member>
+        <member name="P:NPOI.Util.ByteField.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+            <value>The value.</value>
+        </member>
+        <member name="M:NPOI.Util.IntegerField.#ctor(System.Int32)">
+            <summary>
+            construct the <see cref="T:NPOI.Util.IntegerField"/> with its offset into its containing byte array  class.
+            </summary>
+            <param name="offset">offset of the field within its byte array.</param>
+        </member>
+        <member name="M:NPOI.Util.IntegerField.#ctor(System.Int32,System.Int32)">
+            <summary>
+            construct the <see cref="T:NPOI.Util.IntegerField"/> with its offset into its containing
+            byte array and initialize its value
+            </summary>
+            <param name="offset">offset of the field within its byte array</param>
+            <param name="value">the initial value</param>
+        </member>
+        <member name="M:NPOI.Util.IntegerField.#ctor(System.Int32,System.Byte[])">
+            <summary>
+            Construct the <see cref="T:NPOI.Util.IntegerField"/> with its offset into its containing
+            byte array and initialize its value from its byte array
+            </summary>
+            <param name="offset">offset of the field within its byte array</param>
+            <param name="data">the byte array to Read the value from</param>
+        </member>
+        <member name="M:NPOI.Util.IntegerField.#ctor(System.Int32,System.Int32,System.Byte[])">
+            <summary>
+            construct the <see cref="T:NPOI.Util.IntegerField"/> with its offset into its containing 
+            byte array, initialize its value, and write the value to a byte
+            </summary>
+            <param name="offset">offset of the field within its byte array</param>
+            <param name="value">the initial value</param>
+            <param name="data">the byte array to write the value to</param>
+        </member>
+        <member name="M:NPOI.Util.IntegerField.Set(System.Int32,System.Byte[])">
+            <summary>
+            Set the IntegerField's current value and write it to a byte array
+            </summary>
+            <param name="value">value to be Set</param>
+            <param name="data">the byte array to write the value to</param>
+        </member>
+        <member name="M:NPOI.Util.IntegerField.ReadFromBytes(System.Byte[])">
+            <summary>
+            Set the value from its offset into an array of bytes
+            </summary>
+            <param name="data">The data.</param>
+        </member>
+        <member name="M:NPOI.Util.IntegerField.ReadFromStream(System.IO.Stream)">
+            <summary>
+            Set the value from an Stream
+            </summary>
+            <param name="stream">the Stream from which the value is to be Read</param>
+        </member>
+        <member name="M:NPOI.Util.IntegerField.WriteToBytes(System.Byte[])">
+            <summary>
+            write the value out to an array of bytes at the appropriate offset
+            </summary>
+            <param name="data"> the array of bytes to which the value is to be written </param>
+        </member>
+        <member name="M:NPOI.Util.IntegerField.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="P:NPOI.Util.IntegerField.Value">
+            <summary>
+            get or Set the IntegerField's current value
+            </summary>
+            <value>The value.</value>
+            <returns></returns>
+        </member>
+        <member name="T:NPOI.Util.ULongField">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.ULongField.#ctor(System.Int32)">
+            <summary>
+            construct the <see cref="T:NPOI.Util.LongField"/> with its offset into its containing byte array
+            </summary>
+            <param name="offset">The offset.</param>
+        </member>
+        <member name="M:NPOI.Util.ULongField.#ctor(System.Int32,System.UInt64)">
+            <summary>
+            construct the LongField with its offset into its containing
+            byte array and initialize its value
+            </summary>
+            <param name="offset">offset of the field within its byte array</param>
+            <param name="value">the initial value</param>
+        </member>
+        <member name="M:NPOI.Util.ULongField.#ctor(System.Int32,System.Byte[])">
+            <summary>
+            Construct the <see cref="T:NPOI.Util.LongField"/> class with its offset into its containing
+            byte array and initialize its value from its byte array
+            </summary>
+            <param name="offset">The offset of the field within its byte array</param>
+            <param name="data">the byte array to read the value from</param>
+        </member>
+        <member name="M:NPOI.Util.ULongField.#ctor(System.Int32,System.UInt64,System.Byte[])">
+            <summary>
+            construct the <see cref="T:NPOI.Util.LongField"/> class with its offset into its containing
+            byte array, initialize its value, and write the value to a byte
+            array
+            </summary>
+            <param name="offset">offset of the field within its byte array</param>
+            <param name="value">the initial value</param>
+            <param name="data">the byte array to write the value to</param>
+        </member>
+        <member name="M:NPOI.Util.ULongField.Set(System.UInt64,System.Byte[])">
+            <summary>
+            set the LongField's current value and write it to a byte array
+            </summary>
+            <param name="value">value to be set</param>
+            <param name="data">the byte array to write the value to</param>
+        </member>
+        <member name="M:NPOI.Util.ULongField.ReadFromBytes(System.Byte[])">
+            <summary>
+            set the value from its offset into an array of bytes
+            </summary>
+            <param name="data">the byte array from which the value is to be read</param>
+        </member>
+        <member name="M:NPOI.Util.ULongField.ReadFromStream(System.IO.Stream)">
+            <summary>
+            set the value from an Stream
+            </summary>
+            <param name="stream">the Stream from which the value is to be</param>
+        </member>
+        <member name="M:NPOI.Util.ULongField.WriteToBytes(System.Byte[])">
+            <summary>
+            write the value out to an array of bytes at the appropriate offset
+            </summary>
+            <param name="data">the array of bytes to which the value is to be written</param>
+        </member>
+        <member name="M:NPOI.Util.ULongField.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="P:NPOI.Util.ULongField.Value">
+            <summary>
+            Getg or sets the LongField's current value
+            </summary>
+            <value>The current value</value>
+        </member>
+        <member name="T:NPOI.Util.StringUtil">
+            <summary>
+            Title: String Utility Description: Collection of string handling utilities
+            @author     Andrew C. Oliver
+            @author     Sergei Kozello (sergeikozello at mail.ru)
+            @author     Toshiaki Kamoshida (kamoshida.toshiaki at future dot co dot jp)
+            @since      May 10, 2002
+            @version    1.0
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.StringUtil.#ctor">
+            Constructor for the StringUtil object     
+        </member>
+        <member name="M:NPOI.Util.StringUtil.GetFromUnicodeLE(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Given a byte array of 16-bit unicode characters in Little Endian
+            Format (most important byte last), return a Java String representation
+            of it.
+            { 0x16, 0x00 } -0x16
+            </summary>
+            <param name="str">the byte array to be converted</param>
+            <param name="offset">the initial offset into the
+            byte array. it Is assumed that string[ offset ] and string[ offset + 1 ] contain the first 16-bit unicode character</param>
+            <param name="len">the Length of the string</param>
+            <returns>the converted string</returns>                              
+        </member>
+        <member name="M:NPOI.Util.StringUtil.GetFromUnicodeLE(System.Byte[])">
+             <summary>
+             Given a byte array of 16-bit unicode characters in little endian
+             Format (most important byte last), return a Java String representation
+             of it.
+            { 0x16, 0x00 } -0x16
+             </summary>
+             <param name="str">the byte array to be converted</param>
+             <returns>the converted string</returns>  
+        </member>
+        <member name="M:NPOI.Util.StringUtil.GetFromUnicodeBE(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Given a byte array of 16-bit unicode characters in big endian
+            Format (most important byte first), return a Java String representation
+            of it.
+             { 0x00, 0x16 } -0x16
+            </summary>
+            <param name="str">the byte array to be converted</param>
+            <param name="offset">the initial offset into the
+            byte array. it Is assumed that string[ offset ] and string[ offset + 1 ] contain the first 16-bit unicode character</param>
+            <param name="len">the Length of the string</param>
+            <returns> the converted string</returns>
+        </member>
+        <member name="M:NPOI.Util.StringUtil.GetFromUnicodeBE(System.Byte[])">
+            <summary>
+            Given a byte array of 16-bit unicode characters in big endian
+            Format (most important byte first), return a Java String representation
+            of it.
+            { 0x00, 0x16 } -0x16
+            </summary>
+            <param name="str">the byte array to be converted</param>
+            <returns>the converted string</returns>      
+        </member>
+        <member name="M:NPOI.Util.StringUtil.GetFromCompressedUnicode(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Read 8 bit data (in IsO-8859-1 codepage) into a (unicode) Java
+            String and return.
+            (In Excel terms, read compressed 8 bit unicode as a string)
+            </summary>
+            <param name="str">byte array to read</param>
+            <param name="offset">offset to read byte array</param>
+            <param name="len">Length to read byte array</param>
+            <returns>generated String instance by reading byte array</returns>
+        </member>
+        <member name="M:NPOI.Util.StringUtil.PutCompressedUnicode(System.String,System.Byte[],System.Int32)">
+            <summary>
+            Takes a unicode (java) string, and returns it as 8 bit data (in IsO-8859-1
+            codepage).
+            (In Excel terms, write compressed 8 bit unicode)
+            </summary>
+            <param name="input">the String containing the data to be written</param>
+            <param name="output">the byte array to which the data Is to be written</param>
+            <param name="offset">an offset into the byte arrat at which the data Is start when written</param>
+        </member>
+        <member name="M:NPOI.Util.StringUtil.PutUnicodeLE(System.String,System.Byte[],System.Int32)">
+            <summary>
+            Takes a unicode string, and returns it as little endian (most
+            important byte last) bytes in the supplied byte array.
+            (In Excel terms, write uncompressed unicode)
+            </summary>
+            <param name="input">the String containing the unicode data to be written</param>
+            <param name="output">the byte array to hold the uncompressed unicode, should be twice the Length of the String</param>
+            <param name="offset">the offset to start writing into the byte array</param>
+        </member>
+        <member name="M:NPOI.Util.StringUtil.PutUnicodeBE(System.String,System.Byte[],System.Int32)">
+            <summary>
+            Takes a unicode string, and returns it as big endian (most
+            important byte first) bytes in the supplied byte array.
+            (In Excel terms, write uncompressed unicode)
+            </summary>
+            <param name="input">the String containing the unicode data to be written</param>
+            <param name="output">the byte array to hold the uncompressed unicode, should be twice the Length of the String.</param>
+            <param name="offset">the offset to start writing into the byte array</param>
+        </member>
+        <member name="M:NPOI.Util.StringUtil.GetPreferredEncoding">
+            <summary>
+            Gets the preferred encoding.
+            </summary>
+            <returns>the encoding we want to use, currently hardcoded to IsO-8859-1</returns>
+        </member>
+        <member name="M:NPOI.Util.StringUtil.HasMultibyte(System.String)">
+            <summary>
+            check the parameter Has multibyte character
+            </summary>
+            <param name="value"> string to check</param>
+            <returns>
+            	<c>true</c> if Has at least one multibyte character; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:NPOI.Util.StringUtil.IsUnicodeString(System.String)">
+             <summary>
+             Checks to see if a given String needs to be represented as Unicode
+             </summary>
+             <param name="value">The value.</param>
+             <returns>
+             	<c>true</c> if string needs Unicode to be represented.; otherwise, <c>false</c>.
+             </returns>
+            <remarks>Tony Qu change the logic</remarks>
+        </member>
+        <member name="M:NPOI.Util.StringUtil.ToHexString(System.String)">
+            <summary> 
+            Encodes non-US-ASCII characters in a string, good for encoding file names for download 
+            http://www.acriticsreview.com/List.aspx?listid=42
+            </summary> 
+            <param name="s"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:NPOI.Util.StringUtil.ToHexString(System.Char)">
+            <summary> 
+            Encodes a non-US-ASCII character. 
+            </summary> 
+            <param name="chr"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:NPOI.Util.StringUtil.ToHexString(System.Int16)">
+            <summary> 
+            Encodes a non-US-ASCII character. 
+            </summary> 
+            <param name="chr"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:NPOI.Util.StringUtil.ToHexString(System.Int32)">
+            <summary> 
+            Encodes a non-US-ASCII character. 
+            </summary> 
+            <param name="chr"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:NPOI.Util.StringUtil.NeedToEncode(System.Char)">
+            <summary> 
+            Determines if the character needs to be encoded. 
+            http://www.acriticsreview.com/List.aspx?listid=42
+            </summary> 
+            <param name="chr"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:NPOI.Util.Arrays.Fill(System.Byte[],System.Byte)">
+            <summary>
+            Fills the specified array.
+            </summary>
+            <param name="array">The array.</param>
+            <param name="defaultValue">The default value.</param>
+        </member>
+        <member name="M:NPOI.Util.Arrays.AsList(System.Array)">
+            <summary>
+            Convert Array to ArrayList
+            </summary>
+            <param name="arr">source array</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.Arrays.Fill(System.Int32[],System.Byte)">
+            <summary>
+            Fills the specified array.
+            </summary>
+            <param name="array">The array.</param>
+            <param name="defaultValue">The default value.</param>
+        </member>
+        <member name="M:NPOI.Util.Arrays.Equals(System.Object,System.Object)">
+            <summary>
+            Equals the specified a1.
+            </summary>
+            <param name="a1">The a1.</param>
+            <param name="b1">The b1.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.POILogger.#ctor">
+             package scope so it cannot be instantiated outside of the util
+             package. You need a POILogger? Go to the POILogFactory for one
+            
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object)">
+             Log a message
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 The object to Log.  This is converted to a string.
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Exception)">
+             Log a message
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 The object to Log.  This is converted to a string.
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.POILogger.Check(System.Int32)">
+             Check if a Logger is enabled to Log at the specified level
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Object)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first object to place in the message
+             @param obj2 second object to place in the message
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Object,System.Object)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third Object to place in the message
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third Object to place in the message
+             @param obj4 fourth Object to place in the message
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third Object to place in the message
+             @param obj4 fourth Object to place in the message
+             @param obj5 fifth Object to place in the message
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third Object to place in the message
+             @param obj4 fourth Object to place in the message
+             @param obj5 fifth Object to place in the message
+             @param obj6 sixth Object to place in the message
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third Object to place in the message
+             @param obj4 fourth Object to place in the message
+             @param obj5 fifth Object to place in the message
+             @param obj6 sixth Object to place in the message
+             @param obj7 seventh Object to place in the message
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third Object to place in the message
+             @param obj4 fourth Object to place in the message
+             @param obj5 fifth Object to place in the message
+             @param obj6 sixth Object to place in the message
+             @param obj7 seventh Object to place in the message
+             @param obj8 eighth Object to place in the message
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Exception)">
+             Log an exception, without a message
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Object,System.Exception)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Exception)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third object to place in the message
+             @param exception An error message to be Logged
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Exception)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third object to place in the message
+             @param obj4 fourth object to place in the message
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object,System.Exception)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third object to place in the message
+             @param obj4 fourth object to place in the message
+             @param obj5 fifth object to place in the message
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Exception)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third object to place in the message
+             @param obj4 fourth object to place in the message
+             @param obj5 fifth object to place in the message
+             @param obj6 sixth object to place in the message
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Exception)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third object to place in the message
+             @param obj4 fourth object to place in the message
+             @param obj5 fifth object to place in the message
+             @param obj6 sixth object to place in the message
+             @param obj7 seventh object to place in the message
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.POILogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Exception)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third object to place in the message
+             @param obj4 fourth object to place in the message
+             @param obj5 fifth object to place in the message
+             @param obj6 sixth object to place in the message
+             @param obj7 seventh object to place in the message
+             @param obj8 eighth object to place in the message
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.POILogger.LogFormatted(System.Int32,System.String,System.Object)">
+             Logs a formated message. The message itself may contain %
+             characters as place holders. This routine will attempt to match
+             the placeholder by looking at the type of parameter passed to
+             obj1.
+            
+             If the parameter is an array, it traverses the array first and
+             matches parameters sequentially against the array items.
+             Otherwise the parameters after <c>message</c> are matched
+             in order.
+            
+             If the place holder matches against a number it is printed as a
+             whole number. This can be overridden by specifying a precision
+             in the form %n.m where n is the padding for the whole part and
+             m is the number of decimal places to display. n can be excluded
+             if desired. n and m may not be more than 9.
+            
+             If the last parameter (after flattening) is a Exception it is
+             Logged specially.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param message The message to Log.
+             @param obj1 The first object to match against.
+        </member>
+        <member name="M:NPOI.Util.POILogger.LogFormatted(System.Int32,System.String,System.Object,System.Object)">
+             Logs a formated message. The message itself may contain %
+             characters as place holders. This routine will attempt to match
+             the placeholder by looking at the type of parameter passed to
+             obj1.
+            
+             If the parameter is an array, it traverses the array first and
+             matches parameters sequentially against the array items.
+             Otherwise the parameters after <c>message</c> are matched
+             in order.
+            
+             If the place holder matches against a number it is printed as a
+             whole number. This can be overridden by specifying a precision
+             in the form %n.m where n is the padding for the whole part and
+             m is the number of decimal places to display. n can be excluded
+             if desired. n and m may not be more than 9.
+            
+             If the last parameter (after flattening) is a Exception it is
+             Logged specially.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param message The message to Log.
+             @param obj1 The first object to match against.
+             @param obj2 The second object to match against.
+        </member>
+        <member name="M:NPOI.Util.POILogger.LogFormatted(System.Int32,System.String,System.Object,System.Object,System.Object)">
+             Logs a formated message. The message itself may contain %
+             characters as place holders. This routine will attempt to match
+             the placeholder by looking at the type of parameter passed to
+             obj1.
+            
+             If the parameter is an array, it traverses the array first and
+             matches parameters sequentially against the array items.
+             Otherwise the parameters after <c>message</c> are matched
+             in order.
+            
+             If the place holder matches against a number it is printed as a
+             whole number. This can be overridden by specifying a precision
+             in the form %n.m where n is the padding for the whole part and
+             m is the number of decimal places to display. n can be excluded
+             if desired. n and m may not be more than 9.
+            
+             If the last parameter (after flattening) is a Exception it is
+             Logged specially.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param message The message to Log.
+             @param obj1 The first object to match against.
+             @param obj2 The second object to match against.
+             @param obj3 The third object to match against.
+        </member>
+        <member name="M:NPOI.Util.POILogger.LogFormatted(System.Int32,System.String,System.Object,System.Object,System.Object,System.Object)">
+             Logs a formated message. The message itself may contain %
+             characters as place holders. This routine will attempt to match
+             the placeholder by looking at the type of parameter passed to
+             obj1.
+            
+             If the parameter is an array, it traverses the array first and
+             matches parameters sequentially against the array items.
+             Otherwise the parameters after <c>message</c> are matched
+             in order.
+            
+             If the place holder matches against a number it is printed as a
+             whole number. This can be overridden by specifying a precision
+             in the form %n.m where n is the padding for the whole part and
+             m is the number of decimal places to display. n can be excluded
+             if desired. n and m may not be more than 9.
+            
+             If the last parameter (after flattening) is a Exception it is
+             Logged specially.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param message The message to Log.
+             @param obj1 The first object to match against.
+             @param obj2 The second object to match against.
+             @param obj3 The third object to match against.
+             @param obj4 The forth object to match against.
+        </member>
+        <member name="M:NPOI.Util.POILogger.FlattenArrays(System.Object[])">
+            Flattens any contained objects. Only tranverses one level deep.
+        </member>
+        <member name="M:NPOI.Util.HexRead.ReadData(System.String)">
+            <summary>
+            This method reads hex data from a filename and returns a byte array.
+            The file may contain line comments that are preceeded with a # symbol.
+            </summary>
+            <param name="filename">The filename to read</param>
+            <returns>The bytes read from the file.</returns>
+            <exception cref="T:System.IO.IOException">If there was a problem while reading the file.</exception>
+        </member>
+        <member name="M:NPOI.Util.HexRead.ReadData(System.IO.Stream,System.String)">
+            <summary>
+            Same as ReadData(String) except that this method allows you to specify sections within
+            a file.  Sections are referenced using section headers in the form:
+            </summary>
+            <param name="stream">The stream.</param>
+            <param name="section">The section.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.HexRead.ReadData(System.String,System.String)">
+            <summary>
+            Reads the data.
+            </summary>
+            <param name="filename">The filename.</param>
+            <param name="section">The section.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.HexRead.ReadData(System.IO.Stream,System.Int32)">
+            <summary>
+            Reads the data.
+            </summary>
+            <param name="stream">The stream.</param>
+            <param name="eofChar">The EOF char.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.HexRead.ReadFromString(System.String)">
+            <summary>
+            Reads from string.
+            </summary>
+            <param name="data">The data.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.HexRead.ReadToEOL(System.IO.Stream)">
+            <summary>
+            Reads to EOL.
+            </summary>
+            <param name="stream">The stream.</param>
+        </member>
+        <member name="T:NPOI.Util.Collections.ISet">
+            <summary>
+            This interface comes from Java
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.Collections.ISet.Add(System.Object)">
+            <summary>
+            Adds the specified o.
+            </summary>
+            <param name="o">The o.</param>
+        </member>
+        <member name="M:NPOI.Util.Collections.ISet.Contains(System.Object)">
+            <summary>
+            Determines whether [contains] [the specified o].
+            </summary>
+            <param name="o">The o.</param>
+            <returns>
+            	<c>true</c> if [contains] [the specified o]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:NPOI.Util.Collections.ISet.Remove(System.Object)">
+            <summary>
+            Removes the specified o.
+            </summary>
+            <param name="o">The o.</param>
+        </member>
+        <member name="T:NPOI.Util.BitFieldFactory">
+            <summary>
+            Returns immutable Btfield instances.
+            @author Jason Height (jheight at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.BitFieldFactory.GetInstance(System.Int32)">
+            <summary>
+            Gets the instance.
+            </summary>
+            <param name="mask">The mask.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NPOI.Util.BitField">
+            <summary>
+            Manage operations dealing with bit-mapped fields.
+            @author Marc Johnson (mjohnson at apache dot org)
+            @author Andrew C. Oliver (acoliver at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.BitField.#ctor(System.Int32)">
+            <summary>
+            Create a <see cref="T:NPOI.Util.BitField"/> instance
+            </summary>
+            <param name="mask">
+            the mask specifying which bits apply to this
+            BitField. Bits that are set in this mask are the
+            bits that this BitField operates on
+            </param>
+        </member>
+        <member name="M:NPOI.Util.BitField.#ctor(System.UInt32)">
+            <summary>
+            Create a <see cref="T:NPOI.Util.BitField"/> instance
+            </summary>
+            <param name="mask">
+            the mask specifying which bits apply to this
+            BitField. Bits that are set in this mask are the
+            bits that this BitField operates on
+            </param>
+        </member>
+        <member name="M:NPOI.Util.BitField.Clear(System.Int32)">
+            <summary>
+            Clear the bits.
+            </summary>
+            <param name="holder">the int data containing the bits we're interested in</param>
+            <returns>the value of holder with the specified bits cleared (set to 0)</returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.ClearShort(System.Int16)">
+            <summary>
+            Clear the bits.
+            </summary>
+            <param name="holder">the short data containing the bits we're interested in</param>
+            <returns>the value of holder with the specified bits cleared (set to 0)</returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.GetRawValue(System.Int32)">
+            <summary>
+            Obtain the value for the specified BitField, appropriately
+            shifted right. Many users of a BitField will want to treat the
+            specified bits as an int value, and will not want to be aware
+            that the value is stored as a BitField (and so shifted left so
+            many bits)
+            </summary>
+            <param name="holder">the int data containing the bits we're interested in</param>
+            <returns>the selected bits, shifted right appropriately</returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.GetShortRawValue(System.Int16)">
+            <summary>
+            Obtain the value for the specified BitField, unshifted
+            </summary>
+            <param name="holder">the short data containing the bits we're interested in</param>
+            <returns>the selected bits</returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.GetShortValue(System.Int16)">
+            <summary>
+            Obtain the value for the specified BitField, appropriately
+            shifted right, as a short. Many users of a BitField will want
+            to treat the specified bits as an int value, and will not want
+            to be aware that the value is stored as a BitField (and so
+            shifted left so many bits)
+            </summary>
+            <param name="holder">the short data containing the bits we're interested in</param>
+            <returns>the selected bits, shifted right appropriately</returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.GetValue(System.Int32)">
+            <summary>
+            Obtain the value for the specified BitField, appropriately
+            shifted right. Many users of a BitField will want to treat the
+            specified bits as an int value, and will not want to be aware
+            that the value is stored as a BitField (and so shifted left so
+            many bits)
+            </summary>
+            <param name="holder">the int data containing the bits we're interested in</param>
+            <returns>the selected bits, shifted right appropriately</returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.IsAllSet(System.Int32)">
+            <summary>
+            Are all of the bits set or not? This is a stricter test than
+            isSet, in that all of the bits in a multi-bit set must be set
+            for this method to return true
+            </summary>
+            <param name="holder">the int data containing the bits we're interested in</param>
+            <returns>
+            	<c>true</c> if all of the bits are set otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.IsSet(System.Int32)">
+            <summary>
+            Is the field set or not? This is most commonly used for a
+            single-bit field, which is often used to represent a boolean
+            value; the results of using it for a multi-bit field is to
+            determine whether *any* of its bits are set
+            </summary>
+            <param name="holder">the int data containing the bits we're interested in</param>
+            <returns>
+            	<c>true</c> if any of the bits are set; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.Set(System.Int32)">
+            <summary>
+            Set the bits.
+            </summary>
+            <param name="holder">the int data containing the bits we're interested in</param>
+            <returns>the value of holder with the specified bits set to 1</returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.SetBoolean(System.Int32,System.Boolean)">
+            <summary>
+            Set a boolean BitField
+            </summary>
+            <param name="holder">the int data containing the bits we're interested in</param>
+            <param name="flag">indicating whether to set or clear the bits</param>
+            <returns>the value of holder with the specified bits set or cleared</returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.SetShort(System.Int16)">
+            <summary>
+            Set the bits.
+            </summary>
+            <param name="holder">the short data containing the bits we're interested in</param>
+            <returns>the value of holder with the specified bits set to 1</returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.SetShortBoolean(System.Int16,System.Boolean)">
+            <summary>
+            Set a boolean BitField
+            </summary>
+            <param name="holder">the short data containing the bits we're interested in</param>
+            <param name="flag">indicating whether to set or clear the bits</param>
+            <returns>the value of holder with the specified bits set or cleared</returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.SetShortValue(System.Int16,System.Int16)">
+            <summary>
+            Obtain the value for the specified BitField, appropriately
+            shifted right, as a short. Many users of a BitField will want
+            to treat the specified bits as an int value, and will not want
+            to be aware that the value is stored as a BitField (and so
+            shifted left so many bits)
+            </summary>
+            <param name="holder">the short data containing the bits we're interested in</param>
+            <param name="value">the new value for the specified bits</param>
+            <returns>the selected bits, shifted right appropriately</returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.SetValue(System.Int32,System.Int32)">
+            <summary>
+            Sets the value.
+            </summary>
+            <param name="holder">the byte data containing the bits we're interested in</param>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.SetByteBoolean(System.Byte,System.Boolean)">
+            <summary>
+            Set a boolean BitField
+            </summary>
+            <param name="holder"> the byte data containing the bits we're interested in</param>
+            <param name="flag">indicating whether to set or clear the bits</param>
+            <returns>the value of holder with the specified bits set or cleared</returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.ClearByte(System.Byte)">
+            <summary>
+            Clears the bits.
+            </summary>
+            <param name="holder">the byte data containing the bits we're interested in</param>
+            <returns>the value of holder with the specified bits cleared</returns>
+        </member>
+        <member name="M:NPOI.Util.BitField.SetByte(System.Byte)">
+            <summary>
+            Set the bits.
+            </summary>
+            <param name="holder">the byte data containing the bits we're interested in</param>
+            <returns>the value of holder with the specified bits set to 1</returns>
+        </member>
+        <member name="T:NPOI.Util.NullLogger">
+            <summary>
+            A Logger class that strives to make it as easy as possible for
+            developers to write Log calls, while simultaneously making those
+            calls as cheap as possible by performing lazy evaluation of the Log
+            message.
+            @author Marc Johnson (mjohnson at apache dot org)
+            @author Glen Stampoultzis (glens at apache.org)
+            @author Nicola Ken Barozzi (nicolaken at apache.org)
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object)">
+             Log a message
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 The object to Log.
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Check(System.Int32)">
+             Check if a Logger is enabled to Log at the specified level
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Object)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first object to place in the message
+             @param obj2 second object to place in the message
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Object,System.Object)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third Object to place in the message
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third Object to place in the message
+             @param obj4 fourth Object to place in the message
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third Object to place in the message
+             @param obj4 fourth Object to place in the message
+             @param obj5 fifth Object to place in the message
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third Object to place in the message
+             @param obj4 fourth Object to place in the message
+             @param obj5 fifth Object to place in the message
+             @param obj6 sixth Object to place in the message
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third Object to place in the message
+             @param obj4 fourth Object to place in the message
+             @param obj5 fifth Object to place in the message
+             @param obj6 sixth Object to place in the message
+             @param obj7 seventh Object to place in the message
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third Object to place in the message
+             @param obj4 fourth Object to place in the message
+             @param obj5 fifth Object to place in the message
+             @param obj6 sixth Object to place in the message
+             @param obj7 seventh Object to place in the message
+             @param obj8 eighth Object to place in the message
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Exception)">
+             Log a message
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 The object to Log.  This is converted to a string.
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Object,System.Exception)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Exception)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third object to place in the message
+             @param exception An error message to be Logged
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Exception)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third object to place in the message
+             @param obj4 fourth object to place in the message
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object,System.Exception)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third object to place in the message
+             @param obj4 fourth object to place in the message
+             @param obj5 fifth object to place in the message
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Exception)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third object to place in the message
+             @param obj4 fourth object to place in the message
+             @param obj5 fifth object to place in the message
+             @param obj6 sixth object to place in the message
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Exception)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third object to place in the message
+             @param obj4 fourth object to place in the message
+             @param obj5 fifth object to place in the message
+             @param obj6 sixth object to place in the message
+             @param obj7 seventh object to place in the message
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.NullLogger.Log(System.Int32,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Object,System.Exception)">
+             Log a message. Lazily appends Object parameters together.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param obj1 first Object to place in the message
+             @param obj2 second Object to place in the message
+             @param obj3 third object to place in the message
+             @param obj4 fourth object to place in the message
+             @param obj5 fifth object to place in the message
+             @param obj6 sixth object to place in the message
+             @param obj7 seventh object to place in the message
+             @param obj8 eighth object to place in the message
+             @param exception An exception to be Logged
+        </member>
+        <member name="M:NPOI.Util.NullLogger.LogFormatted(System.Int32,System.String,System.Object)">
+             Logs a formated message. The message itself may contain %
+             characters as place holders. This routine will attempt to match
+             the placeholder by looking at the type of parameter passed to
+             obj1.
+            
+             If the parameter is an array, it traverses the array first and
+             matches parameters sequentially against the array items.
+             Otherwise the parameters after <c>message</c> are matched
+             in order.
+            
+             If the place holder matches against a number it is printed as a
+             whole number. This can be overridden by specifying a precision
+             in the form %n.m where n is the padding for the whole part and
+             m is the number of decimal places to display. n can be excluded
+             if desired. n and m may not be more than 9.
+            
+             If the last parameter (after flattening) is a Exception it is
+             Logged specially.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param message The message to Log.
+             @param obj1 The first object to match against.
+        </member>
+        <member name="M:NPOI.Util.NullLogger.LogFormatted(System.Int32,System.String,System.Object,System.Object)">
+             Logs a formated message. The message itself may contain %
+             characters as place holders. This routine will attempt to match
+             the placeholder by looking at the type of parameter passed to
+             obj1.
+            
+             If the parameter is an array, it traverses the array first and
+             matches parameters sequentially against the array items.
+             Otherwise the parameters after <c>message</c> are matched
+             in order.
+            
+             If the place holder matches against a number it is printed as a
+             whole number. This can be overridden by specifying a precision
+             in the form %n.m where n is the padding for the whole part and
+             m is the number of decimal places to display. n can be excluded
+             if desired. n and m may not be more than 9.
+            
+             If the last parameter (after flattening) is a Exception it is
+             Logged specially.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param message The message to Log.
+             @param obj1 The first object to match against.
+             @param obj2 The second object to match against.
+        </member>
+        <member name="M:NPOI.Util.NullLogger.LogFormatted(System.Int32,System.String,System.Object,System.Object,System.Object)">
+             Logs a formated message. The message itself may contain %
+             characters as place holders. This routine will attempt to match
+             the placeholder by looking at the type of parameter passed to
+             obj1.
+            
+             If the parameter is an array, it traverses the array first and
+             matches parameters sequentially against the array items.
+             Otherwise the parameters after <c>message</c> are matched
+             in order.
+            
+             If the place holder matches against a number it is printed as a
+             whole number. This can be overridden by specifying a precision
+             in the form %n.m where n is the padding for the whole part and
+             m is the number of decimal places to display. n can be excluded
+             if desired. n and m may not be more than 9.
+            
+             If the last parameter (after flattening) is a Exception it is
+             Logged specially.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param message The message to Log.
+             @param obj1 The first object to match against.
+             @param obj2 The second object to match against.
+             @param obj3 The third object to match against.
+        </member>
+        <member name="M:NPOI.Util.NullLogger.LogFormatted(System.Int32,System.String,System.Object,System.Object,System.Object,System.Object)">
+             Logs a formated message. The message itself may contain %
+             characters as place holders. This routine will attempt to match
+             the placeholder by looking at the type of parameter passed to
+             obj1.
+            
+             If the parameter is an array, it traverses the array first and
+             matches parameters sequentially against the array items.
+             Otherwise the parameters after <c>message</c> are matched
+             in order.
+            
+             If the place holder matches against a number it is printed as a
+             whole number. This can be overridden by specifying a precision
+             in the form %n.m where n is the padding for the whole part and
+             m is the number of decimal places to display. n can be excluded
+             if desired. n and m may not be more than 9.
+            
+             If the last parameter (after flattening) is a Exception it is
+             Logged specially.
+            
+             @param level One of DEBUG, INFO, WARN, ERROR, FATAL
+             @param message The message to Log.
+             @param obj1 The first object to match against.
+             @param obj2 The second object to match against.
+             @param obj3 The third object to match against.
+             @param obj4 The forth object to match against.
+        </member>
+        <member name="T:NPOI.Util.Collections.HashSet">
+            <summary>
+            This class comes from Java
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.Collections.HashSet.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.Util.Collections.HashSet"/> class.
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.Collections.HashSet.#ctor(NPOI.Util.Collections.ISet)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.Util.Collections.HashSet"/> class.
+            </summary>
+            <param name="s">The s.</param>
+        </member>
+        <member name="M:NPOI.Util.Collections.HashSet.Add(System.Object)">
+            <summary>
+            Adds the specified o.
+            </summary>
+            <param name="o">The o.</param>
+        </member>
+        <member name="M:NPOI.Util.Collections.HashSet.Contains(System.Object)">
+            <summary>
+            Determines whether [contains] [the specified o].
+            </summary>
+            <param name="o">The o.</param>
+            <returns>
+            	<c>true</c> if [contains] [the specified o]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:NPOI.Util.Collections.HashSet.CopyTo(System.Array,System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.ICollection"/> to an <see cref="T:System.Array"/>, starting at a particular <see cref="T:System.Array"/> index.
+            </summary>
+            <param name="array">The one-dimensional <see cref="T:System.Array"/> that is the destination of the elements copied from <see cref="T:System.Collections.ICollection"/>. The <see cref="T:System.Array"/> must have zero-based indexing.</param>
+            <param name="index">The zero-based index in <paramref name="array"/> at which copying begins.</param>
+            <exception cref="T:System.ArgumentNullException">
+            	<paramref name="array"/> is null.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            	<paramref name="index"/> is less than zero.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            	<paramref name="array"/> is multidimensional.
+            -or-
+            <paramref name="index"/> is equal to or greater than the length of <paramref name="array"/>.
+            -or-
+            The number of elements in the source <see cref="T:System.Collections.ICollection"/> is greater than the available space from <paramref name="index"/> to the end of the destination <paramref name="array"/>.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            The type of the source <see cref="T:System.Collections.ICollection"/> cannot be cast automatically to the type of the destination <paramref name="array"/>.
+            </exception>
+        </member>
+        <member name="M:NPOI.Util.Collections.HashSet.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:NPOI.Util.Collections.HashSet.Remove(System.Object)">
+            <summary>
+            Removes the specified o.
+            </summary>
+            <param name="o">The o.</param>
+        </member>
+        <member name="P:NPOI.Util.Collections.HashSet.Count">
+            <summary>
+            Gets the number of elements contained in the <see cref="T:System.Collections.ICollection"/>.
+            </summary>
+            <value></value>
+            <returns>
+            The number of elements contained in the <see cref="T:System.Collections.ICollection"/>.
+            </returns>
+        </member>
+        <member name="P:NPOI.Util.Collections.HashSet.IsSynchronized">
+            <summary>
+            Gets a value indicating whether access to the <see cref="T:System.Collections.ICollection"/> is synchronized (thread safe).
+            </summary>
+            <value></value>
+            <returns>true if access to the <see cref="T:System.Collections.ICollection"/> is synchronized (thread safe); otherwise, false.
+            </returns>
+        </member>
+        <member name="P:NPOI.Util.Collections.HashSet.SyncRoot">
+            <summary>
+            Gets an object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
+            </summary>
+            <value></value>
+            <returns>
+            An object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.
+            </returns>
+        </member>
+        <member name="T:NPOI.Util.Collections.IntMapper">
+            <summary>
+            A List of objects that are indexed AND keyed by an int; also allows for getting
+            the index of a value in the list
+            I am happy is someone wants to re-implement this without using the
+            internal list and hashmap. If so could you please make sure that
+            you can add elements half way into the list and have the value-key mappings
+            update
+            @author Jason Height
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.Collections.IntMapper.#ctor">
+            <summary>
+            create an IntMapper of default size
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.Collections.IntMapper.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.Util.Collections.IntMapper"/> class.
+            </summary>
+            <param name="initialCapacity">The initial capacity.</param>
+        </member>
+        <member name="M:NPOI.Util.Collections.IntMapper.Add(System.Object)">
+            <summary>
+            Appends the specified element to the end of this list
+            @param value element to be appended to this list.
+            @return true (as per the general contract of the Collection.add
+            method).
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.Collections.IntMapper.GetIndex(System.Object)">
+            <summary>
+            Gets the index.
+            </summary>
+            <param name="o">The o.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.Collections.IntMapper.GetEnumerator">
+            <summary>
+            Gets the enumerator.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NPOI.Util.Collections.IntMapper.Size">
+            <summary>
+            Gets the size.
+            </summary>
+            <value>The size.</value>
+        </member>
+        <member name="P:NPOI.Util.Collections.IntMapper.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:System.Object"/> at the specified index.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:NPOI.Util.Collections.Properties">
+            <summary>
+            This class comes from Java
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.Collections.Properties.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.Util.Collections.Properties"/> class.
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.Collections.Properties.Remove(System.String)">
+            <summary>
+            Removes the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.Collections.Properties.GetEnumerator">
+            <summary>
+            Gets the enumerator.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.Collections.Properties.ContainsKey(System.String)">
+            <summary>
+            Determines whether the specified key contains key.
+            </summary>
+            <param name="key">The key.</param>
+            <returns>
+            	<c>true</c> if the specified key contains key; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:NPOI.Util.Collections.Properties.Add(System.String,System.String)">
+            <summary>
+            Adds the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:NPOI.Util.Collections.Properties.Clear">
+            <summary>
+            Clears this instance.
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.Collections.Properties.Load(System.IO.Stream)">
+            <summary>
+            Loads the specified in stream.
+            </summary>
+            <param name="inStream">The in stream.</param>
+        </member>
+        <member name="M:NPOI.Util.Collections.Properties.LoadConvert(System.String)">
+            <summary>
+            Loads the convert.
+            </summary>
+            <param name="theString">The string.</param>
+            <returns></returns>
+            <remarks>
+            Converts encoded &#92;uxxxx to unicode chars
+            and changes special saved chars to their original forms
+            </remarks>
+        </member>
+        <member name="M:NPOI.Util.Collections.Properties.ContinueLine(System.String)">
+            <summary>
+            Continues the line.
+            </summary>
+            <param name="line">The line.</param>
+            <returns></returns>
+        </member>
+        <member name="P:NPOI.Util.Collections.Properties.Count">
+            <summary>
+            Gets the count.
+            </summary>
+            <value>The count.</value>
+        </member>
+        <member name="P:NPOI.Util.Collections.Properties.Item(System.String)">
+            <summary>
+            Gets or sets the <see cref="T:System.String"/> with the specified key.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:NPOI.Util.Collections.Properties.Keys">
+            <summary>
+            Gets the keys.
+            </summary>
+            <value>The keys.</value>
+        </member>
+        <member name="T:NPOI.Util.CRC32">
+            <summary>
+            CRC Verification
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.CRC32.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.Util.CRC32"/> class.
+            </summary>
+        </member>
+        <member name="M:NPOI.Util.CRC32.ByteCRC(System.Byte[]@)">
+            <summary>
+             CRC Bytes.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.CRC32.StringCRC(System.String)">
+            <summary>
+            String CRC
+            </summary>
+            <param name="sInputString">the string</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.CRC32.FileCRC(System.String)">
+            <summary>
+            File CRC
+            </summary>
+            <param name="sInputFilename">the input file</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.CRC32.StreamCRC(System.IO.Stream)">
+            <summary>
+            Stream CRC
+            </summary>
+            <param name="sInputFilename">the input stream</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.TempFile.CreateTempFile(System.String,System.String)">
+            Creates a temporary file.  Files are collected into one directory and by default are
+            deleted on exit from the VM.  Files can be kept by defining the system property
+            <c>poi.keep.tmp.files</c>.
+            
+            Dont forget to close all files or it might not be possible to delete them.
+        </member>
+        <member name="M:NPOI.Util.IO.IOUtils.ToByteArray(System.IO.Stream)">
+            <summary>
+            Reads all the data from the input stream, and returns
+            the bytes Read.
+            </summary>
+            <param name="stream">The stream.</param>
+            <returns></returns>
+            <remarks>Tony Qu changed the code</remarks>
+        </member>
+        <member name="M:NPOI.Util.IO.IOUtils.ReadFully(System.IO.Stream,System.Byte[])">
+            <summary>
+            Reads the fully.
+            </summary>
+            <param name="stream">The stream.</param>
+            <param name="b">The b.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.Util.IO.IOUtils.ReadFully(System.IO.Stream,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Same as the normal 
+            <tt>in.Read(b, off, len)</tt>
+            , but tries to ensure that the entire len number of bytes is Read.
+            If the end of file is reached before any bytes are Read, returns -1.
+            If the end of the file is reached after some bytes are
+            Read, returns the number of bytes Read.
+            If the end of the file isn't reached before len
+            bytes have been Read, will return len bytes.
+            </summary>
+            <param name="stream">The stream.</param>
+            <param name="b">The b.</param>
+            <param name="off">The off.</param>
+            <param name="len">The len.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

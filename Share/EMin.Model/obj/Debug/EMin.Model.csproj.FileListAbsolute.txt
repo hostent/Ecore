@@ -1,0 +1,5 @@
+D:\code\HtcSource\HTCv4\Htc_51daigou\微服务\Share\EMin.Model\bin\Debug\EMin.Model.dll
+D:\code\HtcSource\HTCv4\Htc_51daigou\微服务\Share\EMin.Model\bin\Debug\EMin.Model.pdb
+D:\code\HtcSource\HTCv4\Htc_51daigou\微服务\Share\EMin.Model\obj\Debug\EMin.Model.dll
+D:\code\HtcSource\HTCv4\Htc_51daigou\微服务\Share\EMin.Model\obj\Debug\EMin.Model.pdb
+D:\code\HtcSource\HTCv4\Htc_51daigou\微服务\Share\EMin.Model\obj\Debug\EMin.Model.csprojResolveAssemblyReference.cache

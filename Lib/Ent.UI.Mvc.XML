@@ -1,0 +1,296 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ent.UI.Mvc</name>
+    </assembly>
+    <members>
+        <member name="T:Ent.UI.Mvc.Controllers.AdminController">
+            <summary>
+            后台管理控制器基类
+            </summary>
+        </member>
+        <member name="P:Ent.UI.Mvc.Controllers.AdminController.TemplateName">
+            <summary>
+            报表模板名
+            </summary>
+        </member>
+        <member name="P:Ent.UI.Mvc.Controllers.AdminController.ExportName">
+            <summary>
+            导出文件名
+            </summary>
+        </member>
+        <member name="M:Ent.UI.Mvc.Controllers.AdminController.ExportFile(System.Data.DataTable,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            导出报表
+            </summary>     
+            <param name="datasource">数据源</param>
+            <param name="vairable">自定义变量</param>
+            <returns>导出文件编号</returns>
+        </member>
+        <member name="M:Ent.UI.Mvc.Controllers.AdminController.GetExportFile(System.String)">
+            <summary>
+            下载导出文件
+            </summary>
+            <param name="exportId">文件编号</param>
+            <returns>导出文件流</returns>
+        </member>
+        <member name="M:Ent.UI.Mvc.Controllers.AdminController.ExportFile(System.String)">
+            <summary>
+            导出文件
+            </summary>
+            <param name="filter">查询条件对象</param>
+            <returns>导出文件编号</returns>
+        </member>
+        <member name="T:Ent.UI.Mvc.Controllers.BaseController">
+            <summary>
+            控制器基类
+            </summary>
+        </member>
+        <member name="M:Ent.UI.Mvc.Controllers.BaseController.RegisterScript(System.String,System.String[])">
+            <summary>
+            分组注册脚本资源
+            </summary>
+            <param name="virtualPath">合并后的虚拟路径</param>
+            <param name="virtualPaths">脚本资源的虚拟路径</param>
+        </member>
+        <member name="M:Ent.UI.Mvc.Controllers.BaseController.RegisterStyle(System.String,System.String[])">
+            <summary>
+            分组注册样式资源
+            </summary>
+            <param name="virtualPath">合并后的虚拟路径</param>
+            <param name="virtualPaths">样式资源的虚拟路径</param>
+        </member>
+        <member name="T:Ent.UI.Mvc.Controllers.WebsiteController">
+            <summary>
+            前台网站控制器基类
+            </summary>
+        </member>
+        <member name="M:Ent.UI.Mvc.Controllers.WebsiteController.ErrorView(System.String,System.Int32)">
+            <summary>
+            返回错误页面
+            </summary>
+            <param name="message">提示消息</param>
+            <param name="statusCode">错误代码</param>
+            <returns>错误页面</returns>
+        </member>
+        <member name="T:Ent.UI.Mvc.Filters.AdminLogAttribute">
+            <summary>
+            记录后台管理员访问日志过滤器
+            </summary>
+        </member>
+        <member name="T:Ent.UI.Mvc.Filters.AnonymousLogAttribute">
+            <summary>
+            记录匿名访问日志过滤器
+            </summary>
+        </member>
+        <member name="T:Ent.UI.Mvc.Filters.CustomerLogAttribute">
+            <summary>
+            记录前台网站会员访问日志过滤器
+            </summary>
+        </member>
+        <member name="T:Ent.UI.Mvc.Filters.LogAttribute">
+            <summary>
+            记录日志过滤器
+            </summary>
+        </member>
+        <member name="M:Ent.UI.Mvc.Filters.LogAttribute.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+             Called by the ASP.NET MVC framework before the action method executes.
+            </summary>
+            <param name="filterContext">The filter context</param>
+        </member>
+        <member name="T:Ent.UI.Mvc.Filters.LogAttribute.LogInfo">
+            <summary>
+            日志信息实体类
+            </summary>
+        </member>
+        <member name="P:Ent.UI.Mvc.Filters.LogAttribute.LogInfo.Controller">
+            <summary>
+            控制器
+            </summary>
+        </member>
+        <member name="P:Ent.UI.Mvc.Filters.LogAttribute.LogInfo.Action">
+            <summary>
+            操作
+            </summary>
+        </member>
+        <member name="P:Ent.UI.Mvc.Filters.LogAttribute.LogInfo.RequestParams">
+            <summary>
+            请求参数 json
+            </summary>
+        </member>
+        <member name="P:Ent.UI.Mvc.Filters.LogAttribute.LogInfo.LogTime">
+            <summary>
+            访问时间
+            </summary>
+        </member>
+        <member name="P:Ent.UI.Mvc.Filters.LogAttribute.LogInfo.IP">
+            <summary>
+            访问ip
+            </summary>
+        </member>
+        <member name="P:Ent.UI.Mvc.Filters.LogAttribute.LogInfo.IPLocation">
+            <summary>
+            ip归属地
+            </summary>
+        </member>
+        <member name="P:Ent.UI.Mvc.Filters.LogAttribute.LogInfo.UserId">
+            <summary>
+            用户id
+            </summary>
+        </member>
+        <member name="P:Ent.UI.Mvc.Filters.LogAttribute.LogInfo.UserName">
+            <summary>
+            用户名称
+            </summary>
+        </member>
+        <member name="P:Ent.UI.Mvc.Filters.LogAttribute.LogInfo.UserAgent">
+            <summary>
+            用户代理字符串
+            </summary>
+        </member>
+        <member name="P:Ent.UI.Mvc.Filters.LogAttribute.LogInfo.UrlReferrer">
+            <summary>
+            来源url地址
+            </summary>
+        </member>
+        <member name="M:Ent.UI.Mvc.Filters.LogAttribute.CreateLog(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            从上下文中创建日志对象
+            </summary>
+            <param name="filterContext"><see cref="T:System.Web.Mvc.ActionExecutingContext"/>上下文</param>
+            <returns><see cref="T:Ent.UI.Mvc.Filters.LogAttribute.LogInfo"/>日志对象</returns>
+        </member>
+        <member name="M:Ent.UI.Mvc.Filters.LogAttribute.SaveLog(Ent.UI.Mvc.Filters.LogAttribute.LogInfo)">
+            <summary>
+            保存日志对象到数据库
+            </summary>
+            <param name="log"><see cref="T:Ent.UI.Mvc.Filters.LogAttribute.LogInfo"/>日志对象</param>
+        </member>
+        <member name="M:Ent.UI.Mvc.Filters.LogAttribute.Loging(Ent.UI.Mvc.Filters.LogAttribute.LogInfo)">
+            <summary>
+            记录日志，子类重载
+            </summary>
+            <param name="log">默认生成的日志对象</param>
+        </member>
+        <member name="T:Ent.UI.Mvc.Filters.ValidateLoginAdminAttribute">
+            <summary>
+            验证管理员登录过滤器
+            </summary>
+        </member>
+        <member name="M:Ent.UI.Mvc.Filters.ValidateLoginAdminAttribute.IsLogin(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            是否已登录
+            </summary>
+            <param name="filterContext">过滤器上下文</param>
+            <returns>已登录返回true，否则返回false</returns>
+        </member>
+        <member name="T:Ent.UI.Mvc.Filters.ValidateLoginAttribute">
+            <summary>
+            验证登录过滤器
+            </summary>
+        </member>
+        <member name="M:Ent.UI.Mvc.Filters.ValidateLoginAttribute.OnActionExecuting(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+             Called by the ASP.NET MVC framework before the action method executes.
+            </summary>
+            <param name="filterContext">The filter context</param>
+        </member>
+        <member name="M:Ent.UI.Mvc.Filters.ValidateLoginAttribute.IsLogin(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            是否已登录
+            </summary>
+            <param name="filterContext">过滤器上下文</param>
+            <returns>已登录返回true，否则返回false</returns>
+        </member>
+        <member name="T:Ent.UI.Mvc.Filters.ValidateLoginCustomerAttribute">
+            <summary>
+            验证会员登录过滤器
+            </summary>
+        </member>
+        <member name="M:Ent.UI.Mvc.Filters.ValidateLoginCustomerAttribute.IsLogin(System.Web.Mvc.ActionExecutingContext)">
+            <summary>
+            是否已登录
+            </summary>
+            <param name="filterContext">过滤器上下文</param>
+            <returns>已登录返回true，否则返回false</returns>
+        </member>
+        <member name="T:Ent.UI.Mvc.Optimization.Resources">
+            <summary>
+            生成脚本资源链接辅助类
+            </summary>
+        </member>
+        <member name="F:Ent.UI.Mvc.Optimization.Resources._resourceCache">
+            <summary>
+            资源文件缓存
+            </summary>
+        </member>
+        <member name="F:Ent.UI.Mvc.Optimization.Resources._debug">
+            <summary>
+            是否是调试模式
+            </summary>
+        </member>
+        <member name="F:Ent.UI.Mvc.Optimization.Resources._cachePath">
+            <summary>
+            缓存文件路径
+            </summary>
+        </member>
+        <member name="M:Ent.UI.Mvc.Optimization.Resources.#cctor">
+            <summary>
+            构造器
+            </summary>
+        </member>
+        <member name="M:Ent.UI.Mvc.Optimization.Resources.MapFile(System.String)">
+            <summary>
+            将请求的资源文件计算版本后，生成带版本的资源路径
+            </summary>
+            <param name="file">资源文件名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ent.UI.Mvc.Optimization.Resources.RemoteFile(System.String)">
+            <summary>
+            请求远程资源，并生成带版本的资源路径
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Ent.UI.Mvc.Optimization.Scripts">
+            <summary>
+            生成脚本资源链接辅助类
+            </summary>
+        </member>
+        <member name="M:Ent.UI.Mvc.Optimization.Scripts.Render(System.String)">
+            <summary>
+            生成脚本资源链接
+            </summary>
+            <param name="file">js文件名</param>
+            <returns>脚本资源链接</returns>
+        </member>
+        <member name="M:Ent.UI.Mvc.Optimization.Scripts.RenderRemote(System.String)">
+            <summary>
+            生成远程脚本资源链接
+            </summary>
+            <param name="file">js文件名</param>
+            <returns>远程脚本资源链接</returns>
+        </member>
+        <member name="T:Ent.UI.Mvc.Optimization.Styles">
+            <summary>
+            生成样式资源链接辅助类
+            </summary>
+        </member>
+        <member name="M:Ent.UI.Mvc.Optimization.Styles.Render(System.String)">
+            <summary>
+            生成样式资源链接
+            </summary>
+            <param name="file">css文件名</param>
+            <returns>样式资源链接</returns>
+        </member>
+        <member name="M:Ent.UI.Mvc.Optimization.Styles.RenderRemote(System.String)">
+            <summary>
+            生成远程样式资源链接
+            </summary>
+            <param name="file">css文件名</param>
+            <returns>远程样式资源链接</returns>
+        </member>
+    </members>
+</doc>

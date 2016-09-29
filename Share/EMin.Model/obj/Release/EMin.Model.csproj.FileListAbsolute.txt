@@ -1,0 +1,4 @@
+D:\code\HtcSource\HTCv4\Htc_51daigou\微服务\Share\EMin.Model\bin\Release\EMin.Model.dll
+D:\code\HtcSource\HTCv4\Htc_51daigou\微服务\Share\EMin.Model\bin\Release\EMin.Model.pdb
+D:\code\HtcSource\HTCv4\Htc_51daigou\微服务\Share\EMin.Model\obj\Release\EMin.Model.dll
+D:\code\HtcSource\HTCv4\Htc_51daigou\微服务\Share\EMin.Model\obj\Release\EMin.Model.pdb

@@ -1,0 +1,2614 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NPOI.POIFS</name>
+    </assembly>
+    <members>
+        <member name="T:NPOI.POIFS.Storage.SmallDocumentBlockList">
+            <summary>
+            A list of SmallDocumentBlocks instances, and methods to manage the list
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.BlockList">
+            <summary>
+            Interface for lists of blocks that are mapped by block allocation
+            tables
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockList.Zap(System.Int32)">
+            <summary>
+            remove the specified block from the list
+            </summary>
+            <param name="index">the index of the specified block; if the index is
+            out of range, that's ok</param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockList.Remove(System.Int32)">
+            <summary>
+            Remove and return the specified block from the list
+            </summary>
+            <param name="index">the index of the specified block</param>
+            <returns>the specified block</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockList.FetchBlocks(System.Int32)">
+            <summary>
+            get the blocks making up a particular stream in the list. The
+            blocks are removed from the list.
+            </summary>
+            <param name="startBlock">the index of the first block in the stream</param>
+            <returns>the stream as an array of correctly ordered blocks</returns>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.BlockList.BAT">
+            <summary>
+            set the associated BlockAllocationTable
+            </summary>
+            <value>the associated BlockAllocationTable</value>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockListImpl.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.Storage.BlockListImpl"/> class.
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockListImpl.SetBlocks(NPOI.POIFS.Storage.ListManagedBlock[]@)">
+            <summary>
+            provide blocks to manage
+            </summary>
+            <param name="blocks">blocks to be managed</param> 
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockListImpl.Zap(System.Int32)">
+            <summary>
+            remove the specified block from the list
+            </summary>
+            <param name="index">the index of the specified block; if the index is
+            out of range, that's ok</param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockListImpl.Remove(System.Int32)">
+            <summary>
+            Remove and return the specified block from the list
+            </summary>
+            <param name="index">the index of the specified block</param>
+            <returns>the specified block</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockListImpl.FetchBlocks(System.Int32)">
+            <summary>
+            get the blocks making up a particular stream in the list. The
+            blocks are removed from the list.
+            </summary>
+            <param name="startBlock">the index of the first block in the stream</param>
+            <returns>
+            the stream as an array of correctly ordered blocks
+            </returns>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.BlockListImpl.BAT">
+            <summary>
+            set the associated BlockAllocationTable
+            </summary>
+            <value>the associated BlockAllocationTable</value>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.SmallDocumentBlockList.#ctor(System.Collections.IList)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.Storage.SmallDocumentBlockList"/> class.
+            </summary>
+            <param name="blocks">a list of SmallDocumentBlock instances</param>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.SmallBlockTableWriter">
+            <summary>
+            This class implements reading the small document block list from an
+            existing file
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.BlockWritable">
+            <summary>
+            An interface for persisting block storage of POIFS components.
+             @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockWritable.WriteBlocks(System.IO.Stream)">
+            <summary>
+            Writes the blocks.
+            </summary>
+            <param name="stream">The stream.</param>
+        </member>
+        <member name="T:NPOI.POIFS.FileSystem.BATManaged">
+            <summary>
+            This interface defines behaviors for objects managed by the Block
+            Allocation Table (BAT).
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.BATManaged.CountBlocks">
+            <summary>
+            Gets the number of BigBlock's this instance uses
+            </summary>
+            <value>count of BigBlock instances</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.BATManaged.StartBlock">
+            <summary>
+            Sets the start block for this instance
+            </summary>
+            <value>index into the array of BigBlock instances making up the the filesystem</value>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.SmallBlockTableWriter.#ctor(System.Collections.IList,NPOI.POIFS.Properties.RootProperty)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.Storage.SmallBlockTableWriter"/> class.
+            </summary>
+            <param name="documents">a IList of POIFSDocument instances</param>
+            <param name="root">the Filesystem's root property</param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.SmallBlockTableWriter.WriteBlocks(System.IO.Stream)">
+            <summary>
+            Write the storage to an OutputStream
+            </summary>
+            <param name="stream">the OutputStream to which the stored data should be written</param>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.SmallBlockTableWriter.SBATBlockCount">
+            <summary>
+            Get the number of SBAT blocks
+            </summary>
+            <value>number of SBAT big blocks</value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.SmallBlockTableWriter.SBAT">
+            <summary>
+            Gets the SBAT.
+            </summary>
+            <value>the Small Block Allocation Table</value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.SmallBlockTableWriter.CountBlocks">
+            <summary>
+            Return the number of BigBlock's this instance uses
+            </summary>
+            <value>count of BigBlock instances</value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.SmallBlockTableWriter.StartBlock">
+            <summary>
+            Sets the start block.
+            </summary>
+            <value>The start block.</value>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.SmallBlockTableReader">
+            <summary>
+            This class implements reading the small document block list from an
+            existing file
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.SmallBlockTableReader.GetSmallDocumentBlocks(NPOI.POIFS.Storage.RawDataBlockList,NPOI.POIFS.Properties.RootProperty,System.Int32)">
+            <summary>
+            fetch the small document block list from an existing file
+            </summary>
+            <param name="blockList">the raw data from which the small block table will be extracted</param>
+            <param name="root">the root property (which contains the start block and small block table size)</param>
+            <param name="sbatStart">the start block of the SBAT</param>
+            <returns>the small document block list</returns>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.BlockAllocationTableWriter">
+            <summary>
+            This class manages and creates the Block Allocation Table, which is
+            basically a set of linked lists of block indices.
+            Each block of the filesystem has an index. The first block, the
+            header, is skipped; the first block after the header is index 0,
+            the next is index 1, and so on.
+            A block's index is also its index into the Block Allocation
+            Table. The entry that it finds in the Block Allocation Table is the
+            index of the next block in the linked list of blocks making up a
+            file, or it is set to -2: end of list.
+            *
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockAllocationTableWriter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.Storage.BlockAllocationTableWriter"/> class.
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockAllocationTableWriter.CreateBlocks">
+            <summary>
+            Create the BATBlocks we need
+            </summary>
+            <returns>start block index of BAT blocks</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockAllocationTableWriter.AllocateSpace(System.Int32)">
+            <summary>
+            Allocate space for a block of indices
+            </summary>
+            <param name="blockCount">the number of blocks to allocate space for</param>
+            <returns>the starting index of the blocks</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockAllocationTableWriter.SimpleCreateBlocks">
+            <summary>
+            create the BATBlocks
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockAllocationTableWriter.WriteBlocks(System.IO.Stream)">
+            <summary>
+            Write the storage to an OutputStream
+            </summary>
+            <param name="stream">the OutputStream to which the stored data should be written</param>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.BlockAllocationTableWriter.StartBlock">
+            <summary>
+            Sets the start block for this instance
+            </summary>
+            <value>
+            index into the array of BigBlock instances making up the the filesystem
+            </value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.BlockAllocationTableWriter.CountBlocks">
+            <summary>
+            Gets the number of BigBlock's this instance uses
+            </summary>
+            <value>count of BigBlock instances</value>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.BlockAllocationTableReader">
+            <summary>
+            This class manages and creates the Block Allocation Table, which is
+            basically a set of linked lists of block indices.
+            Each block of the filesystem has an index. The first block, the
+            header, is skipped; the first block after the header is index 0,
+            the next is index 1, and so on.
+            A block's index is also its index into the Block Allocation
+            Table. The entry that it finds in the Block Allocation Table is the
+            index of the next block in the linked list of blocks making up a
+            file, or it is set to -2: end of list.
+            
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockAllocationTableReader.#ctor(System.Int32,System.Int32[],System.Int32,System.Int32,NPOI.POIFS.Storage.BlockList)">
+            <summary>
+            create a BlockAllocationTableReader for an existing filesystem. Side
+            effect: when this method finishes, the BAT blocks will have
+            been Removed from the raw block list, and any blocks labeled as
+            'unused' in the block allocation table will also have been
+            Removed from the raw block list. </summary>
+            <param name="block_count">the number of BAT blocks making up the block allocation table</param>
+            <param name="block_array">the array of BAT block indices from the
+            filesystem's header</param>
+            <param name="xbat_count">the number of XBAT blocks</param>
+            <param name="xbat_index">the index of the first XBAT block</param>
+            <param name="raw_block_list">the list of RawDataBlocks</param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockAllocationTableReader.#ctor(NPOI.POIFS.Storage.ListManagedBlock[],NPOI.POIFS.Storage.BlockList)">
+            <summary>
+            create a BlockAllocationTableReader from an array of raw data blocks
+            </summary>
+            <param name="blocks">the raw data</param>
+            <param name="raw_block_list">the list holding the managed blocks</param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockAllocationTableReader.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.Storage.BlockAllocationTableReader"/> class.
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockAllocationTableReader.FetchBlocks(System.Int32,NPOI.POIFS.Storage.BlockList)">
+            <summary>
+            walk the entries from a specified point and return the
+            associated blocks. The associated blocks are Removed from the block list
+            </summary>
+            <param name="startBlock">the first block in the chain</param>
+            <param name="blockList">the raw data block list</param>
+            <returns>array of ListManagedBlocks, in their correct order</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockAllocationTableReader.IsUsed(System.Int32)">
+            <summary>
+            determine whether the block specified by index is used or not
+            </summary>
+            <param name="index">determine whether the block specified by index is used or not</param>
+            <returns>
+            	<c>true</c> if the specified block is used; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockAllocationTableReader.GetNextBlockIndex(System.Int32)">
+            <summary>
+            return the next block index
+            </summary>
+            <param name="index">The index of the current block</param>
+            <returns>index of the next block (may be
+            POIFSConstants.END_OF_CHAIN, indicating end of chain
+            (duh))</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BlockAllocationTableReader.SetEntries(NPOI.POIFS.Storage.ListManagedBlock[],NPOI.POIFS.Storage.BlockList)">
+            <summary>
+            Convert an array of blocks into a Set of integer indices
+            </summary>
+            <param name="blocks">the array of blocks containing the indices</param>
+            <param name="raw_blocks">the list of blocks being managed. Unused
+            blocks will be eliminated from the list</param>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.PropertyTable.#ctor">
+            Default constructor
+        </member>
+        <member name="M:NPOI.POIFS.Properties.PropertyTable.#ctor(System.Int32,NPOI.POIFS.Storage.RawDataBlockList)">
+             reading constructor (used when we've read in a file and we want
+             to extract the property table from it). Populates the
+             properties thoroughly
+            
+             @param startBlock the first block of the property table
+             @param blockList the list of blocks
+            
+             @exception IOException if anything goes wrong (which should be
+                        a result of the input being NFG)
+        </member>
+        <member name="M:NPOI.POIFS.Properties.PropertyTable.AddProperty(NPOI.POIFS.Properties.Property)">
+             Add a property to the list of properties we manage
+            
+             @param property the new Property to manage
+        </member>
+        <member name="M:NPOI.POIFS.Properties.PropertyTable.RemoveProperty(NPOI.POIFS.Properties.Property)">
+             Remove a property from the list of properties we manage
+            
+             @param property the Property to be Removed
+        </member>
+        <member name="M:NPOI.POIFS.Properties.PropertyTable.PreWrite">
+            Prepare to be written
+        </member>
+        <member name="M:NPOI.POIFS.Properties.PropertyTable.WriteBlocks(System.IO.Stream)">
+             Write the storage to an Stream
+            
+             @param stream the Stream to which the stored data should
+                           be written
+            
+             @exception IOException on problems writing to the specified
+                        stream
+        </member>
+        <member name="P:NPOI.POIFS.Properties.PropertyTable.Root">
+             Get the root property
+            
+             @return the root property
+        </member>
+        <member name="P:NPOI.POIFS.Properties.PropertyTable.StartBlock">
+             Get the start block for the property table
+            
+             @return start block index
+        </member>
+        <member name="P:NPOI.POIFS.Properties.PropertyTable.CountBlocks">
+             Return the number of BigBlock's this instance uses
+            
+             @return count of BigBlock instances
+        </member>
+        <member name="T:NPOI.POIFS.FileSystem.POIFSFileSystem">
+            <summary>
+            This is the main class of the POIFS system; it manages the entire
+            life cycle of the filesystem.
+            @author Marc Johnson (mjohnson at apache dot org) 
+            </summary>
+        </member>
+        <member name="T:NPOI.POIFS.Dev.POIFSViewable">
+            <summary>
+            Interface for a drill-down viewable object. Such an object has
+            content that may or may not be displayed, at the discretion of the
+            viewer. The content is returned to the viewer as an array or as an
+            Iterator, and the object provides a clue as to which technique the
+            viewer should use to get its content.
+            A POIFSViewable object is also expected to provide a short
+            description of itself, that can be used by a viewer when the
+            viewable object is collapsed.
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="P:NPOI.POIFS.Dev.POIFSViewable.PreferArray">
+            <summary>
+            Provides a short description of the object to be used when a 
+            POIFSViewable object has not provided its contents.
+            </summary>
+            <value><c>true</c> if [prefer array]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:NPOI.POIFS.Dev.POIFSViewable.ShortDescription">
+            <summary>
+            Gets the short description.
+            </summary>
+            <value>The short description.</value>
+        </member>
+        <member name="P:NPOI.POIFS.Dev.POIFSViewable.ViewableArray">
+            <summary>
+            Get an array of objects, some of which may implement POIFSViewable
+            </summary>
+            <value>The viewable array.</value>
+        </member>
+        <member name="P:NPOI.POIFS.Dev.POIFSViewable.ViewableIterator">
+            <summary>
+            Give viewers a hint as to whether to call ViewableArray or ViewableIterator
+            </summary>
+            <value>The viewable iterator.</value>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSFileSystem.CreateNonClosingInputStream(System.IO.Stream)">
+            <summary>
+            Convenience method for clients that want to avoid the auto-Close behaviour of the constructor.
+            </summary>
+            <param name="stream">The stream.</param>
+            <example>
+            A convenience method (
+            CreateNonClosingInputStream()) has been provided for this purpose:
+            StreamwrappedStream = POIFSFileSystem.CreateNonClosingInputStream(is);
+            HSSFWorkbook wb = new HSSFWorkbook(wrappedStream);
+            is.reset();
+            doSomethingElse(is);
+            </example>
+            <returns></returns>
+        </member>
+        <member name="F:NPOI.POIFS.FileSystem.POIFSFileSystem.bigBlockSize">
+            What big block size the file uses. Most files
+             use 512 bytes, but a few use 4096
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSFileSystem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.FileSystem.POIFSFileSystem"/> class.  intended for writing
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSFileSystem.#ctor(System.IO.Stream)">
+            <summary>
+            Create a POIFSFileSystem from an Stream. Normally the stream is Read until
+            EOF.  The stream is always Closed.  In the unlikely case that the caller has such a stream and
+            needs to use it after this constructor completes, a work around is to wrap the
+            stream in order to trap the Close() call.  
+            </summary>
+            <param name="stream">the Streamfrom which to Read the data</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSFileSystem.CloseInputStream(System.IO.Stream,System.Boolean)">
+            @param stream the stream to be Closed
+            @param success <c>false</c> if an exception is currently being thrown in the calling method
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSFileSystem.HasPOIFSHeader(System.IO.Stream)">
+            <summary>
+            Checks that the supplied Stream(which MUST
+            support mark and reset, or be a PushbackInputStream)
+            has a POIFS (OLE2) header at the start of it.
+            If your Streamdoes not support mark / reset,
+            then wrap it in a PushBackInputStream, then be
+            sure to always use that, and not the original!
+            </summary>
+            <param name="inp">An Streamwhich supports either mark/reset, or is a PushbackStream</param>
+            <returns>
+            	<c>true</c> if [has POIFS header] [the specified inp]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSFileSystem.CreateDocument(System.IO.Stream,System.String)">
+            <summary>
+            Create a new document to be Added to the root directory
+            </summary>
+            <param name="stream"> the Streamfrom which the document's data will be obtained</param>
+            <param name="name">the name of the new POIFSDocument</param>
+            <returns>the new DocumentEntry</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSFileSystem.CreateDocument(System.String,System.Int32,NPOI.POIFS.EventFileSystem.POIFSWriterEventHandler)">
+            <summary>
+            Create a new DocumentEntry in the root entry; the data will be
+            provided later
+            </summary>
+            <param name="name">the name of the new DocumentEntry</param>
+            <param name="size">the size of the new DocumentEntry</param>
+            <param name="writer">the Writer of the new DocumentEntry</param>
+            <returns>the new DocumentEntry</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSFileSystem.CreateDirectory(System.String)">
+            <summary>
+            Create a new DirectoryEntry in the root directory
+            </summary>
+            <param name="name">the name of the new DirectoryEntry</param>
+            <returns>the new DirectoryEntry</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSFileSystem.WriteFileSystem(System.IO.Stream)">
+            <summary>
+            Writes the file system.
+            </summary>
+            <param name="stream">the OutputStream to which the filesystem will be
+            written</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSFileSystem.CreatePOIFSDocumentReader(System.String)">
+            <summary>
+            open a document in the root entry's list of entries
+            </summary>
+            <param name="documentName">the name of the document to be opened</param>
+            <returns>a newly opened POIFSDocumentReader</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSFileSystem.AddDocument(NPOI.POIFS.FileSystem.POIFSDocument)">
+            <summary>
+            Add a new POIFSDocument
+            </summary>
+            <param name="document">the POIFSDocument being Added</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSFileSystem.AddDirectory(NPOI.POIFS.Properties.DirectoryProperty)">
+            <summary>
+            Add a new DirectoryProperty
+            </summary>
+            <param name="directory">The directory.</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSFileSystem.Remove(NPOI.POIFS.FileSystem.EntryNode)">
+            <summary>
+            Removes the specified entry.
+            </summary>
+            <param name="entry">The entry.</param>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSFileSystem.Root">
+            <summary>
+            Get the root entry
+            </summary>
+            <value>The root.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSFileSystem.ViewableArray">
+            <summary>
+            Get an array of objects, some of which may implement
+            POIFSViewable        
+            </summary>
+            <value>an array of Object; may not be null, but may be empty</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSFileSystem.ViewableIterator">
+            <summary>
+            Get an Iterator of objects, some of which may implement
+            POIFSViewable
+            </summary>
+            <value>an Iterator; may not be null, but may have an empty
+            back end store</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSFileSystem.PreferArray">
+            <summary>
+            Give viewers a hint as to whether to call GetViewableArray or
+            GetViewableIterator
+            </summary>
+            <value><c>true</c> if a viewer should call GetViewableArray, <c>false</c> if
+            a viewer should call GetViewableIterator </value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSFileSystem.ShortDescription">
+            <summary>
+            Provides a short description of the object, to be used when a
+            POIFSViewable object has not provided its contents.
+            </summary>
+            <value>The short description.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSFileSystem.BigBlockSize">
+            <summary>
+            Gets The Big Block size, normally 512 bytes, sometimes 4096 bytes
+            </summary>
+            <value>The size of the big block.</value>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.PropertyBlock">
+            <summary>
+            A block of Property instances
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.BigBlock">
+            <summary>
+            Abstract base class of all POIFS block storage classes. All
+            extensions of BigBlock should write 512 bytes of data when
+            requested to write their data.
+            This class has package scope, as there is no reason at this time to
+            make the class public.
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BigBlock.WriteData(System.IO.Stream,System.Byte[])">
+            <summary>
+            Default implementation of write for extending classes that
+            contain their data in a simple array of bytes.
+            </summary>
+            <param name="stream">the OutputStream to which the data should be written.</param>
+            <param name="data">the byte array of to be written.</param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BigBlock.WriteBlocks(System.IO.Stream)">
+            <summary>
+            Write the block's data to an OutputStream
+            </summary>
+            <param name="stream">the OutputStream to which the stored data should be written</param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BigBlock.WriteData(System.IO.Stream)">
+            <summary>
+            Write the storage to an OutputStream
+            </summary>
+            <param name="stream">the OutputStream to which the stored data should be written </param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.PropertyBlock.#ctor(NPOI.POIFS.Properties.Property[],System.Int32)">
+            <summary>
+            Create a single instance initialized with default values
+            </summary>
+            <param name="properties">the properties to be inserted</param>
+            <param name="offset">the offset into the properties array</param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.PropertyBlock.CreatePropertyBlockArray(System.Collections.IList)">
+            <summary>
+            Create an array of PropertyBlocks from an array of Property
+            instances, creating empty Property instances to make up any
+            shortfall
+            </summary>
+            <param name="properties">the Property instances to be converted into PropertyBlocks, in a java List</param>
+            <returns>the array of newly created PropertyBlock instances</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.PropertyBlock.WriteData(System.IO.Stream)">
+            <summary>
+            Write the block's data to an OutputStream
+            </summary>
+            <param name="stream">the OutputStream to which the stored data should be written</param>
+        </member>
+        <member name="T:NPOI.POIFS.Properties.Property">
+            <summary>
+            This abstract base class is the ancestor of all classes
+            implementing POIFS Property behavior.
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="T:NPOI.POIFS.Properties.Child">
+            <summary>
+            This interface defines methods for finding and setting sibling
+            Property instances
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Child.PreviousChild">
+            <summary>
+            Gets or sets the previous child.
+            </summary>
+            <value>The previous child.</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Child.NextChild">
+            <summary>
+            Gets or sets the next child.
+            </summary>
+            <value>The next child.</value>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.Property.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.Properties.Property"/> class.
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.Property.#ctor(System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Constructor from byte data
+            </summary>
+            <param name="index">index number</param>
+            <param name="array">byte data</param>
+            <param name="offset">offset into byte data</param>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.Property.WriteData(System.IO.Stream)">
+            <summary>
+            Write the raw data to an OutputStream.
+            </summary>
+            <param name="stream">the OutputStream to which the data Should be
+            written.</param>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.Property.IsSmall(System.Int32)">
+            <summary>
+            does the length indicate a small document?
+            </summary>
+            <param name="length">length in bytes</param>
+            <returns>
+            	<c>true</c> if the length Is less than
+            _big_block_minimum_bytes; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.Property.PreWrite">
+            <summary>
+            Perform whatever activities need to be performed prior to
+            writing
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.Property.IsValidIndex(System.Int32)">
+            <summary>
+            Determines whether the specified index Is valid
+            </summary>
+            <param name="index">value to be checked</param>
+            <returns>
+            	<c>true</c> if the index Is valid; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.StartBlock">
+            <summary>
+            Gets or sets the start block for the document referred to by this
+            Property.
+            </summary>
+            <value>the start block index</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.ShouldUseSmallBlocks">
+            <summary>
+            Based on the currently defined size, Should this property use
+            small blocks?
+            </summary>
+            <returns>true if the size Is less than _big_block_minimum_bytes</returns>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.Name">
+            <summary>
+            Gets or sets the name of this property
+            </summary>
+            <value>property name</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.IsDirectory">
+            <summary>
+            Gets a value indicating whether this instance is directory.
+            </summary>
+            <value>
+            	<c>true</c> if a directory type Property; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.StorageClsid">
+            <summary>
+            Gets or sets the storage class ID for this property stream. ThIs Is the Class ID
+            of the COM object which can read and write this property stream </summary>
+            <value>Storage Class ID</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.PropertyType">
+            <summary>
+            Set the property type. Makes no attempt to validate the value.
+            </summary>
+            <value>the property type (root, file, directory)</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.NodeColor">
+            <summary>
+            Sets the color of the node.
+            </summary>
+            <value>the node color (red or black)</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.ChildProperty">
+            <summary>
+            Sets the child property.
+            </summary>
+            <value>the child property's index in the Property Table</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.ChildIndex">
+            <summary>
+            Get the child property (its index in the Property Table)
+            </summary>
+            <value>The index of the child.</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.Size">
+            <summary>
+            Gets or sets the size of the document associated with this Property
+            </summary>
+            <value>the size of the document, in bytes</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.Index">
+            <summary>
+            Gets or sets the index.
+            </summary>
+            <value>The index.</value>
+            Get the index for this Property
+            @return the index of this Property within its Property Table
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.NextChildIndex">
+            <summary>
+            Gets the index of the next child.
+            </summary>
+            <value>The index of the next child.</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.PreviousChildIndex">
+            <summary>
+            Gets the index of the previous child.
+            </summary>
+            <value>The index of the previous child.</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.PreviousChild">
+            <summary>
+            Gets or sets the previous child.
+            </summary>
+            <value>the new 'previous' child; may be null, which has
+            the effect of saying there Is no 'previous' child</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.NextChild">
+            <summary>
+            Gets or sets the next Child
+            </summary>
+            <value> the new 'next' child; may be null, which has the
+            effect of saying there Is no 'next' child</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.ViewableArray">
+            <summary>
+            Get an array of objects, some of which may implement
+            POIFSViewable
+            </summary>
+            <value>an array of Object; may not be null, but may be empty</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.ViewableIterator">
+            <summary>
+            Get an Iterator of objects, some of which may implement POIFSViewable
+            </summary>
+            <value> may not be null, but may have an empty
+            back end store</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.PreferArray">
+            <summary>
+            Give viewers a hint as to whether to call GetViewableArray or
+            GetViewableIterator
+            </summary>
+            <value><c>true</c> if a viewer Should call GetViewableArray; otherwise, <c>false</c>
+            if a viewer Should call GetViewableIterator
+            </value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Property.ShortDescription">
+            <summary>
+            Provides a short description of the object, to be used when a
+            POIFSViewable object has not provided its contents.
+            </summary>
+            <value>The short description.</value>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.HeaderBlockWriter">
+            <summary>
+            The block containing the archive header
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.HeaderBlockWriter.#ctor">
+            <summary>
+            Create a single instance initialized with default values
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.HeaderBlockWriter.SetBATBlocks(System.Int32,System.Int32)">
+            <summary>
+            Set BAT block parameters. Assumes that all BAT blocks are
+            contiguous. Will construct XBAT blocks if necessary and return
+            the array of newly constructed XBAT blocks.
+            </summary>
+            <param name="blockCount">count of BAT blocks</param>
+            <param name="startBlock">index of first BAT block</param>
+            <returns>array of XBAT blocks; may be zero Length, will not be
+            null</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.HeaderBlockWriter.CalculateXBATStorageRequirements(System.Int32)">
+            <summary>
+            For a given number of BAT blocks, calculate how many XBAT
+            blocks will be needed
+            </summary>
+            <param name="blockCount">number of BAT blocks</param>
+            <returns>number of XBAT blocks needed</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.HeaderBlockWriter.WriteData(System.IO.Stream)">
+            <summary>
+            Write the block's data to an Stream
+            </summary>
+            <param name="stream">the Stream to which the stored data should
+            be written
+            </param>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.HeaderBlockWriter.PropertyStart">
+            <summary>
+            Set start of Property Table
+            </summary>
+            <value>the index of the first block of the Property
+            Table</value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.HeaderBlockWriter.SBATStart">
+            <summary>
+            Set start of small block allocation table
+            </summary>
+            <value>the index of the first big block of the small
+            block allocation table</value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.HeaderBlockWriter.SBATBlockCount">
+            <summary>
+            Set count of SBAT blocks
+            </summary>
+            <value>the number of SBAT blocks</value>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.HeaderBlockReader">
+            <summary>
+            The block containing the archive header
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="F:NPOI.POIFS.Storage.HeaderBlockReader.bigBlockSize">
+            What big block Size the file uses. Most files
+             use 512 bytes, but a few use 4096
+        </member>
+        <member name="M:NPOI.POIFS.Storage.HeaderBlockReader.#ctor(System.IO.Stream)">
+            <summary>
+            create a new HeaderBlockReader from an Stream
+            </summary>
+            <param name="stream">the source Stream</param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.HeaderBlockReader.AlertShortRead(System.Int32)">
+            <summary>
+            Alerts the short read.
+            </summary>
+            <param name="Read">The read.</param>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.HeaderBlockReader.PropertyStart">
+            <summary>
+            Get start of Property Table
+            </summary>
+            <value>the index of the first block of the Property Table</value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.HeaderBlockReader.SBATStart">
+            <summary>
+            Gets start of small block allocation table
+            </summary>
+            <value>The SBAT start.</value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.HeaderBlockReader.BATCount">
+            <summary>
+            Gets number of BAT blocks
+            </summary>
+            <value>The BAT count.</value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.HeaderBlockReader.BATArray">
+            <summary>
+            Gets the BAT array.
+            </summary>
+            <value>The BAT array.</value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.HeaderBlockReader.XBATCount">
+            <summary>
+            Gets the XBAT count.
+            </summary>
+            <value>The XBAT count.</value>
+            @return XBAT count
+        </member>
+        <member name="P:NPOI.POIFS.Storage.HeaderBlockReader.XBATIndex">
+            <summary>
+            Gets the index of the XBAT.
+            </summary>
+            <value>The index of the XBAT.</value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.HeaderBlockReader.BigBlockSize">
+            <summary>
+            Gets The Big Block Size, normally 512 bytes, sometimes 4096 bytes
+            </summary>
+            <value>The size of the big block.</value>
+            @return 
+        </member>
+        <member name="T:NPOI.POIFS.Properties.DirectoryProperty">
+            <summary>
+            Trivial extension of Property for POIFSDocuments
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="T:NPOI.POIFS.Properties.Parent">
+            <summary>
+            Behavior for parent (directory) properties
+            @author Marc Johnson27591@hotmail.com
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.Parent.AddChild(NPOI.POIFS.Properties.Property)">
+            <summary>
+            Add a new child to the collection of children
+            </summary>
+            <param name="property">the new child to be added; must not be null</param>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Parent.Children">
+            <summary>
+            Get an iterator over the children of this Parent
+            all elements are instances of Property.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Parent.PreviousChild">
+            <summary>
+            Sets the previous child.
+            </summary>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.Parent.NextChild">
+            <summary>
+            Sets the next child.
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.DirectoryProperty.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.Properties.DirectoryProperty"/> class.
+            </summary>
+            <param name="name">the name of the directory</param>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.DirectoryProperty.#ctor(System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.Properties.DirectoryProperty"/> class.
+            </summary>
+            <param name="index">index number</param>
+            <param name="array">byte data</param>
+            <param name="offset">offset into byte data</param>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.DirectoryProperty.ChangeName(NPOI.POIFS.Properties.Property,System.String)">
+            <summary>
+            Change a Property's name
+            </summary>
+            <param name="property">the Property whose name Is being Changed.</param>
+            <param name="newName">the new name for the Property</param>
+            <returns>true if the name Change could be made, else false</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.DirectoryProperty.DeleteChild(NPOI.POIFS.Properties.Property)">
+            <summary>
+            Delete a Property
+            </summary>
+            <param name="property">the Property being Deleted</param>
+            <returns>true if the Property could be Deleted, else false</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.DirectoryProperty.PreWrite">
+            <summary>
+            Perform whatever activities need to be performed prior to
+            writing
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.DirectoryProperty.AddChild(NPOI.POIFS.Properties.Property)">
+            <summary>
+            Add a new child to the collection of children
+            </summary>
+            <param name="property">the new child to be added; must not be null</param>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.DirectoryProperty.IsDirectory">
+            <summary>
+            Gets a value indicating whether this instance is directory.
+            </summary>
+            <value>
+            	<c>true</c> if a directory type Property; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.DirectoryProperty.Children">
+            <summary>
+            Get an iterator over the children of this Parent; all elements
+            are instances of Property.
+            </summary>
+            <value>Iterator of children; may refer to an empty collection</value>
+        </member>
+        <member name="T:NPOI.POIFS.Properties.DirectoryProperty.PropertyComparator">
+            <summary>
+            Directory Property Comparer
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.DirectoryProperty.PropertyComparator.Equals(System.Object)">
+            <summary>
+            Object equality, implemented as object identity
+            </summary>
+            <param name="o">Object we're being Compared to</param>
+            <returns>true if identical, else false</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.DirectoryProperty.PropertyComparator.Compare(System.Object,System.Object)">
+            <summary>
+            Compare method. Assumes both parameters are non-null
+            instances of Property. One property Is less than another if
+            its name Is shorter than the other property's name. If the
+            names are the same length, the property whose name comes
+            before the other property's name, alphabetically, Is less
+            than the other property.
+            </summary>
+            <param name="o1">first object to Compare, better be a Property</param>
+            <param name="o2">second object to Compare, better be a Property</param>
+            <returns>negative value if o1 smaller than o2,
+                    zero           if o1 equals o2,
+                   positive value if o1 bigger than  o2.</returns>
+        </member>
+        <member name="T:NPOI.POIFS.EventFileSystem.POIFSWriterEventArgs">
+            <summary>
+            EventArgs for POIFSWriter
+            author: Tony Qu
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.EventFileSystem.POIFSWriterEventArgs.#ctor(NPOI.POIFS.FileSystem.POIFSDocumentWriter,NPOI.POIFS.FileSystem.POIFSDocumentPath,System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="!:POIFSWriterEvent"/> class.
+            </summary>
+            <param name="stream">the POIFSDocumentWriter, freshly opened</param>
+            <param name="path">the path of the document</param>
+            <param name="documentName">the name of the document</param>
+            <param name="limit">the limit, in bytes, that can be written to the stream</param>
+        </member>
+        <member name="P:NPOI.POIFS.EventFileSystem.POIFSWriterEventArgs.Limit">
+            <summary>
+            Gets the limit on writing, in bytes
+            </summary>
+            <value>The limit.</value>
+        </member>
+        <member name="P:NPOI.POIFS.EventFileSystem.POIFSWriterEventArgs.Name">
+            <summary>
+            Gets the document's name
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:NPOI.POIFS.EventFileSystem.POIFSWriterEventArgs.Path">
+            <summary>
+            Gets the document's path
+            </summary>
+            <value>The path.</value>
+        </member>
+        <member name="P:NPOI.POIFS.EventFileSystem.POIFSWriterEventArgs.Stream">
+            <summary>
+            the POIFSDocumentWriter, freshly opened
+            </summary>
+            <value>The stream.</value>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.SmallDocumentBlock">
+            <summary>
+            Storage for documents that are too small to use regular
+            DocumentBlocks for their data
+            @author  Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.ListManagedBlock">
+            <summary>
+            An interface for blocks managed by a list that works with a
+            BlockAllocationTable to keep block sequences straight
+            @author Marc Johnson (mjohnson at apache dot org
+            </summary>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.ListManagedBlock.Data">
+            <summary>
+            Get the data from the block
+            </summary>
+            <value>the block's data as a byte array</value>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.SmallDocumentBlock.Convert(System.Byte[],System.Int32)">
+            <summary>
+            convert a single long array into an array of SmallDocumentBlock
+            instances
+            </summary>
+            <param name="array">the byte array to be converted</param>
+            <param name="size">the intended size of the array (which may be smaller)</param>
+            <returns>an array of SmallDocumentBlock instances, filled from
+            the array</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.SmallDocumentBlock.Fill(System.Collections.IList)">
+            <summary>
+            fill out a List of SmallDocumentBlocks so that it fully occupies
+            a Set of big blocks
+            </summary>
+            <param name="blocks">the List to be filled out.</param>
+            <returns>number of big blocks the list encompasses</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.SmallDocumentBlock.Convert(NPOI.POIFS.Storage.BlockWritable[],System.Int32)">
+            <summary>
+            Factory for creating SmallDocumentBlocks from DocumentBlocks
+            </summary>
+            <param name="store">the original DocumentBlocks</param>
+            <param name="size">the total document size</param>
+            <returns>an array of new SmallDocumentBlocks instances</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.SmallDocumentBlock.Extract(NPOI.POIFS.Storage.ListManagedBlock[])">
+            <summary>
+            create a list of SmallDocumentBlock's from raw data
+            </summary>
+            <param name="blocks">the raw data containing the SmallDocumentBlock</param>
+            <returns>a List of SmallDocumentBlock's extracted from the input</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.SmallDocumentBlock.Read(NPOI.POIFS.Storage.BlockWritable[],System.Byte[],System.Int32)">
+            <summary>
+            Read data from an array of SmallDocumentBlocks
+            </summary>
+            <param name="blocks">the blocks to Read from.</param>
+            <param name="buffer">the buffer to Write the data into.</param>
+            <param name="offset">the offset into the array of blocks to Read from</param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.SmallDocumentBlock.CalcSize(System.Int32)">
+            <summary>
+            Calculate the storage size of a Set of SmallDocumentBlocks
+            </summary>
+            <param name="size"> number of SmallDocumentBlocks</param>
+            <returns>total size</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.SmallDocumentBlock.MakeEmptySmallDocumentBlock">
+            <summary>
+            Makes the empty small document block.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.SmallDocumentBlock.ConvertToBlockCount(System.Int32)">
+            <summary>
+            Converts to block count.
+            </summary>
+            <param name="size">The size.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.SmallDocumentBlock.WriteBlocks(System.IO.Stream)">
+            <summary>
+            Write the storage to an OutputStream
+            </summary>
+            <param name="stream">the OutputStream to which the stored data should
+            be written</param>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.SmallDocumentBlock.Data">
+            <summary>
+            Get the data from the block
+            </summary>
+            <value>the block's data as a byte array</value>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.RawDataBlock">
+            <summary>
+            A big block created from an InputStream, holding the raw data
+            @author Marc Johnson (mjohnson at apache dot org
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.RawDataBlock.#ctor(System.IO.Stream)">
+            <summary>
+            Constructor RawDataBlock
+            </summary>
+            <param name="stream">the Stream from which the data will be read</param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.RawDataBlock.#ctor(System.IO.Stream,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.Storage.RawDataBlock"/> class.
+            </summary>
+            <param name="stream">the Stream from which the data will be read</param>
+            <param name="blockSize">the size of the POIFS blocks, normally 512 bytes {@link POIFSConstants#BIG_BLOCK_SIZE}</param>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.RawDataBlock.EOF">
+            <summary>
+            When we read the data, did we hit end of file?
+            </summary>
+            <value><c>true</c> if the EoF was hit during this block, or; otherwise, <c>false</c>if not. If you have a dodgy short last block, then
+            it's possible to both have data, and also hit EoF...</value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.RawDataBlock.HasData">
+            <summary>
+            Did we actually find any data to read? It's possible,
+            in the event of a short last block, to both have hit
+            the EoF, but also to have data
+            </summary>
+            <value><c>true</c> if this instance has data; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.RawDataBlock.Data">
+            <summary>
+            Get the data from the block
+            </summary>
+            <value>the block's data as a byte array</value>
+        </member>
+        <member name="T:NPOI.POIFS.FileSystem.EntryNode">
+            <summary>
+            Abstract implementation of Entry
+            Extending classes should override isDocument() or isDirectory(), as
+            appropriate
+            Extending classes must override isDeleteOK()
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="T:NPOI.POIFS.FileSystem.Entry">
+            <summary>
+            This interface provides access to an object managed by a Filesystem
+            instance. Entry objects are further divided into DocumentEntry and
+            DirectoryEntry instances.
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.Entry.Delete">
+            <summary>
+            Delete this Entry. ThIs operation should succeed, but there are
+            special circumstances when it will not:
+            If this Entry Is the root of the Entry tree, it cannot be
+            deleted, as there Is no way to Create another one.
+            If this Entry Is a directory, it cannot be deleted unless it Is
+            empty.
+            </summary>
+            <returns>true if the Entry was successfully deleted, else false</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.Entry.RenameTo(System.String)">
+            <summary>
+            Rename this Entry. ThIs operation will fail if:
+            There Is a sibling Entry (i.e., an Entry whose parent Is the
+            same as this Entry's parent) with the same name.
+            ThIs Entry Is the root of the Entry tree. Its name Is dictated
+            by the Filesystem and many not be Changed.
+            </summary>
+            <param name="newName">the new name for this Entry</param>
+            <returns>true if the operation succeeded, else false</returns>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.Entry.Name">
+            <summary>
+            Get the name of the Entry
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.Entry.IsDirectoryEntry">
+            <summary>
+            Is this a DirectoryEntry?
+            </summary>
+            <value>
+            	<c>true</c> if the Entry Is a DirectoryEntry; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.Entry.IsDocumentEntry">
+            <summary>
+            Is this a DocumentEntry?
+            </summary>
+            <value>
+            	<c>true</c> if the Entry Is a DocumentEntry; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.EntryNode.#ctor(NPOI.POIFS.Properties.Property,NPOI.POIFS.FileSystem.DirectoryNode)">
+            <summary>
+            Create a DocumentNode. ThIs method Is not public by design; it
+            Is intended strictly for the internal use of extending classes
+            </summary>
+            <param name="property">the Property for this Entry</param>
+            <param name="parent">the parent of this entry</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.EntryNode.Delete">
+            <summary>
+            Delete this Entry. ThIs operation should succeed, but there are
+            special circumstances when it will not:
+            If this Entry Is the root of the Entry tree, it cannot be
+            deleted, as there Is no way to Create another one.
+            If this Entry Is a directory, it cannot be deleted unless it Is
+            empty.
+            </summary>
+            <returns>
+            true if the Entry was successfully deleted, else false
+            </returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.EntryNode.RenameTo(System.String)">
+            <summary>
+            Rename this Entry. ThIs operation will fail if:
+            There Is a sibling Entry (i.e., an Entry whose parent Is the
+            same as this Entry's parent) with the same name.
+            ThIs Entry Is the root of the Entry tree. Its name Is dictated
+            by the Filesystem and many not be Changed.
+            </summary>
+            <param name="newName">the new name for this Entry</param>
+            <returns>
+            true if the operation succeeded, else false
+            </returns>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.EntryNode.Property">
+            <summary>
+            grant access to the property
+            </summary>
+            <value>the property backing this entry</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.EntryNode.IsRoot">
+            <summary>
+            Is this the root of the tree?
+            </summary>
+            <value><c>true</c> if this instance is root; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.EntryNode.IsDeleteOK">
+            <summary>
+            extensions use this method to verify internal rules regarding
+            deletion of the underlying store.
+            </summary>
+            <value>
+            	<c>true</c> if it's ok to Delete the underlying store; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.EntryNode.Name">
+            <summary>
+            Get the name of the Entry
+            </summary>
+            <value>The name.</value>
+            Get the name of the Entry
+            @return name
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.EntryNode.IsDirectoryEntry">
+            <summary>
+            Is this a DirectoryEntry?
+            </summary>
+            <value>
+            	<c>true</c> if the Entry Is a DirectoryEntry; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.EntryNode.IsDocumentEntry">
+            <summary>
+            Is this a DocumentEntry?
+            </summary>
+            <value>
+            	<c>true</c> if the Entry Is a DocumentEntry; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.EntryNode.Parent">
+            <summary>
+            Get this Entry's parent (the DocumentEntry that owns this
+            Entry). All Entry objects, except the root Entry, has a parent.
+            </summary>
+            <value>this Entry's parent; null iff this Is the root Entry</value>
+        </member>
+        <member name="T:NPOI.POIFS.FileSystem.POIFSDocumentPath">
+            <summary>
+            Class POIFSDocumentPath
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentPath.#ctor">
+            <summary>
+            simple constructor for the path of a document that is in the
+            root of the POIFSFileSystem. The constructor that takes an
+            array of Strings can also be used to create such a
+            POIFSDocumentPath by passing it a null or empty String array
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentPath.#ctor(System.String[])">
+            <summary>
+            constructor for the path of a document that is not in the root
+            of the POIFSFileSystem
+            </summary>
+            <param name="components">the Strings making up the path to a document.
+            The Strings must be ordered as they appear in
+            the directory hierarchy of the the document
+            -- the first string must be the name of a
+            directory in the root of the POIFSFileSystem,
+            and every Nth (for N &gt; 1) string thereafter
+            must be the name of a directory in the
+            directory identified by the (N-1)th string.
+            If the components parameter is null or has
+            zero length, the POIFSDocumentPath is
+            appropriate for a document that is in the
+            root of a POIFSFileSystem</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentPath.#ctor(NPOI.POIFS.FileSystem.POIFSDocumentPath,System.String[])">
+            <summary>
+            constructor that adds additional subdirectories to an existing
+            path
+            </summary>
+            <param name="path">the existing path</param>
+            <param name="components">the additional subdirectory names to be added</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentPath.Equals(System.Object)">
+            <summary>
+            equality. Two POIFSDocumentPath instances are equal if they
+            have the same number of component Strings, and if each
+            component String is equal to its coresponding component String
+            </summary>
+            <param name="o">the object we're checking equality for</param>
+            <returns>true if the object is equal to this object</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentPath.GetComponent(System.Int32)">
+            <summary>
+            get the specified component
+            </summary>
+            <param name="n">which component (0 ... length() - 1)</param>
+            <returns>the nth component;</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentPath.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns>
+            A hash code for the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentPath.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocumentPath.Length">
+            <summary>
+            Gets the length.
+            </summary>
+            <value>the number of components</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocumentPath.Parent">
+            <summary>
+            Returns the path's parent or <c>null</c> if this path
+            is the root path.
+            </summary>
+            <value>path of parent, or null if this path is the root path</value>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.RootProperty.#ctor(System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.Properties.RootProperty"/> class.
+            </summary>
+            <param name="index">index number</param>
+            <param name="array">byte data</param>
+            <param name="offset">offset into byte data</param>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.RootProperty.Size">
+            <summary>
+            Gets or sets the size of the document associated with this Property
+            </summary>
+            <value>the size of the document, in bytes</value>
+        </member>
+        <member name="T:NPOI.POIFS.FileSystem.DocumentEntry">
+            <summary>
+            This interface defines methods specific to Document objects
+            managed by a Filesystem instance.
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DocumentEntry.Size">
+            <summary>
+            get the size of the document, in bytes
+            </summary>
+            <value>size in bytes</value>
+        </member>
+        <member name="T:NPOI.POIFS.FileSystem.DocumentNode">
+            <summary>
+            Simple implementation of DocumentEntry
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DocumentNode.#ctor(NPOI.POIFS.Properties.DocumentProperty,NPOI.POIFS.FileSystem.DirectoryNode)">
+             create a DocumentNode. This method Is not public by design; it
+             Is intended strictly for the internal use of this package
+            
+             @param property the DocumentProperty for this DocumentEntry
+             @param parent the parent of this entry
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DocumentNode.Document">
+             get the POIFSDocument
+            
+             @return the internal POIFSDocument
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DocumentNode.Size">
+             get the zize of the document, in bytes
+            
+             @return size in bytes
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DocumentNode.IsDocumentEntry">
+             Is this a DocumentEntry?
+            
+             @return true if the Entry Is a DocumentEntry, else false
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DocumentNode.IsDeleteOK">
+             extensions use this method to verify internal rules regarding
+             deletion of the underlying store.
+            
+             @return true if it's ok to delete the underlying store, else
+                     false
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DocumentNode.ViewableArray">
+             Get an array of objects, some of which may implement
+             POIFSViewable
+            
+             @return an array of Object; may not be null, but may be empty
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DocumentNode.ViewableIterator">
+             Get an Iterator of objects, some of which may implement
+             POIFSViewable
+            
+             @return an Iterator; may not be null, but may have an empty
+             back end store
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DocumentNode.PreferArray">
+             Give viewers a hint as to whether to call getViewableArray or
+             getViewableIterator
+            
+             @return true if a viewer should call getViewableArray, false if
+                     a viewer should call getViewableIterator
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DocumentNode.ShortDescription">
+             Provides a short description of the object, to be used when a
+             POIFSViewable object has not provided its contents.
+            
+             @return short description
+        </member>
+        <member name="T:NPOI.POIFS.FileSystem.DirectoryNode">
+            <summary>
+            Simple implementation of DirectoryEntry
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="T:NPOI.POIFS.FileSystem.DirectoryEntry">
+            <summary>
+            This interface defines methods specific to Directory objects
+            managed by a Filesystem instance.
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryEntry.GetEntry(System.String)">
+            <summary>
+            get a specified Entry by name
+            </summary>
+            <param name="name">the name of the Entry to obtain.</param>
+            <returns>the specified Entry, if it is directly contained in
+            this DirectoryEntry</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryEntry.CreateDocument(System.String,System.IO.Stream)">
+            <summary>
+            Create a new DocumentEntry
+            </summary>
+            <param name="name">the name of the new DocumentEntry</param>
+            <param name="stream">the Stream from which to Create the new DocumentEntry</param>
+            <returns>the new DocumentEntry</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryEntry.CreateDocument(System.String,System.Int32)">
+            <summary>
+            Create a new DocumentEntry; the data will be provided later
+            </summary>
+            <param name="name">the name of the new DocumentEntry</param>
+            <param name="size">the size of the new DocumentEntry</param>
+            <returns>the new DocumentEntry</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryEntry.CreateDocument(System.String,System.Int32,NPOI.POIFS.EventFileSystem.POIFSWriterEventHandler)">
+            <summary>
+            Create a new DocumentEntry; the data will be provided later
+            </summary>
+            <param name="name">the name of the new DocumentEntry</param>
+            <param name="size">the size of the new DocumentEntry</param>
+            <param name="writer">BeforeWriting event handler</param>
+            <returns>the new DocumentEntry</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryEntry.CreateDirectory(System.String)">
+            <summary>
+            Create a new DirectoryEntry
+            </summary>
+            <param name="name">the name of the new DirectoryEntry</param>
+            <returns>the name of the new DirectoryEntry</returns>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryEntry.Entries">
+            <summary>
+            get an iterator of the Entry instances contained directly in
+            this instance (in other words, children only; no grandchildren
+            etc.)
+            </summary>
+            <value>The entries.never null, but hasNext() may return false
+            immediately (i.e., this DirectoryEntry is empty). All
+            objects retrieved by next() are guaranteed to be
+            implementations of Entry.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryEntry.IsEmpty">
+             <summary>
+            is this DirectoryEntry empty?
+             </summary>
+             <value><c>true</c> if this instance contains no Entry instances; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryEntry.EntryCount">
+            <summary>
+            find out how many Entry instances are contained directly within
+            this DirectoryEntry
+            </summary>
+            <value>number of immediately (no grandchildren etc.) contained
+            Entry instances</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryEntry.StorageClsid">
+            <summary>
+            Gets or sets the storage ClassID.
+            </summary>
+            <value>The storage ClassID.</value>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryNode.#ctor(NPOI.POIFS.Properties.DirectoryProperty,NPOI.POIFS.FileSystem.POIFSFileSystem,NPOI.POIFS.FileSystem.DirectoryNode)">
+            <summary>
+            Create a DirectoryNode. This method Is not public by design; it
+            Is intended strictly for the internal use of this package
+            </summary>
+            <param name="property">the DirectoryProperty for this DirectoryEntry</param>
+            <param name="filesystem">the POIFSFileSystem we belong to</param>
+            <param name="parent">the parent of this entry</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryNode.CreatePOIFSDocumentReader(System.String)">
+            <summary>
+            open a document in the directory's entry's list of entries
+            </summary>
+            <param name="documentName">the name of the document to be opened</param>
+            <returns>a newly opened DocumentStream</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryNode.CreateDocument(NPOI.POIFS.FileSystem.POIFSDocument)">
+            <summary>
+            Create a new DocumentEntry
+            </summary>
+            <param name="document">the new document</param>
+            <returns>the new DocumentEntry</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryNode.ChangeName(System.String,System.String)">
+            <summary>
+            Change a contained Entry's name
+            </summary>
+            <param name="oldName">the original name</param>
+            <param name="newName">the new name</param>
+            <returns>true if the operation succeeded, else false</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryNode.DeleteEntry(NPOI.POIFS.FileSystem.EntryNode)">
+            <summary>
+            Deletes the entry.
+            </summary>
+            <param name="entry">the EntryNode to be Deleted</param>
+            <returns>true if the entry was Deleted, else false</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryNode.GetEntry(System.String)">
+            <summary>
+            get a specified Entry by name
+            </summary>
+            <param name="name">the name of the Entry to obtain.</param>
+            <returns>
+            the specified Entry, if it is directly contained in
+            this DirectoryEntry
+            </returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryNode.CreateDocument(System.String,System.IO.Stream)">
+            <summary>
+            Create a new DocumentEntry
+            </summary>
+            <param name="name">the name of the new DocumentEntry</param>
+            <param name="stream">the Stream from which to Create the new DocumentEntry</param>
+            <returns>the new DocumentEntry</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryNode.CreateDocument(System.String,System.Int32)">
+            <summary>
+            Create a new DocumentEntry; the data will be provided later
+            </summary>
+            <param name="name">the name of the new DocumentEntry</param>
+            <param name="size">the size of the new DocumentEntry</param>
+            <returns>the new DocumentEntry</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryNode.CreateDocument(System.String,System.Int32,NPOI.POIFS.EventFileSystem.POIFSWriterEventHandler)">
+            <summary>
+            Create a new DocumentEntry; the data will be provided later
+            </summary>
+            <param name="name">the name of the new DocumentEntry</param>
+            <param name="size">the size of the new DocumentEntry</param>
+            <param name="beforewriting"></param>
+            <returns>the new DocumentEntry</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DirectoryNode.CreateDirectory(System.String)">
+            <summary>
+            Create a new DirectoryEntry
+            </summary>
+            <param name="name">the name of the new DirectoryEntry</param>
+            <returns>the name of the new DirectoryEntry</returns>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryNode.Path">
+            <summary>
+            Gets the path.
+            </summary>
+            <value>this directory's path representation</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryNode.Entries">
+            <summary>
+            get an iterator of the Entry instances contained directly in
+            this instance (in other words, children only; no grandchildren
+            etc.)
+            </summary>
+            <value>
+            The entries.never null, but hasNext() may return false
+            immediately (i.e., this DirectoryEntry is empty). All
+            objects retrieved by next() are guaranteed to be
+            implementations of Entry.
+            </value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryNode.IsEmpty">
+            <summary>
+            is this DirectoryEntry empty?
+            </summary>
+            <value>
+            	<c>true</c> if this instance contains no Entry instances; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryNode.EntryCount">
+            <summary>
+            find out how many Entry instances are contained directly within
+            this DirectoryEntry
+            </summary>
+            <value>
+            number of immediately (no grandchildren etc.) contained
+            Entry instances
+            </value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryNode.StorageClsid">
+            <summary>
+            Gets or Sets the storage clsid for the directory entry
+            </summary>
+            <value>The storage ClassID.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryNode.IsDirectoryEntry">
+            <summary>
+            Is this a DirectoryEntry?
+            </summary>
+            <value>true if the Entry Is a DirectoryEntry, else false</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryNode.IsDeleteOK">
+            <summary>
+            extensions use this method to verify internal rules regarding
+            deletion of the underlying store.
+            </summary>
+            <value> true if it's ok to Delete the underlying store, else
+            false</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryNode.ViewableArray">
+            <summary>
+            Get an array of objects, some of which may implement POIFSViewable
+            </summary>
+            <value>an array of Object; may not be null, but may be empty</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryNode.ViewableIterator">
+            <summary>
+            Get an Iterator of objects, some of which may implement
+            POIFSViewable
+            </summary>
+            <value>an Iterator; may not be null, but may have an empty
+            back end store</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryNode.PreferArray">
+            <summary>
+            Give viewers a hint as to whether to call GetViewableArray or
+            GetViewableIterator
+            </summary>
+            <value><c>true</c> if a viewer should call GetViewableArray; otherwise, <c>false</c>if
+            a viewer should call GetViewableIterator</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DirectoryNode.ShortDescription">
+            <summary>
+            Provides a short description of the object, to be used when a
+            POIFSViewable object has not provided its contents.
+            </summary>
+            <value>The short description.</value>
+        </member>
+        <member name="T:NPOI.POIFS.Properties.PropertyConstants">
+            <summary>
+            Constants used by Properties namespace
+            </summary>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.HeaderBlockConstants">
+            <summary>
+            Constants used in reading/writing the Header block
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="T:NPOI.POIFS.FileSystem.DocumentDescriptor">
+            <summary>
+            Class DocumentDescriptor
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DocumentDescriptor.#ctor(NPOI.POIFS.FileSystem.POIFSDocumentPath,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.FileSystem.DocumentDescriptor"/> class.
+            </summary>
+            <param name="path">the Document path</param>
+            <param name="name">the Document name</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DocumentDescriptor.Equals(System.Object)">
+            <summary>
+            equality. Two DocumentDescriptor instances are equal if they
+            have equal paths and names
+            </summary>
+            <param name="o">the object we're checking equality for</param>
+            <returns>true if the object is equal to this object</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DocumentDescriptor.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns>
+            hashcode
+            </returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.DocumentDescriptor.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DocumentDescriptor.Path">
+            <summary>
+            Gets the path.
+            </summary>
+            <value>The path.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.DocumentDescriptor.Name">
+            <summary>
+            Gets the name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="T:NPOI.POIFS.Storage.RawDataBlockList">
+            <summary>
+            A list of RawDataBlocks instances, and methods to manage the list
+            @author Marc Johnson (mjohnson at apache dot org
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.RawDataBlockList.#ctor(System.IO.Stream,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.Storage.RawDataBlockList"/> class.
+            </summary>
+            <param name="stream">the InputStream from which the data will be read</param>
+            <param name="bigBlockSize">The big block size, either 512 bytes or 4096 bytes</param>
+        </member>
+        <member name="T:NPOI.POIFS.Common.POIFSConstants">
+            <summary>
+            A repository for constants shared by POI classes.
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="F:NPOI.POIFS.Common.POIFSConstants.BIG_BLOCK_SIZE">
+            Most files use 512 bytes as their big block size 
+        </member>
+        <member name="F:NPOI.POIFS.Common.POIFSConstants.MINI_BLOCK_SIZE">
+            Most files use 512 bytes as their big block size 
+        </member>
+        <member name="F:NPOI.POIFS.Common.POIFSConstants.LARGER_BIG_BLOCK_SIZE">
+            Some use 4096 bytes 
+        </member>
+        <member name="T:NPOI.POIFS.Storage.BATBlock">
+            <summary>
+            A block of block allocation table entries. BATBlocks are created
+            only through a static factory method: createBATBlocks.
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BATBlock.#ctor">
+            <summary>
+            Create a single instance initialized with default values
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BATBlock.CreateBATBlocks(System.Int32[])">
+            <summary>
+            Create an array of BATBlocks from an array of int block
+            allocation table entries
+            </summary>
+            <param name="entries">the array of int entries</param>
+            <returns>the newly created array of BATBlocks</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BATBlock.CreateXBATBlocks(System.Int32[],System.Int32)">
+            <summary>
+            Create an array of XBATBlocks from an array of int block
+            allocation table entries
+            </summary>
+            <param name="entries">the array of int entries</param>
+            <param name="startBlock">the start block of the array of XBAT blocks</param>
+            <returns>the newly created array of BATBlocks</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BATBlock.CalculateStorageRequirements(System.Int32)">
+            <summary>
+            Calculate how many BATBlocks are needed to hold a specified
+            number of BAT entries.
+            </summary>
+            <param name="entryCount">the number of entries</param>
+            <returns>the number of BATBlocks needed</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.BATBlock.CalculateXBATStorageRequirements(System.Int32)">
+            <summary>
+            Calculate how many XBATBlocks are needed to hold a specified
+            number of BAT entries.
+            </summary>
+            <param name="entryCount">the number of entries</param>
+            <returns>the number of XBATBlocks needed</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:NPOI.POIFS.Storage.BATBlock.#ctor(System.Int32[],System.Int32,System.Int32)" -->
+        <member name="M:NPOI.POIFS.Storage.BATBlock.WriteData(System.IO.Stream)">
+            <summary>
+            Write the block's data to an Stream
+            </summary>
+            <param name="stream">the Stream to which the stored data should
+            be written</param>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.BATBlock.EntriesPerBlock">
+            <summary>
+            Gets the entries per block.
+            </summary>
+            <value>The number of entries per block</value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.BATBlock.EntriesPerXBATBlock">
+            <summary>
+            Gets the entries per XBAT block.
+            </summary>
+            <value>number of entries per XBAT block</value>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.BATBlock.XBATChainOffset">
+            <summary>
+            Gets the XBAT chain offset.
+            </summary>
+            <value>offset of chain index of XBAT block</value>
+        </member>
+        <member name="T:NPOI.POIFS.FileSystem.POIFSDocument">
+            <summary>
+            This class manages a document in the POIFS filesystem.
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocument.#ctor(System.String,System.IO.Stream)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.FileSystem.POIFSDocument"/> class.
+            </summary>
+            <param name="name">the name of the POIFSDocument</param>
+            <param name="stream">the InputStream we read data from</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocument.#ctor(System.String,NPOI.POIFS.Storage.ListManagedBlock[],System.Int32)">
+            <summary>
+            Constructor from small blocks
+            </summary>
+            <param name="name">the name of the POIFSDocument</param>
+            <param name="blocks">the small blocks making up the POIFSDocument</param>
+            <param name="length">the actual length of the POIFSDocument</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocument.#ctor(System.String,NPOI.POIFS.Storage.RawDataBlock[],System.Int32)">
+            <summary>
+            Constructor from large blocks
+            </summary>
+            <param name="name">the name of the POIFSDocument</param>
+            <param name="blocks">the big blocks making up the POIFSDocument</param>
+            <param name="length">the actual length of the POIFSDocument</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocument.#ctor(System.String,NPOI.POIFS.Storage.SmallDocumentBlock[],System.Int32)">
+            <summary>
+            Constructor from small blocks
+            </summary>
+            <param name="name">the name of the POIFSDocument</param>
+            <param name="blocks">Tthe small blocks making up the POIFSDocument</param>
+            <param name="length">the actual length of the POIFSDocument</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocument.#ctor(System.String,System.Int32,NPOI.POIFS.FileSystem.POIFSDocumentPath)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.FileSystem.POIFSDocument"/> class.
+            </summary>
+            <param name="name">the name of the POIFSDocument</param>
+            <param name="size">the length of the POIFSDocument</param>
+            <param name="path">the path of the POIFSDocument</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocument.Read(System.Byte[],System.Int32)">
+            <summary>
+            read data from the internal stores
+            </summary>
+            <param name="buffer">the buffer to write to</param>
+            <param name="offset">the offset into our storage to read from</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocument.WriteBlocks(System.IO.Stream)">
+            <summary>
+            Writes the blocks.
+            </summary>
+            <param name="stream">The stream.</param>
+        </member>
+        <member name="E:NPOI.POIFS.FileSystem.POIFSDocument.BeforeWriting">
+            <summary>
+            Occurs when [before writing].
+            </summary>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocument.CountBlocks">
+            <summary>
+            Gets the number of BigBlock's this instance uses
+            </summary>
+            <value>count of BigBlock instances</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocument.DocumentProperty">
+            <summary>
+            Gets the document property.
+            </summary>
+            <value>The document property.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocument.PreferArray">
+            <summary>
+            Provides a short description of the object to be used when a
+            POIFSViewable object has not provided its contents.
+            </summary>
+            <value><c>true</c> if [prefer array]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocument.ShortDescription">
+            <summary>
+            Gets the short description.
+            </summary>
+            <value>The short description.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocument.Size">
+            <summary>
+            Gets the size.
+            </summary>
+            <value>The size.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocument.SmallBlocks">
+            <summary>
+            Gets the small blocks.
+            </summary>
+            <value>The small blocks.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocument.StartBlock">
+            <summary>
+            Sets the start block for this instance
+            </summary>
+            <value>
+            index into the array of BigBlock instances making up the the filesystem
+            </value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocument.ViewableArray">
+            <summary>
+            Get an array of objects, some of which may implement POIFSViewable
+            </summary>
+            <value>The viewable array.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocument.ViewableIterator">
+            <summary>
+            Give viewers a hint as to whether to call ViewableArray or ViewableIterator
+            </summary>
+            <value>The viewable iterator.</value>
+        </member>
+        <member name="T:NPOI.POIFS.EventFileSystem.POIFSReaderEventArgs">
+            <summary>
+            EventArgs for POIFSReader
+            author: Tony Qu
+            </summary>
+        </member>
+        <member name="T:NPOI.POIFS.EventFileSystem.POIFSReader">
+            <summary>
+            An event-driven Reader for POIFS file systems. Users of this class
+            first Create an instance of it, then use the RegisterListener
+            methods to Register POIFSReaderListener instances for specific
+            documents. Once all the listeners have been Registered, the Read()
+            method is called, which results in the listeners being notified as
+            their documents are Read.
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.EventFileSystem.POIFSReader.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.EventFileSystem.POIFSReader"/> class.
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.EventFileSystem.POIFSReader.Read(System.IO.Stream)">
+            <summary>
+            Read from an InputStream and Process the documents we Get
+            </summary>
+            <param name="stream">the InputStream from which to Read the data</param>
+            <returns>POIFSDocument list</returns>
+        </member>
+        <member name="M:NPOI.POIFS.EventFileSystem.POIFSReader.ProcessProperties(NPOI.POIFS.Storage.BlockList,NPOI.POIFS.Storage.BlockList,System.Collections.IEnumerator,NPOI.POIFS.FileSystem.POIFSDocumentPath)">
+            <summary>
+            Processes the properties.
+            </summary>
+            <param name="small_blocks">The small_blocks.</param>
+            <param name="big_blocks">The big_blocks.</param>
+            <param name="properties">The properties.</param>
+            <param name="path">The path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.DocumentBlock.#ctor(NPOI.POIFS.Storage.RawDataBlock)">
+            <summary>
+            create a document block from a raw data block
+            </summary>
+            <param name="block">The block.</param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.DocumentBlock.#ctor(System.IO.Stream)">
+            <summary>
+            Create a single instance initialized with data.
+            </summary>
+            <param name="stream">the InputStream delivering the data.</param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.DocumentBlock.#ctor">
+            <summary>
+            Create a single instance initialized with default values
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.DocumentBlock.Convert(System.Byte[],System.Int32)">
+            <summary>
+            convert a single long array into an array of DocumentBlock
+            instances
+            </summary>
+            <param name="array">the byte array to be converted</param>
+            <param name="size">the intended size of the array (which may be smaller)</param>
+            <returns>an array of DocumentBlock instances, filled from the
+            input array</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.DocumentBlock.Read(NPOI.POIFS.Storage.DocumentBlock[],System.Byte[],System.Int32)">
+            <summary>
+            Read data from an array of DocumentBlocks
+            </summary>
+            <param name="blocks">the blocks to Read from</param>
+            <param name="buffer">the buffer to Write the data into</param>
+            <param name="offset">the offset into the array of blocks to Read from</param>
+        </member>
+        <member name="M:NPOI.POIFS.Storage.DocumentBlock.WriteData(System.IO.Stream)">
+            <summary>
+            Write the storage to an OutputStream
+            </summary>
+            <param name="stream">the OutputStream to which the stored data should
+            be written</param>
+        </member>
+        <member name="P:NPOI.POIFS.Storage.DocumentBlock.Size">
+            <summary>
+            Get the number of bytes Read for this block.
+            </summary>
+            <value>bytes Read into the block</value>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:NPOI.POIFS.Storage.DocumentBlock.PartiallyRead" -->
+        <member name="P:NPOI.POIFS.Storage.DocumentBlock.FillByte">
+            <summary>
+            Gets the fill byte used
+            </summary>
+            <value>The fill byte.</value>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.PropertyFactory.ConvertToProperties(NPOI.POIFS.Storage.ListManagedBlock[])">
+            <summary>
+            Convert raw data blocks to an array of Property's
+            </summary>
+            <param name="blocks">The blocks to be converted</param>
+            <returns>the converted List of Property objects. May contain
+            nulls, but will not be null</returns>
+        </member>
+        <member name="T:NPOI.POIFS.Properties.DocumentProperty">
+            <summary>
+            Trivial extension of Property for POIFSDocuments
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.DocumentProperty.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.Properties.DocumentProperty"/> class.
+            </summary>
+            <param name="name">POIFSDocument name</param>
+            <param name="size">POIFSDocument size</param>
+        </member>
+        <member name="M:NPOI.POIFS.Properties.DocumentProperty.#ctor(System.Int32,System.Byte[],System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NPOI.POIFS.Properties.DocumentProperty"/> class.
+            </summary>
+            <param name="index">index number</param>
+            <param name="array">byte data</param>
+            <param name="offset">offset into byte data</param> 
+        </member>
+        <member name="M:NPOI.POIFS.Properties.DocumentProperty.PreWrite">
+            <summary>
+            Perform whatever activities need to be performed prior to
+            writing
+            </summary>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.DocumentProperty.Document">
+            <summary>
+            Gets or sets the document.
+            </summary>
+            <value>the associated POIFSDocument</value>
+        </member>
+        <member name="P:NPOI.POIFS.Properties.DocumentProperty.IsDirectory">
+            <summary>
+            Determines whether this instance is directory.
+            </summary>
+            <returns>
+            	<c>true</c> if this instance is directory; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:NPOI.POIFS.FileSystem.OfficeXmlFileException">
+            <summary>
+            This exception is thrown when we try to open a file that's actually
+            an Office 2007+ XML file, rather than an OLE2 file (which is what
+            POI works with)
+            @author Nick Burch
+            </summary>
+        </member>
+        <member name="T:NPOI.POIFS.Dev.POIFSViewEngine">
+            <summary>
+            This class contains methods used to inspect POIFSViewable objects
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.Dev.POIFSViewEngine.InspectViewable(System.Object,System.Boolean,System.Int32,System.String)">
+            <summary>
+            Inspect an object that may be viewable, and drill down if told to
+            </summary>
+            <param name="viewable">the object to be viewed</param>
+            <param name="drilldown">if <c>true</c> and the object implements POIFSViewable, inspect the objects' contents</param>
+            <param name="indentLevel">how far in to indent each string</param>
+            <param name="indentString">string to use for indenting</param>
+            <returns>a List of Strings holding the content</returns>
+        </member>
+        <member name="M:NPOI.POIFS.Dev.POIFSViewEngine.Indent(System.Int32,System.String,System.String)">
+            <summary>
+            Indents the specified indent level.
+            </summary>
+            <param name="indentLevel">how far in to indent each string</param>
+            <param name="indentString">string to use for indenting</param>
+            <param name="data">The data.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NPOI.POIFS.FileSystem.POIFSDocumentWriter">
+            <summary>
+            This class provides a wrapper over an OutputStream so that Document
+            writers can't accidently go over their size limits
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentWriter.#ctor(System.IO.Stream,System.Int32)">
+            <summary>
+            Create a POIFSDocumentWriter
+            </summary>
+            <param name="stream">the OutputStream to which the data is actually</param>
+            <param name="limit">the maximum number of bytes that can be written</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentWriter.Close">
+            <summary>
+            Closes this output stream and releases any system resources
+            associated with this stream. The general contract of close is
+            that it closes the output stream. A closed stream cannot
+            perform output operations and cannot be reopened.
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentWriter.Flush">
+            <summary>
+            Flushes this output stream and forces any buffered output bytes
+            to be written out.
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentWriter.Write(System.Byte[])">
+            <summary>
+            Writes b.length bytes from the specified byte array
+            to this output stream.
+            </summary>
+            <param name="b">the data.</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentWriter.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Writes len bytes from the specified byte array starting at
+            offset off to this output stream.  The general contract for
+            write(b, off, len) is that some of the bytes in the array b are
+            written to the output stream in order; element b[off] is the
+            first byte written and b[off+len-1] is the last byte written by
+            this operation.
+            If b is null, a NullPointerException is thrown.
+            If off is negative, or len is negative, or off+len is greater
+            than the length of the array b, then an
+            IndexOutOfBoundsException is thrown.
+            </summary>
+            <param name="b">the data.</param>
+            <param name="off">the start offset in the data.</param>
+            <param name="len">the number of bytes to write.</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentWriter.WriteByte(System.Byte)">
+            <summary>
+            Writes the specified byte to this output stream. The general
+            contract for write is that one byte is written to the output
+            stream. The byte to be written is the eight low-order bits of
+            the argument b. The 24 high-order bits of b are ignored.
+            </summary>
+            <param name="b">the byte.</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentWriter.WriteFiller(System.Int32,System.Byte)">
+            <summary>
+            write the rest of the document's data (fill in at the end)
+            </summary>
+            <param name="totalLimit">the actual number of bytes the corresponding         
+            document must fill</param>
+            <param name="fill">the byte to fill remaining space with</param>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocumentWriter.CanRead">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports reading.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports reading; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocumentWriter.CanSeek">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports seeking.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports seeking; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocumentWriter.CanWrite">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports writing.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports writing; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocumentWriter.Length">
+            <summary>
+            When overridden in a derived class, gets the length in bytes of the stream.
+            </summary>
+            <value></value>
+            <returns>
+            A long value representing the length of the stream in bytes.
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+            A class derived from Stream does not support seeking.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocumentWriter.Position">
+            <summary>
+            When overridden in a derived class, gets or sets the position within the current stream.
+            </summary>
+            <value></value>
+            <returns>
+            The current position within the stream.
+            </returns>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support seeking.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="T:NPOI.POIFS.FileSystem.POIFSDocumentReader">
+            <summary>
+            This class provides methods to read a DocumentEntry managed by a
+            Filesystem instance.
+            @author Marc Johnson (mjohnson at apache dot org)
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentReader.#ctor(NPOI.POIFS.FileSystem.DocumentEntry)">
+            <summary>
+            Create an InputStream from the specified DocumentEntry
+            </summary>
+            <param name="document">the DocumentEntry to be read</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentReader.#ctor(NPOI.POIFS.FileSystem.POIFSDocument)">
+            <summary>
+            Create an InputStream from the specified Document
+            </summary>
+            <param name="document">the Document to be read</param>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentReader.Close">
+            <summary>
+            Closes the current stream and releases any resources (such as sockets and file handles) associated with the current stream.
+            </summary>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentReader.Read(System.Byte[])">
+            <summary>
+            Reads some number of bytes from the input stream and stores
+            them into the buffer array b. The number of bytes actually read
+            is returned as an integer. The definition of this method in
+            java.io.InputStream allows this method to block, but it won't.
+            If b is null, a NullPointerException is thrown. If the length
+            of b is zero, then no bytes are read and 0 is returned;
+            otherwise, there is an attempt to read at least one byte. If no
+            byte is available because the stream is at end of file, the
+            value -1 is returned; otherwise, at least one byte is read and
+            stored into b.
+            The first byte read is stored into element b[0], the next one
+            into b[1], and so on. The number of bytes read is, at most,
+            equal to the length of b. Let k be the number of bytes actually
+            read; these bytes will be stored in elements b[0] through
+            b[k-1], leaving elements b[k] through b[b.length-1] unaffected.
+            If the first byte cannot be read for any reason other than end
+            of file, then an IOException is thrown. In particular, an
+            IOException is thrown if the input stream has been closed.
+            The read(b) method for class InputStream has the same effect as:
+            </summary>
+            <param name="b">the buffer into which the data is read.</param>
+            <returns>the total number of bytes read into the buffer, or -1
+            if there is no more data because the end of the stream
+            has been reached.</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentReader.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads up to len bytes of data from the input stream into an
+            array of bytes. An attempt is made to read as many as len
+            bytes, but a smaller number may be read, possibly zero. The
+            number of bytes actually read is returned as an integer.
+            The definition of this method in java.io.InputStream allows it
+            to block, but it won't.
+            If b is null, a NullPointerException is thrown.
+            If off is negative, or len is negative, or off+len is greater
+            than the length of the array b, then an
+            IndexOutOfBoundsException is thrown.
+            If len is zero, then no bytes are read and 0 is returned;
+            otherwise, there is an attempt to read at least one byte. If no
+            byte is available because the stream is at end of file, the
+            value -1 is returned; otherwise, at least one byte is read and
+            stored into b.
+            The first byte read is stored into element b[off], the next one
+            into b[off+1], and so on. The number of bytes read is, at most,
+            equal to len. Let k be the number of bytes actually read; these
+            bytes will be stored in elements b[off] through b[off+k-1],
+            leaving elements b[off+k] through b[off+len-1] unaffected.
+            In every case, elements b[0] through b[off] and elements
+            b[off+len] through b[b.length-1] are unaffected.
+            If the first byte cannot be read for any reason other than end
+            of file, then an IOException is thrown. In particular, an
+            IOException is thrown if the input stream has been closed.
+            </summary>
+            <param name="b">the buffer into which the data is read.</param>
+            <param name="off">the start offset in array b at which the data is
+                       written.</param>
+            <param name="len">the maximum number of bytes to read.</param>
+            <returns>the total number of bytes read into the buffer, or -1
+                    if there is no more data because the end of the stream
+                    has been reached.</returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentReader.ReadByte">
+            <summary>
+            Reads the next byte of data from the input stream. The value
+            byte is returned as an int in the range 0 to 255. If no byte is
+            available because the end of the stream has been reached, the
+            value -1 is returned. The definition of this method in
+            java.io.InputStream allows this method to block, but it won't.        
+            </summary>
+            <returns>the next byte of data, or -1 if the end of the stream
+            is reached.
+            </returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentReader.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>
+            When overridden in a derived class, sets the position within the current stream.
+            </summary>
+            <param name="offset">A byte offset relative to the <paramref name="origin"/> parameter.</param>
+            <param name="origin">A value of type <see cref="T:System.IO.SeekOrigin"/> indicating the reference point used to obtain the new position.</param>
+            <returns>
+            The new position within the current stream.
+            </returns>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support seeking, such as if the stream is constructed from a pipe or console output.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentReader.Skip(System.Int64)">
+            <summary>
+            Skips the specified n.
+            </summary>
+            <param name="n">The n.</param>
+            <returns></returns>
+        </member>
+        <member name="M:NPOI.POIFS.FileSystem.POIFSDocumentReader.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            When overridden in a derived class, writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies <paramref name="count"/> bytes from <paramref name="buffer"/> to the current stream.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin copying bytes to the current stream.</param>
+            <param name="count">The number of bytes to be written to the current stream.</param>
+            <exception cref="T:System.ArgumentException">
+            The sum of <paramref name="offset"/> and <paramref name="count"/> is greater than the buffer length.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            	<paramref name="buffer"/> is null.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            	<paramref name="offset"/> or <paramref name="count"/> is negative.
+            </exception>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support writing.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocumentReader.EOD">
+            <summary>
+            at the end Of document.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocumentReader.Available">
+            <summary>
+            Returns the number of bytes that can be read (or skipped over)
+            from this input stream without blocking by the next caller of a
+            method for this input stream. The next caller might be the same
+            thread or or another thread.
+            </summary>
+            <value>the number of bytes that can be read from this input
+            stream without blocking.</value>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocumentReader.CanRead">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports reading.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports reading; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocumentReader.CanSeek">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports seeking.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports seeking; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocumentReader.CanWrite">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports writing.
+            </summary>
+            <value></value>
+            <returns>true if the stream supports writing; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocumentReader.Length">
+            <summary>
+            When overridden in a derived class, gets the length in bytes of the stream.
+            </summary>
+            <value></value>
+            <returns>
+            A long value representing the length of the stream in bytes.
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+            A class derived from Stream does not support seeking.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+        <member name="P:NPOI.POIFS.FileSystem.POIFSDocumentReader.Position">
+            <summary>
+            When overridden in a derived class, gets or sets the position within the current stream.
+            </summary>
+            <value></value>
+            <returns>
+            The current position within the stream.
+            </returns>
+            <exception cref="T:System.IO.IOException">
+            An I/O error occurs.
+            </exception>
+            <exception cref="T:System.NotSupportedException">
+            The stream does not support seeking.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">
+            Methods were called after the stream was closed.
+            </exception>
+        </member>
+    </members>
+</doc>

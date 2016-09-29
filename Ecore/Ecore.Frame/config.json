@@ -1,0 +1,10 @@
+﻿{
+  "ConnString": {
+    "Key": "value"
+  },
+
+  "AppSetting": {
+    "Key": "value"
+  }
+
+}
