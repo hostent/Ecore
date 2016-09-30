@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace EMin.Model.Collection
 {
-    public class Pro_ItemImage
+    public class Pro_ItemImage : IEntity
     {
         /// <summary>
         /// 商品图片ID

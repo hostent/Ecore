@@ -2,20 +2,27 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
-
-namespace EMin.Model.Collection
+namespace EMin.Sale.Model.Service
 {
-    public class Sale_Order : IEntity
+    public interface IOrder
     {
-        /// <summary>
-        /// ID
-        /// </summary>
-        [Key]
-        public string Id { get; set; }
+        Result CreateTrade(TradeCreatePar par);
 
-        public string TradeId { get; set; }
+    }
 
+    public class TradeCreatePar
+    {
+        public string MenberId { get; set; }
+
+        public List<ItemPar> ItemParList { get; set; }
+
+        public string Comment { get; set; }
+    } 
+
+    public class ItemPar
+    {
         public string ItemId { get; set; }
 
         public string ItemSkuId { get; set; }
@@ -23,8 +30,6 @@ namespace EMin.Model.Collection
         public int Count { get; set; }
 
         public decimal UnitPrice { get; set; }
-
-        public decimal TotalAmount { get; set; }
 
         /// <summary>
         /// 按利率折扣
@@ -37,11 +42,5 @@ namespace EMin.Model.Collection
         public decimal DiscountAmount { get; set; }
 
         public decimal ActualAmount { get; set; }
-
-        /// <summary>
-        /// 10:生成订单，20：交易确认， 30：交易完成（已发货）
-        /// </summary>
-        public int OrderState { get; set; }
-
     }
 }

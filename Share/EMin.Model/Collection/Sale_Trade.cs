@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 namespace EMin.Model.Collection
 {
-    public class Sale_Order : IEntity
+    public class Sale_Trade : IEntity, IEntityRecord
     {
         /// <summary>
         /// ID
@@ -14,15 +14,17 @@ namespace EMin.Model.Collection
         [Key]
         public string Id { get; set; }
 
-        public string TradeId { get; set; }
+        public string BuyerId { get; set; }
 
-        public string ItemId { get; set; }
+        public string CreateBy { get; set; }
 
-        public string ItemSkuId { get; set; }
+        public string UpdateBy { get; set; }
 
-        public int Count { get; set; }
 
-        public decimal UnitPrice { get; set; }
+        public DateTime? CreateDate { get; set; }
+
+        public DateTime? UpdateDate { get; set; }
+
 
         public decimal TotalAmount { get; set; }
 
@@ -39,9 +41,13 @@ namespace EMin.Model.Collection
         public decimal ActualAmount { get; set; }
 
         /// <summary>
-        /// 10:生成订单，20：交易确认， 30：交易完成（已发货）
+        /// 10:未付款， 20：部分付款（定金），30：已付款
         /// </summary>
-        public int OrderState { get; set; }
+        public int PayState { get; set; }
+
+        public DateTime PayTime { get; set; }
+
+        public string Comment { get; set; }
 
     }
 }
