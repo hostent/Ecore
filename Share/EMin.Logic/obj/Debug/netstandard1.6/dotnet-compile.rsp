@@ -70,5 +70,4 @@
 --reference:C:\Users\anyone\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
 --reference:D:\code\MyProject\Ecore\Ecore\Ecore.Frame\bin\Debug\netstandard1.6\Ecore.Frame.dll
 --reference:D:\code\MyProject\Ecore\Share\EMin.Model\bin\Debug\netstandard1.6\EMin.Model.dll
-D:\code\MyProject\Ecore\Share\EMin.Logic\Class1.cs
 D:\code\MyProject\Ecore\Share\EMin.Logic\Properties\AssemblyInfo.cs

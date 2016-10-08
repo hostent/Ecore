@@ -27,7 +27,7 @@ namespace Ecore.Mongodb
         protected IMongoDatabase GetMongoDb(string constrName, string dataBaseName)
         {
 
-            string connectionString = constrName;
+            string connectionString = Config.Default.GetConnString(constrName);
             if (String.IsNullOrWhiteSpace(connectionString)) connectionString = "mongodb://115.159.67.29:27017";
 
             MongoClient client = new MongoClient(connectionString);

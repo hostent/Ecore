@@ -12,7 +12,7 @@ namespace EMin.Sale.Logic.DataAccess
 
         string dbName = "ProductDb";
 
-        string connName = "";
+        string connName = "mongodb.SaleDb";
 
         public static ProductDb Get()
         {

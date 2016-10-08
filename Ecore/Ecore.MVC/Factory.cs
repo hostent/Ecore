@@ -12,36 +12,60 @@ namespace Ecore.MVC
 {
     public class Factory : IFactory
     {
-        ContainerBuilder containerBuilder = null;
+
         IContainer container = null;
         public Factory()
         {
-            containerBuilder = new ContainerBuilder();
-
-            container = containerBuilder.Build(Autofac.Builder.ContainerBuildOptions.None);
         }
 
 
 
-        public T Get<T>() where T:class
+        public T Get<T>() where T : class
         {
-
-
-            if (container.IsRegistered<T>())
+            if (container != null && container.IsRegistered<T>())
             {
                 return container.Resolve<T>();
             }
-            T obj = new Analyze<T>().CreateInstance();
-            containerBuilder.RegisterInstance(obj).As<T>();
+
+            Type tImp = new Analyze<T>().GetInstanceType();
+            if (tImp == null)
+            {
+                throw new Exception("Imp is null");
+            }
+            ContainerBuilder containerBuilder = new ContainerBuilder();
+            containerBuilder.RegisterType<T>();
+            var register = containerBuilder.RegisterType(tImp).As<T>();
+
+            if (container == null)
+            {
+                container = containerBuilder.Build();
+            }
+            else
+            {
+                containerBuilder.Update(container);
+            }
+           
             return container.Resolve<T>();
-
-
 
         }
 
         //先从本地接口，如果发现本地没有，在读取远程接口。
 
 
+        public static void Init()
+        {
+            Ecore.Frame.Cache.Default = new Ecore.Redis.CCache();
+            Ecore.Frame.Config.Default = new Ecore.Frame.CConifg();
+            Ecore.Frame.Cookie.Default = new CookieHelp();
+            Ecore.Frame.IDGenerator.Default = new Ecore.Redis.CIDGenerator();
+            LockUser.Default = new Ecore.Redis.CLock();
+            Log.Default = new Ecore.Mongodb.CLog();
+            LoginContext.Default = new CLoginContext();
+            MessageQueue.Default = new Ecore.Redis.CMessageQueue();
+            MyHttpClient.Default = new Ecore.MVC.HttpClientHelp();
+            UContainer.Factory = new Factory();
+            Ecore.Frame.Weixin.Account = new Ecore.MVC.Weixin.Manager();
+        }
     }
 
 
@@ -184,8 +208,8 @@ namespace Ecore.MVC
         public T CreateInstance()
         {
             //controller           
-            
-            if (File.Exists(AppContext.BaseDirectory + @"bin\" + ControllerDll + ".dll"))
+
+            if (File.Exists(AppContext.BaseDirectory + "\\" + ControllerDll + ".dll"))
             {
                 Assembly cAss = LoadAss(this.ControllerDll);
                 Type classType = cAss.GetType(this.ControllerClass);
@@ -199,7 +223,7 @@ namespace Ecore.MVC
             }
 
             //logic
-            if (File.Exists(AppContext.BaseDirectory + @"bin\" + LogicDll + ".dll"))
+            if (File.Exists(AppContext.BaseDirectory + "\\" + LogicDll + ".dll"))
             {
                 Assembly cAss = LoadAss(this.LogicDll);
                 Type classType = cAss.GetType(this.LogicClass);
@@ -213,7 +237,7 @@ namespace Ecore.MVC
             }
 
             //Proxy
-            if (File.Exists(AppContext.BaseDirectory + @"bin\" + ProxyDll + ".dll"))
+            if (File.Exists(AppContext.BaseDirectory + "\\" + ProxyDll + ".dll"))
             {
                 Assembly cAss = LoadAss(this.ProxyDll);
                 Type classType = cAss.GetType(this.ProxyClass);
@@ -229,6 +253,45 @@ namespace Ecore.MVC
             return default(T);
 
 
+        }
+
+        public Type GetInstanceType()
+        {
+            //controller           
+
+            if (File.Exists(AppContext.BaseDirectory + "\\" + ControllerDll + ".dll"))
+            {
+                Assembly cAss = LoadAss(this.ControllerDll);
+                Type classType = cAss.GetType(this.ControllerClass);
+                if (classType != null && classType.GetInterfaces().Contains(typeof(T)))
+                {
+                    return classType;
+                }
+            }
+
+            //logic
+            if (File.Exists(AppContext.BaseDirectory + "\\" + LogicDll + ".dll"))
+            {
+                Assembly cAss = LoadAss(this.LogicDll);
+                Type classType = cAss.GetType(this.LogicClass);
+                if (classType != null && classType.GetInterfaces().Contains(typeof(T)))
+                {
+                    return classType;
+                }
+            }
+
+            //Proxy
+            if (File.Exists(AppContext.BaseDirectory + "\\" + ProxyDll + ".dll"))
+            {
+                Assembly cAss = LoadAss(this.ProxyDll);
+                Type classType = cAss.GetType(this.ProxyClass);
+                if (classType != null && classType.GetInterfaces().Contains(typeof(T)))
+                {
+                    return classType;
+                }
+            }
+
+            return null;
         }
 
         private static Assembly LoadAss(string impDllNameWeb)

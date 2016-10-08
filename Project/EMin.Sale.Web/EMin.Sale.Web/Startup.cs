@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Ecore.MVC;
 
 namespace EMin.Sale.Web
 {
@@ -20,6 +21,9 @@ namespace EMin.Sale.Web
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+
+
+            Factory.Init();
         }
 
         public IConfigurationRoot Configuration { get; }

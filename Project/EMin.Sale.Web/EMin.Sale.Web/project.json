@@ -1,4 +1,4 @@
-﻿{
+{
   "dependencies": {
     "Microsoft.NETCore.App": {
       "version": "1.0.0",
@@ -19,7 +19,17 @@
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
+    "Ecore.Frame": "1.0.0-*",
+    "EMin.Sale.Model": "1.0.0-*",
+    "Ecore.Mongodb": "1.0.0-*",
+    "Ecore.MsSql": "1.0.0-*",
+    "Ecore.MVC": "1.0.0-*",
+    "Ecore.Redis": "1.0.0-*",
+    "Ecore.Weixin": "1.0.0-*",
+    "EMin.Logic": "1.0.0-*",
+    "EMin.Model": "1.0.0-*",
+    "EMin.Sale.Logic": "1.0.0-*"
   },
 
   "tools": {

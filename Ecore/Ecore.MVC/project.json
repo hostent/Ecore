@@ -5,7 +5,11 @@
     "Ecore.Frame": "1.0.0-*",
     "NETStandard.Library": "1.6.0",
     "Microsoft.AspNetCore.Mvc": "1.0.0",
-    "Autofac": "4.0.0"
+    "Autofac": "4.0.0",
+    "Ecore.Mongodb": "1.0.0-*",
+    "Ecore.MsSql": "1.0.0-*",
+    "Ecore.Redis": "1.0.0-*",
+    "Ecore.Weixin": "1.0.0-*"
   },
 
   "frameworks": {

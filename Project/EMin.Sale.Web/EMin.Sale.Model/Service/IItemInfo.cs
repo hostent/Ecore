@@ -10,7 +10,7 @@ namespace EMin.Sale.Model.Service
     {
         ItemInfo GetItemInfo(string id);
 
-        List<Pro_ItemImage> GetItemImages(string itemId);
+        void SaveItem(ItemInfo info);
     }
 
     public class ItemInfo 
@@ -18,6 +18,8 @@ namespace EMin.Sale.Model.Service
         public Pro_Item Item { get; set; }
 
         public List<Pro_ItemSku> ItemSkuList { get; set; }
+
+        public List<Pro_ItemImage> ImageList { get; set; }
     }
 
 }
