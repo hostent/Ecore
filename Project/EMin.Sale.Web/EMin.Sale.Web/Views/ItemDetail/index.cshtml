@@ -1,0 +1,62 @@
+﻿@using EMin.Sale.Model.Service;
+@{
+    ItemInfo itemInfo = (ItemInfo)ViewBag.ItemInfo;
+}
+
+<!Doctype html>
+<html xmlns=http://www.w3.org/1999/xhtml>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <title>商品明细</title>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/ImageSlider/style.css" rel="stylesheet" />
+    <script src="~/lib/ImageSlider/script.js"></script>
+    <script src="~/lib/ImageSlider/wowslider.js"></script>
+
+
+    <style>
+
+        .btn-buy{
+            background:#ff4400 none repeat scroll 0 0;
+            width:180px;
+            cursor:pointer;
+            height:40px;
+            border-color:#ff4400;
+
+        }
+    </style>
+
+</head>
+<body>
+    <div id="wowslider-container1">
+        <div class="ws_images">
+            <ul>
+                @foreach (var item in itemInfo.ImageList)
+                {
+                    <li><img src="@item.Url" alt="" title="" id="@item.Id"></li>
+
+                }                 
+            </ul>
+        </div>
+        <div class="ws_bullets">
+            <div>
+                @foreach (var item in itemInfo.ImageList)
+                { 
+                    <a href="#" title=""><span><img src="@item.Url" alt=""></span></a>
+                } 
+            </div>
+        </div><div class="ws_script" style="position:absolute;left:-99%"></div>
+        <div class="ws_shadow"></div>
+    </div>
+
+    <div class="container">
+        <button type="button" class="btn btn-default btn-buy">去购买</button>
+    </div>
+   
+    <script src="~/lib/ImageSlider/wowslider.js"></script>
+    <script src="~/lib/ImageSlider/script.js"></script>
+
+</body>
+</html>
