@@ -17,14 +17,12 @@
 
 
     <style>
-
-        .btn-buy{
-            background:#ff4400 none repeat scroll 0 0;
-            width:180px;
-            cursor:pointer;
-            height:40px;
-            border-color:#ff4400;
-
+        .btn-buy {
+            background: #ff4400 none repeat scroll 0 0;
+            width: 180px;
+            cursor: pointer;
+            height: 40px;
+            border-color: #ff4400;
         }
     </style>
 
@@ -37,26 +35,59 @@
                 {
                     <li><img src="@item.Url" alt="" title="" id="@item.Id"></li>
 
-                }                 
+                }
             </ul>
         </div>
         <div class="ws_bullets">
             <div>
                 @foreach (var item in itemInfo.ImageList)
-                { 
+                {
                     <a href="#" title=""><span><img src="@item.Url" alt=""></span></a>
-                } 
+                }
             </div>
         </div><div class="ws_script" style="position:absolute;left:-99%"></div>
         <div class="ws_shadow"></div>
     </div>
 
     <div class="container">
-        <button type="button" class="btn btn-default btn-buy">去购买</button>
+        <button type="button" id="btnBuy" class="btn btn-default btn-buy">去购买</button>
     </div>
-   
+
     <script src="~/lib/ImageSlider/wowslider.js"></script>
     <script src="~/lib/ImageSlider/script.js"></script>
+
+    <script>
+
+        $("#btnBuy").click(function () {
+
+
+            var skuid="";
+            if(@itemInfo.ItemSkuList.Count!=0)
+            {
+                skuid =@itemInfo.ItemSkuList.FirstOrDefault().Id;
+
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: "ItemDetail/AddToCart",
+                data: { itemId :@itemInfo.Item.Id,
+                    skuId:skuid,
+                    number:1},
+                success: function (data) {
+                    if (data.Tag != 1) {
+                        alert(data.Message);
+                    }
+
+                    var cartId = data.Data;
+
+                    Location.href = "Buy?cartId=" + cartId;
+                },
+                dataType: "json"
+            });
+        });
+
+    </script>
 
 </body>
 </html>

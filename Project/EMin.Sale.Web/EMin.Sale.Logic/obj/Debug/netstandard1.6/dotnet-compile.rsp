@@ -124,6 +124,7 @@
 --reference:D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Model\bin\Debug\netstandard1.6\EMin.Sale.Model.dll
 D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Logic\CItemInfo.cs
 D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Logic\COrder.cs
+D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Logic\CShoppingCart.cs
 D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Logic\DataAccess\ProductDb.cs
 D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Logic\DataAccess\SaleDb.cs
 D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Logic\Properties\AssemblyInfo.cs

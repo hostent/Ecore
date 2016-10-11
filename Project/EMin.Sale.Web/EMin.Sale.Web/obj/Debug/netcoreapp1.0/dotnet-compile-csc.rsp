@@ -224,5 +224,6 @@
 -resource:"D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Web\obj\Debug\netcoreapp1.0\EMin.Sale.Webdotnet-compile.deps.json",EMin.Sale.Web.deps.json
 "D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Web\Program.cs"
 "D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Web\Startup.cs"
+"D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Web\Controllers\BuyController.cs"
 "D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Web\Controllers\HomeController.cs"
 "D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Web\Controllers\ItemDetailController.cs"

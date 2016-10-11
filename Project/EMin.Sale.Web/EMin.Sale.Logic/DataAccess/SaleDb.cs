@@ -59,5 +59,13 @@ namespace EMin.Sale.Logic.DataAccess
                 return new MongoSet<Sale_TradeRecord>(connName, dbName);
             }
         }
+
+        public ISet<Sale_ShoppingCart> Sale_ShoppingCart
+        {
+            get
+            {
+                return new MongoSet<Sale_ShoppingCart>(connName, dbName);
+            }
+        }
     }
 }

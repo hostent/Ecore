@@ -10,16 +10,16 @@ namespace EMin.Sale.Web.Controllers
 {
     public class BuyController : Controller
     {
-        IItemInfo ItemInfoService;
+        IShoppingCart shoppingCart;
 
         public BuyController()
         {
-            ItemInfoService = UContainer.Get<IItemInfo>();
+            shoppingCart = UContainer.Get<IShoppingCart>();
         }
 
         public IActionResult Index()
         {
-            string id = Request.Query["id"];
+            string cartId = Request.Query["cartId"];
 
             ViewBag.ItemInfo = ItemInfoService.GetItemInfo(id);
 
