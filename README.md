@@ -11,6 +11,9 @@ Net Core 项目
 7. LoginContext
 8. Weixin
 9. Orm
+10. JsonRpc api（支持websocket 和 http rest）
+11. 自定义MVC
+
 以及各种工具类。
 
 #框架全部采用注入方式，无侵入。
