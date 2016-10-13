@@ -1,0 +1,46 @@
+--temp-output:D:\code\MyProject\Ecore\Ecore\Ecore.Frame\obj\Debug\net40\
+--out:D:\code\MyProject\Ecore\Ecore\Ecore.Frame\bin\Debug\net40\Ecore.Frame.dll
+--define:DEBUG
+--define:TRACE
+--define:NET40
+--suppress-warning:CS1701
+--suppress-warning:CS1702
+--suppress-warning:CS1705
+--optimize:False
+--output-name:Ecore.Frame
+--file-version:1.0.0.0
+--version:1.0.0.0
+--informational-version:1.0.0
+--target-framework:.NETFramework,Version=v4.0
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\mscorlib.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.CSharp.dll
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Cache.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Config.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Cookie.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\DistributedTask.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\EnumExtend.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\IDGenerator.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\LockUser.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Log.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\LoginContext.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\MessageQueue.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\MyEncoding.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\MyHttpClient.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Proxy.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Result.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Router.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Search.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Set.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\UContainer.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Weixin.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\LinqExtend\ConditionBuilder.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\LinqExtend\EntityHelp.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\LinqExtend\ExpressionVisitor.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\LinqExtend\PartialEvaluator.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Properties\AssemblyInfo.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Security\AESHelper.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Security\MD5Helper.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Security\Sha1Help.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.Frame\Security\StringFomat.cs

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Ecore.Frame;
 
-namespace Ecore.MVC
+namespace Ecore.MVC.Tools
 {
     public class CookieHelp: ICookie
     {

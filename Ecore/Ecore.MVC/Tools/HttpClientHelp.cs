@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Ecore.MVC
+namespace Ecore.MVC.Tools
 {
     public class HttpClientHelp : IHttpClient
     {

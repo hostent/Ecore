@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Ecore.Frame;
+using Ecore.MVC.Api;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,7 +45,7 @@ namespace Ecore.MVC
             {
                 containerBuilder.Update(container);
             }
-           
+
             return container.Resolve<T>();
 
         }
@@ -55,16 +56,22 @@ namespace Ecore.MVC
         public static void Init()
         {
             Ecore.Frame.Cache.Default = new Ecore.Redis.CCache();
-            Ecore.Frame.Config.Default = new Ecore.Frame.CConifg();
-            Ecore.Frame.Cookie.Default = new CookieHelp();
+            Ecore.Frame.Cookie.Default = new Tools.CookieHelp();
             Ecore.Frame.IDGenerator.Default = new Ecore.Redis.CIDGenerator();
             LockUser.Default = new Ecore.Redis.CLock();
             Log.Default = new Ecore.Mongodb.CLog();
             LoginContext.Default = new CLoginContext();
             MessageQueue.Default = new Ecore.Redis.CMessageQueue();
-            MyHttpClient.Default = new Ecore.MVC.HttpClientHelp();
+            MyHttpClient.Default = new Ecore.MVC.Tools.HttpClientHelp();
             UContainer.Factory = new Factory();
             Ecore.Frame.Weixin.Account = new Ecore.MVC.Weixin.Manager();
+            Config.Default = new Tools.CConifg();
+            MyEncoding.Default = new Ecore.MVC.Tools.MyEncoding();
+
+            Router.MvcHandle = new MvcRouter();
+            Router.RestApiHandle = new RestApiRouter();
+            Router.WebSocketHandle = new WebSocketRouter();
+
         }
     }
 
