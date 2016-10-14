@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<EMin.Module>
+  <add Name="Order" RestAddress="http://localhost:13413" WsAddress=""></add>
+  <add Name="Item" RestAddress="http://127.0.0.1:7201" WsAddress="ws://127.0.0.1:6002"></add>
+  <add Name="SiteSetting" RestAddress="http://127.0.0.1:7200" WsAddress="ws://127.0.0.1:6001"></add>
+</EMin.Module>

@@ -15,7 +15,7 @@ namespace Ecore.Frame
     {
         T Call<T>(string apiKey, params object[] par);
 
-        void CallAsync(string apiKey, params object[] par);
+        Task CallAsync(string apiKey, params object[] par);
 
 
     }

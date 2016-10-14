@@ -1,0 +1,130 @@
+{
+  "locked": false,
+  "version": 2,
+  "targets": {
+    ".NETFramework,Version=v4.0": {
+      "MemoryCache/1.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/MemoryCache.dll": {}
+        },
+        "runtime": {
+          "lib/MemoryCache.dll": {}
+        }
+      },
+      "NETStandard.Library/1.6.0": {
+        "type": "package"
+      },
+      "Newtonsoft.Json/6.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Newtonsoft.Json.dll": {}
+        }
+      },
+      "WebSocketSharp/1.0.3-rc11": {
+        "type": "package",
+        "compile": {
+          "lib/websocket-sharp.dll": {}
+        },
+        "runtime": {
+          "lib/websocket-sharp.dll": {}
+        }
+      },
+      "Ecore.Frame/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.0",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "net40/Ecore.Frame.dll": {}
+        },
+        "runtime": {
+          "net40/Ecore.Frame.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MemoryCache/1.2.0": {
+      "sha512": "gNjcGFh84wlcI2ubArWCBIgMjpp7LupFnFuzeqcx1BqpLolutIqw0x/LMY29l7ipDmlEHigLm15DIwkX3U6IOA==",
+      "type": "package",
+      "path": "MemoryCache/1.2.0",
+      "files": [
+        "MemoryCache.1.2.0.nupkg.sha512",
+        "MemoryCache.nuspec",
+        "lib/MemoryCache.dll",
+        "lib/MemoryCache.pdb"
+      ]
+    },
+    "NETStandard.Library/1.6.0": {
+      "sha512": "ypsCvIdCZ4IoYASJHt6tF2fMo7N30NLgV1EbmC+snO490OMl9FvVxmumw14rhReWU3j3g7BYudG6YCrchwHJlA==",
+      "type": "package",
+      "path": "NETStandard.Library/1.6.0",
+      "files": [
+        "NETStandard.Library.1.6.0.nupkg.sha512",
+        "NETStandard.Library.nuspec",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt"
+      ]
+    },
+    "Newtonsoft.Json/6.0.1": {
+      "sha512": "tZ4TnfiXc3CUDZSZxXWcFOq5nDHxYY05qSDfZEJ654YOYzrPPOBgvSwJzr4jkTxeK5uoXmFG93Fq1lWDeLSmmA==",
+      "type": "package",
+      "path": "Newtonsoft.Json/6.0.1",
+      "files": [
+        "Newtonsoft.Json.6.0.1.nupkg.sha512",
+        "Newtonsoft.Json.nuspec",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netcore45/Newtonsoft.Json.dll",
+        "lib/netcore45/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+wp80+win8+monotouch+monoandroid/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+wp80+win8+monotouch+monoandroid/Newtonsoft.Json.xml",
+        "lib/portable-net45+wp80+win8/Newtonsoft.Json.dll",
+        "lib/portable-net45+wp80+win8/Newtonsoft.Json.xml",
+        "tools/install.ps1"
+      ]
+    },
+    "WebSocketSharp/1.0.3-rc11": {
+      "sha512": "7VCF7f7zVMOvLGD8LeGS4DVXc8lOcB6kXnUMeTxigu+PMiU+6wW5Olq2gYrDU8vDRKOwFY+5RyBaLyzb8skEzA==",
+      "type": "package",
+      "path": "WebSocketSharp/1.0.3-rc11",
+      "files": [
+        "WebSocketSharp.1.0.3-rc11.nupkg.sha512",
+        "WebSocketSharp.nuspec",
+        "lib/websocket-sharp.dll",
+        "lib/websocket-sharp.xml"
+      ]
+    },
+    "Ecore.Frame/1.0.0": {
+      "type": "project",
+      "path": "../Ecore.Frame/project.json",
+      "msbuildProject": "../Ecore.Frame/Ecore.Frame.xproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "": [
+      "Ecore.Frame >= 1.0.0-*",
+      "MemoryCache >= 1.2.0",
+      "Newtonsoft.Json >= 6.0.1",
+      "WebSocketSharp >= 1.0.3-rc11"
+    ],
+    ".NETFramework,Version=v4.0": [
+      "System.Data >= 4.0.0",
+      "System.Xml >= 4.0.0",
+      "System.Xml.Linq >= 4.0.0"
+    ]
+  },
+  "tools": {},
+  "projectFileToolGroups": {}
+}
