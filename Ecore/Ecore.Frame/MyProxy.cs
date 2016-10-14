@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Ecore.Frame
 {
-    public class Proxy
+    public class MyProxy
     {
         public static IProxyClient Default { get; set; }
     }

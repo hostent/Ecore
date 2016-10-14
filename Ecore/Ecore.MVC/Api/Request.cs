@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Ecore.MVC.Api
 {
-    [Serializable]
     public class Request
     {
 
@@ -20,7 +19,7 @@ namespace Ecore.MVC.Api
 
     }
 
-    [Serializable]
+
     public class Response<T>
     {
         public string Id { get; set; }
@@ -31,7 +30,7 @@ namespace Ecore.MVC.Api
 
     }
 
-    [Serializable]
+
     public class Response
     {
         public string Id { get; set; }

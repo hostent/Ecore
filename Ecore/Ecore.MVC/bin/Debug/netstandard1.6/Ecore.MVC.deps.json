@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v1.6/",
-    "signature": "653de3798f214900d54ff4a299ee88cb5e3a763e"
+    "signature": "bbf1e9d9b81b61566db64d7d33f5846ca62df014"
   },
   "compilationOptions": {},
   "targets": {
@@ -16,7 +16,8 @@
           "Ecore.Mongodb": "1.0.0",
           "Ecore.MsSql": "1.0.0",
           "Ecore.Redis": "1.0.0",
-          "Ecore.Weixin": "1.0.0"
+          "Ecore.Weixin": "1.0.0",
+          "Ecore.Proxy": "1.0.0"
         },
         "runtime": {
           "Ecore.MVC.dll": {}
@@ -2036,6 +2037,18 @@
           "lib/netstandard1.3/System.Runtime.Numerics.dll": {}
         }
       },
+      "System.Runtime.Serialization.Formatters/4.0.0-rc3-24212-01": {
+        "dependencies": {
+          "System.Collections": "4.0.11",
+          "System.Reflection": "4.1.0",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Serialization.Primitives": "4.1.1"
+        },
+        "runtime": {
+          "lib/netstandard1.4/System.Runtime.Serialization.Formatters.dll": {}
+        }
+      },
       "System.Runtime.Serialization.Primitives/4.1.1": {
         "dependencies": {
           "System.Resources.ResourceManager": "4.0.1",
@@ -2463,6 +2476,17 @@
         },
         "runtime": {
           "Ecore.MsSql.dll": {}
+        }
+      },
+      "Ecore.Proxy/1.0.0": {
+        "dependencies": {
+          "System.Runtime.Serialization.Formatters": "4.0.0-rc3-24212-01",
+          "NETStandard.Library": "1.6.0",
+          "Newtonsoft.Json": "9.0.1",
+          "Ecore.Frame": "1.0.0"
+        },
+        "runtime": {
+          "Ecore.Proxy.dll": {}
         }
       },
       "Ecore.Redis/1.0.0": {
@@ -3262,6 +3286,11 @@
       "serviceable": true,
       "sha512": "sha512-+XbKFuzdmLP3d1o9pdHu2nxjNr2OEPqGzKeegPLCUMM71a0t50A/rOcIRmGs9wR7a8KuHX6hYs/7/TymIGLNqg=="
     },
+    "System.Runtime.Serialization.Formatters/4.0.0-rc3-24212-01": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bQ9S4JrOuI4pzIo6avnmwHQlEMEsBtBFA0u1GVDK2asYsB9X0hSF1oOIAt0bsqYZdYPi5b8A/1bud27tiLf8ZQ=="
+    },
     "System.Runtime.Serialization.Primitives/4.1.1": {
       "type": "package",
       "serviceable": true,
@@ -3418,6 +3447,11 @@
       "sha512": ""
     },
     "Ecore.MsSql/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Ecore.Proxy/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

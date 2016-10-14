@@ -3632,6 +3632,22 @@
           "lib/netstandard1.3/System.Runtime.Numerics.dll": {}
         }
       },
+      "System.Runtime.Serialization.Formatters/4.0.0-rc3-24212-01": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.11",
+          "System.Reflection": "4.1.0",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Serialization.Primitives": "4.1.1"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Runtime.Serialization.Formatters.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.4/System.Runtime.Serialization.Formatters.dll": {}
+        }
+      },
       "System.Runtime.Serialization.Primitives/4.1.1": {
         "type": "package",
         "dependencies": {
@@ -4317,6 +4333,7 @@
           "Ecore.Frame": "1.0.0",
           "Ecore.Mongodb": "1.0.0",
           "Ecore.MsSql": "1.0.0",
+          "Ecore.Proxy": "1.0.0",
           "Ecore.Redis": "1.0.0",
           "Ecore.Weixin": "1.0.0",
           "Microsoft.AspNetCore.Mvc": "1.0.0",
@@ -4327,6 +4344,22 @@
         },
         "runtime": {
           "netstandard1.6/Ecore.MVC.dll": {}
+        }
+      },
+      "Ecore.Proxy/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "Ecore.Frame": "1.0.0",
+          "NETStandard.Library": "1.6.0",
+          "Newtonsoft.Json": "9.0.1",
+          "System.Runtime.Serialization.Formatters": "4.0.0-rc3-24212-01"
+        },
+        "compile": {
+          "netstandard1.6/Ecore.Proxy.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/Ecore.Proxy.dll": {}
         }
       },
       "Ecore.Redis/1.0.0": {
@@ -9631,6 +9664,33 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
+    "System.Runtime.Serialization.Formatters/4.0.0-rc3-24212-01": {
+      "sha512": "bQ9S4JrOuI4pzIo6avnmwHQlEMEsBtBFA0u1GVDK2asYsB9X0hSF1oOIAt0bsqYZdYPi5b8A/1bud27tiLf8ZQ==",
+      "type": "package",
+      "path": "System.Runtime.Serialization.Formatters/4.0.0-rc3-24212-01",
+      "files": [
+        "System.Runtime.Serialization.Formatters.4.0.0-rc3-24212-01.nupkg.sha512",
+        "System.Runtime.Serialization.Formatters.nuspec",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Runtime.Serialization.Formatters.dll",
+        "lib/netstandard1.4/System.Runtime.Serialization.Formatters.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Runtime.Serialization.Formatters.dll",
+        "ref/netstandard1.3/System.Runtime.Serialization.Formatters.dll",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._"
+      ]
+    },
     "System.Runtime.Serialization.Primitives/4.1.1": {
       "sha512": "HZ6Du5QrTG8MNJbf4e4qMO3JRAkIboGT5Fk804uZtg3Gq516S7hAqTm2UZKUHa7/6HUGdVy3AqMQKbns06G/cg==",
       "type": "package",
@@ -10957,6 +11017,11 @@
       "type": "project",
       "path": "../../../Ecore/Ecore.MVC/project.json",
       "msbuildProject": "../../../Ecore/Ecore.MVC/Ecore.MVC.xproj"
+    },
+    "Ecore.Proxy/1.0.0": {
+      "type": "project",
+      "path": "../../../Ecore/Ecore.Proxy/project.json",
+      "msbuildProject": "../../../Ecore/Ecore.Proxy/Ecore.Proxy.xproj"
     },
     "Ecore.Redis/1.0.0": {
       "type": "project",
