@@ -184,7 +184,7 @@
 D:\code\MyProject\Ecore\Ecore\Ecore.MVC\BaseController.cs
 D:\code\MyProject\Ecore\Ecore\Ecore.MVC\CLoginContext.cs
 D:\code\MyProject\Ecore\Ecore\Ecore.MVC\Factory.cs
-D:\code\MyProject\Ecore\Ecore\Ecore.MVC\MappingManager.cs
+D:\code\MyProject\Ecore\Ecore\Ecore.MVC\MvcMapFactory.cs
 D:\code\MyProject\Ecore\Ecore\Ecore.MVC\MvcRouter.cs
 D:\code\MyProject\Ecore\Ecore\Ecore.MVC\UserController.cs
 D:\code\MyProject\Ecore\Ecore\Ecore.MVC\VisitorController.cs

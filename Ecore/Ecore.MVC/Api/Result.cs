@@ -53,12 +53,12 @@ namespace Ecore.MVC.Api
             Url = url;
         }
 
-        public override void RenderResult()
+        public override Task RenderResult(HttpContext httpContent)
         {
-            new DefaultHttpContext().Response.Redirect(Url);
-
-            GetCurrentContext().Response.Redirect(Url);
-
+            return Task.Run(()=>
+            {
+                httpContent.Response.Redirect(Url);
+            });            
         }
     }
 
@@ -68,33 +68,23 @@ namespace Ecore.MVC.Api
 
         public PageResult()
         {
-            Context = new DefaultHttpContext();
+            
         }
 
         public string Data { get; set; }
-
-
-        DefaultHttpContext Context;
-
-        public DefaultHttpContext GetCurrentContext()
-        {
-            if (Context == null)
-            {
-                Context = new DefaultHttpContext();
-            }
-            return Context;
-        }
-
+ 
         public string ContentType { get; set; }
 
 
         public virtual void OverHead() { }
 
-        public virtual void RenderResult()
+        public virtual Task RenderResult(HttpContext httpContent)
         {
-            Context.Response.WriteAsync(Data, Encoding.UTF8);
-            Context.Response.ContentType = ContentType;
-            Context.Response.StatusCode = 200;
+            httpContent.Response.ContentType = ContentType;
+            httpContent.Response.StatusCode = 200;
+
+            return httpContent.Response.WriteAsync(Data, Encoding.UTF8);
+
         }
 
 

@@ -10,12 +10,16 @@ namespace Ecore.MVC.Tools
 {
     public class CookieHelp: ICookie
     {
+        HttpContext CurrentContext { get; set; }
+
+        public CookieHelp(HttpContext context)
+        {
+            CurrentContext = context;
+        }
 
         public void SetCookie(string key, string value)
         {
-            var context = new DefaultHttpContext();
-
-            context.Response.Cookies.Append(key, value, new CookieOptions()
+            CurrentContext.Response.Cookies.Append(key, value, new CookieOptions()
             {
                 // Domain = SiteAppConfig.Domain,
                 Path = "/",
@@ -25,9 +29,7 @@ namespace Ecore.MVC.Tools
         }
         public void SetCookie(string key, string value, DateTime Expires)
         {
-            var context = new DefaultHttpContext();
-
-            context.Response.Cookies.Append(key, value, new CookieOptions()
+            CurrentContext.Response.Cookies.Append(key, value, new CookieOptions()
             {
                 // Domain = SiteAppConfig.Domain,
                 Path = "/",
@@ -38,9 +40,7 @@ namespace Ecore.MVC.Tools
         }
         public void SetCookie(string key, string value, DateTime Expires, string domain)
         {
-            var context = new DefaultHttpContext();
-
-            context.Response.Cookies.Append(key, value, new CookieOptions()
+            CurrentContext.Response.Cookies.Append(key, value, new CookieOptions()
             {
                 Domain = domain,
                 Path = "/",
@@ -51,16 +51,13 @@ namespace Ecore.MVC.Tools
 
         public string GetCookieValue(string key)
         {
-            var context = new DefaultHttpContext();
-            return context.Request.Cookies[key];
+            return CurrentContext.Request.Cookies[key];
 
         } 
 
         public void RemoveCookie(string key)
         {
-            var context = new DefaultHttpContext();
-
-            context.Response.Cookies.Delete(key);
+            CurrentContext.Response.Cookies.Delete(key);
         }
     }
 }

@@ -1,0 +1,114 @@
+{
+  "_args": [
+    [
+      "jquery-bootgrid",
+      "C:\\Users\\anyone"
+    ]
+  ],
+  "_from": "jquery-bootgrid@*",
+  "_id": "jquery-bootgrid@1.3.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/jquery-bootgrid",
+  "_nodeVersion": "0.12.7",
+  "_npmUser": {
+    "email": "me@rafaelstaib.com",
+    "name": "rafaelstaib"
+  },
+  "_npmVersion": "2.11.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "jquery-bootgrid",
+    "raw": "jquery-bootgrid",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/jquery-bootgrid/-/jquery-bootgrid-1.3.1.tgz",
+  "_shasum": "951e14b5c4847426ad543e967612ebe5bbb0424a",
+  "_shrinkwrap": null,
+  "_spec": "jquery-bootgrid",
+  "_where": "C:\\Users\\anyone",
+  "author": {
+    "email": "me@rafaelstaib.com",
+    "name": "Rafael Staib",
+    "url": "http://www.rafaelstaib.com"
+  },
+  "bugs": {
+    "url": "https://github.com/rstaib/jquery-bootgrid/issues"
+  },
+  "dependencies": {
+    "bootstrap": ">=3.1.1",
+    "jquery": ">=1.9.0"
+  },
+  "description": "Nice, sleek and intuitive. A grid control especially designed for bootstrap.",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-compress": "~0.8.0",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-csslint": "~0.3.1",
+    "grunt-contrib-cssmin": "~0.10.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-less": "~0.11.0",
+    "grunt-contrib-qunit": "~0.4.0",
+    "grunt-contrib-uglify": "~0.9.2",
+    "grunt-contrib-yuidoc": "~0.5.2",
+    "grunt-exec": "~0.4.5",
+    "grunt-nuget": "~0.1.4",
+    "grunt-regex-replace": "~0.2.6"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "951e14b5c4847426ad543e967612ebe5bbb0424a",
+    "tarball": "https://registry.npmjs.org/jquery-bootgrid/-/jquery-bootgrid-1.3.1.tgz"
+  },
+  "gitHead": "ada3cee7feb3259d90f8cbab6d630214cfa16b5e",
+  "homepage": "http://www.jquery-bootgrid.com",
+  "keywords": [
+    "Accessibility",
+    "Bootstrap",
+    "Component",
+    "Control",
+    "Data",
+    "Filtering",
+    "Grid",
+    "HTML5",
+    "Plugin",
+    "Sorting",
+    "Table",
+    "UI",
+    "jQuery",
+    "jquery-plugin"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "maintainers": [
+    {
+      "name": "rafaelstaib",
+      "email": "me@rafaelstaib.com"
+    }
+  ],
+  "name": "jquery-bootgrid",
+  "namespace": "jquery.bootgrid",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rstaib/jquery-bootgrid.git"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "title": "jQuery Bootgrid",
+  "version": "1.3.1"
+}

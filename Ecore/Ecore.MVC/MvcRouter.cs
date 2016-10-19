@@ -12,36 +12,32 @@ namespace Ecore.MVC
     {
         public Task Exec(object context)
         {
-             HttpContext httpContent = context as HttpContext;
+            HttpContext httpContent = context as HttpContext;
 
-            return Task.Run(() =>
+            string rawUrl = httpContent.Request.Path.Value.Trim('/').ToLower();
+
+            var list = MvcMapFactory.Store.OrderBy(q => q.Index).ToList();
+            //container
+            foreach (var item in list)
             {
-                string rawUrl = httpContent.Request.Path.Value.Trim('/').ToLower();
-
-                var list = MappingManager.Store.OrderBy(q => q.Index).ToList();
-                //container
-                foreach (var item in list)
+                if (rawUrl == item.Url.ToLower())
                 {
-                    if (rawUrl == item.Url.ToLower())
-                    {
-                        item.Exec();
-                        return;
-                    }
+                    return item.Exec(httpContent);
                 }
+            }
 
-                //Regex
-                foreach (var item in list)
+            //Regex
+            foreach (var item in list)
+            {
+                Regex reg = new Regex(item.Url);
+                if (reg.IsMatch(rawUrl))
                 {
-                    Regex reg = new Regex(item.Url);
-                    if (reg.IsMatch(rawUrl))
-                    {
-                        item.Exec();
-                        return;
-                    }
+                    return item.Exec(httpContent);
                 }
+            }
 
-                throw new Exception("url error");
-            });
+            throw new Exception("url error");
+
         }
     }
 }

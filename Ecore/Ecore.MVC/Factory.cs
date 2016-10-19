@@ -57,7 +57,7 @@ namespace Ecore.MVC
         public static void Init()
         {
             Ecore.Frame.Cache.Default = new Ecore.Redis.CCache();
-            Ecore.Frame.Cookie.Default = new Tools.CookieHelp();
+           // Ecore.Frame.Cookie.Default = new Tools.CookieHelp();
             Ecore.Frame.IDGenerator.Default = new Ecore.Redis.CIDGenerator();
             LockUser.Default = new Ecore.Redis.CLock();
             Log.Default = new Ecore.Mongodb.CLog();

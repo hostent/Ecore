@@ -10,7 +10,9 @@
       "imports": "dnxcore50"
     },
     "net40": {
-
+      "dependencies": {
+      
+      }
     }
   }
 }

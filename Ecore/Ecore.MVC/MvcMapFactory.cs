@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Ecore.MVC
 {
-    public class MappingManager
+    public class MvcMapFactory
     {
         public static List<MappingStore> Store = null;
 
@@ -47,7 +47,7 @@ namespace Ecore.MVC
                             Url = map.Url,
                             Index = map.Index,
                             CacheSecond = map.CacheSecond,
-                            Controller = (BaseController)ass.CreateInstance(controllerItem.FullName),
+                            Controller = controllerItem,//(BaseController)ass.CreateInstance(controllerItem.FullName),
                             Action = action
                         });
                     }
@@ -58,41 +58,62 @@ namespace Ecore.MVC
 
     public class MappingStore : MappingAttribute
     {
-        public BaseController Controller { get; set; }
+        public Type Controller { get; set; }
 
         public MethodInfo Action { get; set; }
 
 
-        public void Exec()
+        public Task Exec(HttpContext httpContent)
         {
-            bool canCache = false;
-            string key = "";
-
-            HttpContext Context = new DefaultHttpContext();
-            if (Context.Request.Method.ToLower() == "get" && base.CacheSecond > 0)
+            try
             {
-                canCache = true;
-                key = "pageCache:" + MD5Helper.Encrypt_MD5(Context.Request.Path);
-            }
+                bool canCache = false;
+                string key = "";
 
-            PageResult result = null;
-            if (canCache)
-            {
-                result = Cache.Default.Get<PageResult>(key);
-                if (result == null)
+                if (httpContent.Request.Method.ToLower() == "get" && base.CacheSecond > 0)
                 {
-                    result = (PageResult)Action.Invoke(Controller, null);
-
-                    Cache.Default.Add(key, result, DateTime.Now.AddSeconds(CacheSecond));
+                    canCache = true;
+                    key = "pageCache:" + MD5Helper.Encrypt_MD5(httpContent.Request.Path);
                 }
 
-                result.RenderResult();
-                return;
+                PageResult result = null;
+                BaseController controllerObj = null;
+                if (canCache)
+                {
+                    result = Cache.Default.Get<PageResult>(key);
+                    if (result == null)
+                    {
+                        controllerObj = (BaseController)Assembly.GetEntryAssembly().CreateInstance(Controller.FullName);
+
+                        controllerObj.CurrentContext = httpContent;
+
+                        result = (PageResult)Action.Invoke(controllerObj, null);
+
+                        Cache.Default.Add(key, result, DateTime.Now.AddSeconds(CacheSecond));
+                    }
+
+                    return result.RenderResult(httpContent);
+                }
+
+                controllerObj = (BaseController)Assembly.GetEntryAssembly().CreateInstance(Controller.FullName);
+
+                controllerObj.CurrentContext = httpContent;
+
+                result = (PageResult)Action.Invoke(controllerObj, null);
+
+                return result.RenderResult(httpContent);
             }
-
-            result = (PageResult)Action.Invoke(Controller, null);
-
-            result.RenderResult();
+            catch (Exception ee)
+            {
+                if (ee.InnerException != null)
+                {
+                    throw ee.InnerException;
+                }
+                else
+                {
+                    throw ee;
+                }
+            }
 
         }
 
