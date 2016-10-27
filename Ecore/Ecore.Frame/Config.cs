@@ -15,6 +15,16 @@ namespace Ecore.Frame
         string GetConnString(string connName);
 
         string GetAppSetting(string setKey);
+
+        LangItem GetLangItem(string keyLang);
+    }
+
+    public class LangItem 
+    {
+        public string zh_CN { get; set; }
+        public string en { get; set; }
+        public string ja_JP { get; set; }
+        public string ko_KR { get; set; }
     }
 
 

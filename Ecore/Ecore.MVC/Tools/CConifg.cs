@@ -28,5 +28,10 @@ namespace Ecore.MVC.Tools
         {
             return Configuration["ConnString:" + connName];
         }
+
+        public LangItem GetLangItem(string keyLang)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

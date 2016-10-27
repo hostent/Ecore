@@ -12,15 +12,6 @@
           "lib/net40/Autofac.dll": {}
         }
       },
-      "MemoryCache/1.2.0": {
-        "type": "package",
-        "compile": {
-          "lib/MemoryCache.dll": {}
-        },
-        "runtime": {
-          "lib/MemoryCache.dll": {}
-        }
-      },
       "NETStandard.Library/1.6.0": {
         "type": "package"
       },
@@ -60,7 +51,6 @@
         "framework": ".NETFramework,Version=v4.0",
         "dependencies": {
           "Ecore.Frame": "1.0.0",
-          "MemoryCache": "1.2.0",
           "Newtonsoft.Json": "6.0.1",
           "WebSocketSharp": "1.0.3-rc11"
         },
@@ -90,17 +80,6 @@
         "lib/net40/Autofac.xml",
         "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll",
         "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.xml"
-      ]
-    },
-    "MemoryCache/1.2.0": {
-      "sha512": "gNjcGFh84wlcI2ubArWCBIgMjpp7LupFnFuzeqcx1BqpLolutIqw0x/LMY29l7ipDmlEHigLm15DIwkX3U6IOA==",
-      "type": "package",
-      "path": "MemoryCache/1.2.0",
-      "files": [
-        "MemoryCache.1.2.0.nupkg.sha512",
-        "MemoryCache.nuspec",
-        "lib/MemoryCache.dll",
-        "lib/MemoryCache.pdb"
       ]
     },
     "NETStandard.Library/1.6.0": {
@@ -168,7 +147,9 @@
       "Newtonsoft.Json >= 6.0.1"
     ],
     ".NETFramework,Version=v4.0": [
+      "System.Configuration >= 4.0.0",
       "System.Data >= 4.0.0",
+      "System.Runtime.Caching >= 4.0.0",
       "System.Xml >= 4.0.0",
       "System.Xml.Linq >= 4.0.0"
     ]

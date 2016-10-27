@@ -3,15 +3,6 @@
   "version": 2,
   "targets": {
     ".NETFramework,Version=v4.0": {
-      "MemoryCache/1.2.0": {
-        "type": "package",
-        "compile": {
-          "lib/MemoryCache.dll": {}
-        },
-        "runtime": {
-          "lib/MemoryCache.dll": {}
-        }
-      },
       "NETStandard.Library/1.6.0": {
         "type": "package"
       },
@@ -49,17 +40,6 @@
     }
   },
   "libraries": {
-    "MemoryCache/1.2.0": {
-      "sha512": "gNjcGFh84wlcI2ubArWCBIgMjpp7LupFnFuzeqcx1BqpLolutIqw0x/LMY29l7ipDmlEHigLm15DIwkX3U6IOA==",
-      "type": "package",
-      "path": "MemoryCache/1.2.0",
-      "files": [
-        "MemoryCache.1.2.0.nupkg.sha512",
-        "MemoryCache.nuspec",
-        "lib/MemoryCache.dll",
-        "lib/MemoryCache.pdb"
-      ]
-    },
     "NETStandard.Library/1.6.0": {
       "sha512": "ypsCvIdCZ4IoYASJHt6tF2fMo7N30NLgV1EbmC+snO490OMl9FvVxmumw14rhReWU3j3g7BYudG6YCrchwHJlA==",
       "type": "package",
@@ -115,7 +95,6 @@
   "projectFileDependencyGroups": {
     "": [
       "Ecore.Frame >= 1.0.0-*",
-      "MemoryCache >= 1.2.0",
       "Newtonsoft.Json >= 6.0.1",
       "WebSocketSharp >= 1.0.3-rc11"
     ],

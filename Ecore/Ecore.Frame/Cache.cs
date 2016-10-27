@@ -9,6 +9,8 @@ namespace Ecore.Frame
     {      
         public static ICache Default { get; set; }
 
+        public static ICache MemoryCache { get; set; }
+
     }
 
     public interface ICache

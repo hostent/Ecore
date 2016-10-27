@@ -36,7 +36,7 @@ namespace EMin.Manager.Web
             MvcMapFactory.AddMvc("EMin.Manager.Web.Controller", "EMin.Manager.Web");
 
             //Pipe.ServerFeaturesStatic = app.ServerFeatures;
-            
+
 
             app.Run(async (context) =>
             {
@@ -54,10 +54,10 @@ namespace EMin.Manager.Web
                             await context.Response.WriteAsync("Hello World!");
                             break;
                         case RequestWay.RestApi:
-                            Router.RestApiHandle.Exec(context).GetAwaiter().GetResult();
+                            await Router.RestApiHandle.Exec(context);
                             break;
                         case RequestWay.MVC:
-                            Router.MvcHandle.Exec(context).GetAwaiter().GetResult(); ;
+                            await Router.MvcHandle.Exec(context);
                             break;
 
                     }

@@ -16,7 +16,7 @@ namespace Ecore.MVC.Api
 
         public object[] Params { get; set; }
 
-
+        public RpcAuth Auth { get; set; }
     }
 
 

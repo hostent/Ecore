@@ -21,17 +21,21 @@ namespace Ecore.Frame.Security
             }
         }
         //默认密钥向量 
-        private static byte[] _key1 = Encoding.UTF8.GetBytes("www.amoyx.com.cn");
+        private static byte[] _key1 = Encoding.UTF8.GetBytes(""); //"www.amoyx.com.cn" 默认空
         /// <summary>
         /// AES加密算法
         /// </summary>
         /// <param name="plainText">明文字符串</param>
         /// <returns>将加密后的密文转换为Base64编码，以便显示</returns>
-        public static string AESEncrypt(string plainText)
+        public static string AESEncrypt(string plainText, string key="")
         {
+            if(key== "")
+            {
+                key = Key;
+            }
             try
             {
-                byte[] keyArray = UTF8Encoding.UTF8.GetBytes(Key);
+                byte[] keyArray = Convert.FromBase64String(key);
                 byte[] ivArray = _key1;
                 byte[] toEncryptArray = UTF8Encoding.UTF8.GetBytes(plainText);
 
@@ -41,7 +45,7 @@ namespace Ecore.Frame.Security
 
                 byte[] resultArray = aes.CreateEncryptor(keyArray, ivArray).TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
                 return Convert.ToBase64String(resultArray, 0, resultArray.Length);
-                
+
             }
             catch
             {
@@ -53,11 +57,15 @@ namespace Ecore.Frame.Security
         /// </summary>
         /// <param name="cipherText">密文字符串</param>
         /// <returns>返回解密后的明文字符串</returns>
-        public static string AESDecrypt(string showText)
+        public static string AESDecrypt(string showText, string key = "")
         {
+            if (key == "")
+            {
+                key = Key;
+            }
             try
             {
-                byte[] keyArray = UTF8Encoding.UTF8.GetBytes(Key);
+                byte[] keyArray = Convert.FromBase64String(key);
                 byte[] ivArray = _key1;
                 byte[] toEncryptArray = Convert.FromBase64String(showText);
 
@@ -71,7 +79,7 @@ namespace Ecore.Frame.Security
                 return UTF8Encoding.UTF8.GetString(resultArray).Replace("\0", "");
 
 
-               
+
 
             }
             catch (Exception e)

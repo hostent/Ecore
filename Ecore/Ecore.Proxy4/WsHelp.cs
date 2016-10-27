@@ -51,7 +51,9 @@ namespace Ecore.Proxy4
             tag.MessageID = msgid;
             tag.Result = "";
 
-            MemoryCache.Cache.Store("ws:" + tag.MessageID, tag, 30000);
+
+            Cache.MemoryCache.Add("ws:" + tag.MessageID, tag, 30000);
+
 
             wsClient.Send(json);
             tag.Waiter.WaitOne(20000);
@@ -60,7 +62,7 @@ namespace Ecore.Proxy4
 
 
             string result = tag.Result;
-            MemoryCache.Cache.Remove("ws:" + tag.MessageID);
+            Cache.MemoryCache.Remove("ws:" + tag.MessageID);
 
             return result;
 
@@ -73,7 +75,7 @@ namespace Ecore.Proxy4
 
             var res = Newtonsoft.Json.JsonConvert.DeserializeObject<Response>(json);
 
-            var tag = (MsgPool)MemoryCache.Cache.Get("ws:" + res.Id);
+            var tag = (MsgPool)Cache.MemoryCache.Get("ws:" + res.Id);
             if (tag == null)
             {
                 throw new Exception("No request or time out");

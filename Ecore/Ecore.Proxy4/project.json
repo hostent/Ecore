@@ -4,18 +4,17 @@
   "dependencies": {
     "Newtonsoft.Json": "6.0.1",
     "WebSocketSharp": "1.0.3-rc11",
-    "MemoryCache": "1.2.0",
     "Ecore.Frame": "1.0.0-*"
   },
 
   "frameworks": {
-    
+
     "net40": {
       "frameworkAssemblies": {
         "System.Data": "4.0.0.0",
         "System.Xml": "4.0.0.0",
         "System.Xml.Linq": "4.0.0.0"
-      }
+      } 
     }
   }
 }
