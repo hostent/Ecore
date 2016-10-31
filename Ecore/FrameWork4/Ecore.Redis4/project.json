@@ -1,0 +1,20 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Ecore.Frame": "1.0.0-*",
+    "Newtonsoft.Json": "6.0.6",
+    "StackExchange.Redis": "1.1.604-alpha"
+  },
+
+  "frameworks": {
+
+    "net40": {
+      "frameworkAssemblies": {
+        "System.Data": "4.0.0.0",
+        "System.Xml": "4.0.0.0",
+        "System.Xml.Linq": "4.0.0.0"
+      }
+    }
+  }
+}

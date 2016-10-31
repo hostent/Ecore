@@ -1,0 +1,21 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Ecore.Frame": "1.0.0-*",
+    "Dapper": "1.50.2",
+    "MySql.Data": "6.8.3",
+    "Newtonsoft.Json": "6.0.6"
+  },
+
+  "frameworks": {
+
+    "net40": {
+      "frameworkAssemblies": {
+        "System.Data": "4.0.0.0",
+        "System.Xml": "4.0.0.0",
+        "System.Xml.Linq": "4.0.0.0"
+      }
+    }
+  }
+}
