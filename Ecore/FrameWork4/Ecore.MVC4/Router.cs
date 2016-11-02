@@ -1,5 +1,6 @@
 ﻿using Ecore.Frame;
 using Ecore.MVC4.Api;
+using Ecore.MVC4.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,6 @@ namespace Ecore.MVC4
             HttpContext context = application.Context;
             if (AssRequest(context) == RequestWay.ApiKey)
             {
-                //ExecApikey(context);
                 ((IRouterExec)new RestApiRouter()).Exec(context).Wait();
             }
             else if (AssRequest(context) == RequestWay.heartbeat)
@@ -38,7 +38,7 @@ namespace Ecore.MVC4
             }
             else
             {
-                //ExecApiAddressMVC(context);
+                ((IRouterExec)new MvcRouter()).Exec(context).Wait();
 
             }
 

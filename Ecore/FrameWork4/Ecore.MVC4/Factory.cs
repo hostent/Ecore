@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Ecore.Frame;
+using Ecore.MVC4.Web;
 using Ecore.Proxy4;
 using System;
 using System.Collections.Generic;
@@ -54,23 +55,26 @@ namespace Ecore.MVC4
 
         public static void Init()
         {
-            //Ecore.Frame.Cache.Default = new Ecore.Redis.CCache();
+            Ecore.Frame.Cache.Default = new Ecore.Redis4.CCache();
             //Ecore.Frame.Cookie.Default = new Tools.CookieHelp();
-            //Ecore.Frame.IDGenerator.Default = new Ecore.Redis.CIDGenerator();
+            Ecore.Frame.IDGenerator.Default = new Ecore.Redis4.CIDGenerator();
             //LockUser.Default = new Ecore.Redis.CLock();
             //Log.Default = new Ecore.Mongodb.CLog();
+            Log.Default = new Tools.CLog4net();
             //LoginContext.Default = new CLoginContext();
-            //MessageQueue.Default = new Ecore.Redis.CMessageQueue();
+            MessageQueue.Default = new Ecore.Redis4.CMessageQueue();
             //MyHttpClient.Default = new Ecore.MVC.Tools.HttpClientHelp();
             UContainer.Factory = new Factory();
             //Ecore.Frame.Weixin.Account = new Ecore.MVC.Weixin.Manager();
-            //Config.Default = new Tools.CConifg();
-            //MyEncoding.Default = new Ecore.MVC.Tools.MyEncoding();
+            Config.Default = new Tools.CConifg();
+            MyEncoding.Default = new Ecore.MVC4.Tools.MyEncoding();
 
             //Router.MvcHandle = new MvcRouter();
             //Router.RestApiHandle = new RestApiRouter();
             //Router.WebSocketHandle = new WebSocketRouter();
             MyProxy.Default = new Client();
+
+            Ecore.Frame.ViewEngine.RazorEngine = new MyRazorEngine();
 
         }
     }

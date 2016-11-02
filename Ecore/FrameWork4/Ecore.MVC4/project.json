@@ -2,10 +2,15 @@
   "version": "1.0.0-*",
 
   "dependencies": {
-    "Newtonsoft.Json": "6.0.1",
+    "Newtonsoft.Json": "6.0.6",
+    "Ecore.Sql4": "1.0.0-*",
+    "Ecore.Redis4": "1.0.0-*",
     "Ecore.Proxy4": "1.0.0-*",
     "Ecore.Frame": "1.0.0-*",
-    "Autofac": "3.5.2"
+    "Autofac": "3.5.2",
+    "log4net": "2.0.5",
+    "RazorEngine": "3.9.1"
+    
   },
 
   "frameworks": {
