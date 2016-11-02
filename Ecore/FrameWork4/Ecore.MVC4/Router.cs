@@ -64,7 +64,7 @@ namespace Ecore.MVC4
             {
                 return RequestWay.ApiKey;
             }
-            if(rawUrl.StartsWith(@"lib\"))
+            if(rawUrl.StartsWith(@"lib/"))
             {
                 return RequestWay.StaticFile;
             }
