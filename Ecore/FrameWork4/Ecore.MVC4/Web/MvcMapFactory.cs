@@ -63,7 +63,7 @@ namespace Ecore.MVC4.Web
         public MethodInfo Action { get; set; }
 
 
-        public Task Exec(HttpContext httpContent)
+        public void Exec(HttpContext httpContent)
         {
             try
             {
@@ -92,7 +92,7 @@ namespace Ecore.MVC4.Web
                         Cache.Default.Add(key, result, DateTime.Now.AddSeconds(CacheSecond));
                     }
 
-                    return result.RenderResult(httpContent);
+                    result.RenderResult(httpContent);
                 }
 
                 controllerObj = (BaseController)Assembly.GetEntryAssembly().CreateInstance(Controller.FullName);
@@ -101,7 +101,7 @@ namespace Ecore.MVC4.Web
 
                 result = (PageResult)Action.Invoke(controllerObj, null);
 
-                return result.RenderResult(httpContent);
+                result.RenderResult(httpContent);
             }
             catch (Exception ee)
             {

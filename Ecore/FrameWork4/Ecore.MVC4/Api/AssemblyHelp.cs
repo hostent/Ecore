@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -11,6 +12,11 @@ namespace Ecore.MVC4.Api
 
         public static Assembly LoadAss(string impDllNameWeb)
         {
+            if (!File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"bin\" + impDllNameWeb + ".dll"))
+            {
+                return null;
+            }
+
             // 获取所引用的程序集
             AssemblyName[] imports = Assembly.GetExecutingAssembly().GetReferencedAssemblies();
 
@@ -49,7 +55,7 @@ namespace Ecore.MVC4.Api
             Assembly cAss = AssemblyHelp.LoadAss(impDllNameWeb);
 
             object resultObj = null;
-            if (cAss.GetTypes().Any(q => q.FullName == impInterfaceFullNameWeb))
+            if (cAss != null && cAss.GetTypes().Any(q => q.FullName == impInterfaceFullNameWeb))
             {
                 resultObj = cAss.CreateInstance(impInterfaceFullNameWeb);
                 return resultObj;
@@ -60,7 +66,7 @@ namespace Ecore.MVC4.Api
                 impInterfaceFullNameWeb = string.Join(".", strList).Replace(".Model.Service", ".Logic") + ("." + interfaceName).Replace(".I", ".C");
 
                 Assembly cAssLogic = AssemblyHelp.LoadAss(impDllNameWeb);
-                if (cAssLogic.GetTypes().Any(q => q.FullName == impInterfaceFullNameWeb))
+                if (cAssLogic != null && cAssLogic.GetTypes().Any(q => q.FullName == impInterfaceFullNameWeb))
                 {
                     resultObj = cAssLogic.CreateInstance(impInterfaceFullNameWeb);
                     return resultObj;

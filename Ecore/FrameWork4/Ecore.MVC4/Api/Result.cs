@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Ecore.MVC4.Api
 {
- 
+
     public class JsonResult : PageResult
     {
         object Obj { get; set; }
@@ -54,12 +54,9 @@ namespace Ecore.MVC4.Api
             Url = url;
         }
 
-        public override Task RenderResult(HttpContext httpContent)
+        public override void RenderResult(HttpContext httpContent)
         {
-            return Task.Factory.StartNew(() =>
-            {
-                httpContent.Response.Redirect(Url);
-            });
+            httpContent.Response.Redirect(Url);             
         }
     }
 
@@ -79,17 +76,16 @@ namespace Ecore.MVC4.Api
 
         public virtual void OverHead() { }
 
-        public virtual Task RenderResult(HttpContext httpContent)
+        public virtual void RenderResult(HttpContext httpContent)
         {
-            return Task.Factory.StartNew(() =>
-            {
-                httpContent.Response.ContentType = ContentType;
-                httpContent.Response.StatusCode = 200;
 
-                httpContent.Response.ContentEncoding = Encoding.UTF8;
-                httpContent.Response.Write(Data);
-                httpContent.Response.End();
-            });           
+            httpContent.Response.ContentType = ContentType;
+            httpContent.Response.StatusCode = 200;
+
+            httpContent.Response.ContentEncoding = Encoding.UTF8;
+            httpContent.Response.Write(Data);
+            httpContent.Response.End();
+
 
         }
 

@@ -8,9 +8,9 @@ using System.Web;
 
 namespace Ecore.MVC4.Web
 {
-    public class MvcRouter : IRouterExec
+    public class MvcRouter
     {
-        public Task Exec(object context)
+        public void Exec(object context)
         {
             HttpContext httpContent = context as HttpContext;
 
@@ -22,7 +22,7 @@ namespace Ecore.MVC4.Web
             {
                 if (rawUrl == item.Url.ToLower())
                 {
-                    return item.Exec(httpContent);
+                    item.Exec(httpContent);
                 }
             }
 
@@ -32,7 +32,7 @@ namespace Ecore.MVC4.Web
                 Regex reg = new Regex(item.Url);
                 if (reg.IsMatch(rawUrl))
                 {
-                    return item.Exec(httpContent);
+                    item.Exec(httpContent);
                 }
             }
 

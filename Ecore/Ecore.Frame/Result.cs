@@ -67,4 +67,26 @@ namespace Ecore.Frame
             return this.Tag == 0;
         }
     }
+
+    public class Result<T>: Result
+    {
+        public Result(int tag = 1, string msg = "", T data = default(T))
+        {
+            Message = msg;
+            Tag = tag;
+            Data = data;
+        }
+
+        public static Result Failure(string message, T data)
+        {
+
+            return new Result(0, message, data);
+
+        }
+
+        public static Result Succeed(T data)
+        {
+            return new Result(1, "", data);
+        }
+    }
 }

@@ -9,25 +9,35 @@ using System.Web;
 
 namespace Ecore.MVC4.Api
 {
-    public class RestApiRouter : IRouterExec
+    public class RestApiRouter
     {
-        public Task Exec(object context)
+        public void Exec(object context)
         {
-            return Task.Factory.StartNew(() =>
+
+            HttpContext httpContent = context as HttpContext;
+            Response result = null;
+            try
             {
-                HttpContext httpContent = context as HttpContext;
+
 
                 StreamReader streamReader = new StreamReader(httpContent.Request.InputStream, Encoding.UTF8);
                 string json = streamReader.ReadToEnd();
 
-                Response result = Response.GetResponse(json);
+                result = Response.GetResponse(json);
+            }
+            catch (Exception ee)
+            {
+                result = new Response();
+                result.Error = ee.Message;
+            }
+            httpContent.Response.Charset = "utf-8";
+            httpContent.Response.ContentType = "application/json";
 
-                httpContent.Response.Charset = "utf-8";
-                httpContent.Response.ContentType = "application/json";
+            httpContent.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(result));
+            httpContent.Response.End();
 
-                httpContent.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(result));
-                httpContent.Response.End();
-            });
+
+
         }
     }
 }

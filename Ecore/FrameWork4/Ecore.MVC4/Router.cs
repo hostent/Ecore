@@ -29,7 +29,7 @@ namespace Ecore.MVC4
             HttpContext context = application.Context;
             if (AssRequest(context) == RequestWay.ApiKey)
             {
-                ((IRouterExec)new RestApiRouter()).Exec(context).Wait();
+                new RestApiRouter().Exec(context);
             }
             else if (AssRequest(context) == RequestWay.heartbeat)
             {
@@ -38,7 +38,7 @@ namespace Ecore.MVC4
             }
             else
             {
-                ((IRouterExec)new MvcRouter()).Exec(context).Wait();
+                new MvcRouter().Exec(context);
 
             }
 

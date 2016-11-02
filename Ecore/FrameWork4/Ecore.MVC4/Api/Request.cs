@@ -40,13 +40,24 @@ namespace Ecore.MVC4.Api
         public string Error { get; set; }
 
 
+        private static Dictionary<string, object> objCache = new Dictionary<string, object>();
+
         public static Response GetResponse(string json)
         {
             Request req = Newtonsoft.Json.JsonConvert.DeserializeObject<Request>(json);
 
             List<object> objList = new List<object>();
 
-            object obj = AssemblyHelp.GetImpObj(req.Method);
+            object obj = null;
+            if (objCache.ContainsKey(req.Method))
+            {
+                obj = objCache[req.Method];
+            }
+            else
+            {
+                obj = AssemblyHelp.GetImpObj(req.Method);
+                objCache.Add(req.Method, obj);
+            }
 
             MethodInfo methodInfo = obj.GetType().GetMethod(AssemblyHelp.GetMethodName(req.Method));
 
