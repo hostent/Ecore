@@ -36,6 +36,10 @@ namespace Ecore.MVC4
                 context.Response.Write("OK");
                 context.Response.End();
             }
+            else if (AssRequest(context) == RequestWay.StaticFile)
+            {
+                return;
+            }
             else
             {
                 new MvcRouter().Exec(context);
@@ -60,6 +64,10 @@ namespace Ecore.MVC4
             {
                 return RequestWay.ApiKey;
             }
+            if(rawUrl.StartsWith(@"lib\"))
+            {
+                return RequestWay.StaticFile;
+            }
             else
             {
                 return RequestWay.MVC;
@@ -71,7 +79,8 @@ namespace Ecore.MVC4
         {
             heartbeat = 0,
             ApiKey = 1,
-            MVC = 2
+            MVC = 2,
+            StaticFile=3
         }
 
     }

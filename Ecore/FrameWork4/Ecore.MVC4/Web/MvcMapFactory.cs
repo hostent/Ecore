@@ -83,7 +83,7 @@ namespace Ecore.MVC4.Web
                     result = Cache.Default.Get<PageResult>(key);
                     if (result == null)
                     {
-                        controllerObj = (BaseController)Assembly.GetEntryAssembly().CreateInstance(Controller.FullName);
+                        controllerObj = (BaseController)Assembly.GetAssembly(Controller).CreateInstance(Controller.FullName);
 
                         controllerObj.CurrentContext = httpContent;
 
@@ -95,7 +95,8 @@ namespace Ecore.MVC4.Web
                     result.RenderResult(httpContent);
                 }
 
-                controllerObj = (BaseController)Assembly.GetEntryAssembly().CreateInstance(Controller.FullName);
+ 
+                controllerObj = (BaseController)Assembly.GetAssembly(Controller).CreateInstance(Controller.FullName);
 
                 controllerObj.CurrentContext = httpContent;
 
