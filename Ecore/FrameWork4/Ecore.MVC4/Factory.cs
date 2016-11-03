@@ -221,10 +221,6 @@ namespace Ecore.MVC4
 
         private static Assembly LoadAss(string impDllNameWeb)
         {
-            // 获取所引用的程序集
-            AssemblyName[] imports = Assembly.GetEntryAssembly().GetReferencedAssemblies();
-
-
 
             if (Type.GetType(impDllNameWeb) == null)
             {

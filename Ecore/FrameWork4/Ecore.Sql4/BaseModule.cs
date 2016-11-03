@@ -33,7 +33,6 @@ namespace Ecore.Sql4
 
 
 
-
         #region Connection
 
         public IDbConnection GetConnection()
