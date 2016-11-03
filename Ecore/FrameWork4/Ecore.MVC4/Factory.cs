@@ -229,7 +229,7 @@ namespace Ecore.MVC4
             }
             else
             {
-                Assembly ass = Assembly.GetEntryAssembly();//...GetAssembly(Type.GetType(impDllNameWeb));
+                Assembly ass = Assembly.GetExecutingAssembly();//...GetAssembly(Type.GetType(impDllNameWeb));
                 return ass;
             }
 
