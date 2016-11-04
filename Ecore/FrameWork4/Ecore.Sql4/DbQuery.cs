@@ -287,14 +287,14 @@ namespace Ecore.Sql4
                 return this.ToQueryable().Any();
             }
 
-            BuildColumns(" exists(0) ");
+            BuildColumns(" count(0) ");
             BuildWhere();
             BuildOrder("");
             BuildLimit("");
 
-            var exist = Dapper.SqlMapper.ExecuteScalar<bool>(Conn, trackSql, args, BaseModule.GetTran());
+            var count = Dapper.SqlMapper.ExecuteScalar<int>(Conn, trackSql, args, BaseModule.GetTran());
 
-            return exist;
+            return count > 0;
         }
 
         internal List<T> ToAll()
@@ -347,7 +347,7 @@ namespace Ecore.Sql4
         {
             var t = typeof(T);
             CacheAttribute ca = (CacheAttribute)t.GetCustomAttributes(typeof(CacheAttribute), false).FirstOrDefault();
-                //t.DeclaringType.GetTypeInfo().GetCustomAttribute<CacheAttribute>();
+            //t.DeclaringType.GetTypeInfo().GetCustomAttribute<CacheAttribute>();
             if (ca == null)
             {
                 return false;

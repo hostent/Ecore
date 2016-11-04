@@ -14,7 +14,7 @@ namespace Ecore.MVC4.Web
         {
             HttpContext httpContent = context as HttpContext;
 
-            string rawUrl = httpContent.Request.RawUrl.Trim('/').ToLower();
+            string rawUrl = httpContent.Request.Path.Trim('/').ToLower();
 
             var list = MvcMapFactory.Store.OrderBy(q => q.Index).ToList();
             //container

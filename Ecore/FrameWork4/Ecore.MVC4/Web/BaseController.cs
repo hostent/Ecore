@@ -1,4 +1,5 @@
 ﻿using Ecore.Frame;
+using Ecore.MVC4.Api;
 using Ecore.MVC4.Tools;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,16 @@ namespace Ecore.MVC4.Web
             return ViewEngine.RazorEngine.Render(templateName, model);
 
 
+        }
+
+        public virtual void OnControllerCreate(HttpContext CurrentContext)
+        {
+
+        }
+
+        public virtual PageResult OnActionExecting(HttpContext CurrentContext)
+        {
+            return null;
         }
 
     }
