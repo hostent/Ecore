@@ -17,7 +17,7 @@ namespace Ecore.Frame.Security
         {
             get
             {
-                return "amoyx.com.568333";    ////必须是16位
+                return "amoyx.com.568333";    
             }
         }
         //默认密钥向量 

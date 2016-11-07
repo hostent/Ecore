@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -96,7 +97,7 @@ namespace Ecore.MVC4.Web
                     result.RenderResult(httpContent);
                 }
 
- 
+
                 controllerObj = (BaseController)Assembly.GetAssembly(Controller).CreateInstance(Controller.FullName);
 
                 controllerObj.CurrentContext = httpContent;
@@ -106,20 +107,33 @@ namespace Ecore.MVC4.Web
                 if (result == null)
                 {
                     result = (PageResult)Action.Invoke(controllerObj, null);
-                }               
+                }
 
                 result.RenderResult(httpContent);
             }
             catch (Exception ee)
             {
+                Exception temp = null;
+
                 if (ee.InnerException != null)
                 {
-                    throw ee.InnerException;
+                    temp = ee.InnerException;
                 }
                 else
                 {
-                    throw ee;
+                    temp = ee;
                 }
+
+                httpContent.Response.Write("错误信息：" + ee.Message + "\r\n <p/>");
+
+                httpContent.Response.Write("堆栈信息：" + ee.StackTrace + "\r\n <p/>");
+
+                httpContent.Response.Write("所有信息：" + ee.ToString() + "\r\n <p/>");
+                httpContent.Response.Charset = "utf-8";
+                httpContent.Response.ContentEncoding = Encoding.UTF8;
+                httpContent.Response.ContentType = "text/html";
+                httpContent.Response.StatusCode = 200;
+                httpContent.Response.End();
             }
 
         }

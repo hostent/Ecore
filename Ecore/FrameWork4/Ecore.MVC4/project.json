@@ -10,7 +10,7 @@
     "Autofac": "3.5.2",
     "log4net": "2.0.5",
     "RazorEngine": "3.9.1"
-    
+
   },
 
   "frameworks": {
