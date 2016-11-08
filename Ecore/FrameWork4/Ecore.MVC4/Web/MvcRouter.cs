@@ -23,6 +23,7 @@ namespace Ecore.MVC4.Web
                 if (rawUrl == item.Url.ToLower())
                 {
                     item.Exec(httpContent);
+                    return;
                 }
             }
 
@@ -33,6 +34,7 @@ namespace Ecore.MVC4.Web
                 if (reg.IsMatch(rawUrl))
                 {
                     item.Exec(httpContent);
+                    return;
                 }
             }
 

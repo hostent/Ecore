@@ -84,7 +84,6 @@ namespace Ecore.MVC4.Api
 
             httpContent.Response.ContentEncoding = Encoding.UTF8;
             httpContent.Response.Write(Data);
-            httpContent.Response.End();
 
 
         }

@@ -34,7 +34,6 @@ namespace Ecore.MVC4
             else if (AssRequest(context) == RequestWay.heartbeat)
             {
                 context.Response.Write("OK");
-                context.Response.End();
             }
             else if (AssRequest(context) == RequestWay.StaticFile)
             {
@@ -45,7 +44,7 @@ namespace Ecore.MVC4
                 new MvcRouter().Exec(context);
 
             }
-
+            context.Response.End();
 
         }
 

@@ -133,7 +133,7 @@ namespace Ecore.MVC4.Web
                 httpContent.Response.ContentEncoding = Encoding.UTF8;
                 httpContent.Response.ContentType = "text/html";
                 httpContent.Response.StatusCode = 200;
-                httpContent.Response.End();
+               
             }
 
         }
