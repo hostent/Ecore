@@ -16,9 +16,9 @@ namespace Ecore.Frame.LinqExtend
         private List<object> m_arguments;
         private Stack<string> m_conditionParts;
 
-        public string Condition { get;  set; }
+        public string Condition { get; set; }
 
-        public object[] Arguments { get;  set; }
+        public object[] Arguments { get; set; }
 
         public void Build(Expression expression)
         {
@@ -29,7 +29,7 @@ namespace Ecore.Frame.LinqExtend
             this.m_conditionParts = new Stack<string>();
 
             this.Visit(evaluatedExpression);
-            
+
 
             this.Arguments = this.m_arguments.ToArray();
             this.Condition = this.m_conditionParts.Count > 0 ? this.m_conditionParts.Pop() : null;
@@ -67,7 +67,7 @@ namespace Ecore.Frame.LinqExtend
                     else
                     {
                         opr = "<>";
-                    }                    
+                    }
                     break;
                 case ExpressionType.GreaterThan:
                     opr = ">";
@@ -114,10 +114,10 @@ namespace Ecore.Frame.LinqExtend
             string right = this.m_conditionParts.Pop();
             string left = this.m_conditionParts.Pop();
 
-            if(isDeal)
+            if (isDeal)
             {
                 right = "";
-                this.m_arguments.RemoveAt(this.m_arguments.Count-1);
+                this.m_arguments.RemoveAt(this.m_arguments.Count - 1);
             }
 
             string condition = String.Format("({0} {1} {2})", left, opr, right);
@@ -134,13 +134,14 @@ namespace Ecore.Frame.LinqExtend
                 this.Visit(m.Object);
 
                 m_conditionParts.Pop();//清掉不需要的数据
-                string col = m_conditionParts.Pop();               
+                string col = m_conditionParts.Pop();
 
                 string inSql = col + " in (";
 
-                IList<object>  par =  m_arguments.Last() as IList<object>;
+                IEnumerable par = m_arguments.Last() as IEnumerable;
                 m_arguments.Remove(m_arguments.Last());
-                if (par == null || par.Count == 0)
+
+                if (par == null)
                 {
                     m_conditionParts.Push(" 1<>1 ");
                 }

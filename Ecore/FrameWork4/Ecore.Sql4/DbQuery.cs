@@ -150,8 +150,15 @@ namespace Ecore.Sql4
 
             ConditionBuilder conditionBuilder = new ConditionBuilder();
             conditionBuilder.Build(orderExp.Body);
-
-            trackSql = trackSql.Replace("{order}", string.Format(" order by [{0}] {1} ", conditionBuilder.Condition, order));
+            if (SqlType == DbType.Sql)
+            {
+                trackSql = trackSql.Replace("{order}", string.Format(" order by [{0}] {1} ", conditionBuilder.Condition, order));
+            }
+            else
+            {
+                trackSql = trackSql.Replace("{order}", string.Format(" order by `{0}` {1} ", conditionBuilder.Condition, order));
+            }
+               
 
         }
 
