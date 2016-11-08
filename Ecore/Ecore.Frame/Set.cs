@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Ecore.Frame
 {
 
-    public interface ISet<T>: IQuery<T>, ICommand<T>, IXmlQuery<T>, IXmlCommand<T> where T : class, new()
+    public interface ISet<T> : IQuery<T>, ICommand<T>, IXmlQuery<T>, IXmlCommand<T> where T : class, new()
     {
 
     }
@@ -83,7 +83,7 @@ namespace Ecore.Frame
     [AttributeUsage(AttributeTargets.Class)]
     public class CacheAttribute : Attribute
     {
-        public int Second { get; set; } 
+        public int Second { get; set; }
     }
 
     public interface IEntityRecord
@@ -96,33 +96,16 @@ namespace Ecore.Frame
 
     public class PageData<T>
     {
-        private int totalCounts;
-        private List<T> currentPage;
+        public int total;
+        public List<T> rows;
         /// <summary>
         /// 页数(从1开始)
         /// </summary>
-        private int pageIndex;
-        /// <summary>
-        /// 页数(从1开始)
-        /// </summary>
-        public int PageIndex
-        {
-            get { return pageIndex; }
-            set { pageIndex = value; }
-        }
-
+        public int current;
         /// <summary>
         /// 分页大小
         /// </summary>
-        private int pageSize;
-        /// <summary>
-        /// 分页大小
-        /// </summary>
-        public int PageSize
-        {
-            get { return pageSize; }
-            set { pageSize = value; }
-        }
+        public int rowCount;
 
         public PageData()
         {
@@ -130,31 +113,8 @@ namespace Ecore.Frame
 
         public PageData(int counts, List<T> page)
         {
-            totalCounts = counts;
-            currentPage = page;
-        }
-        /// <summary>
-        /// 总记录数
-        /// </summary>
-        public int TotalCounts
-        {
-            get { return totalCounts; }
-
-            set
-            {
-                totalCounts = value;
-            }
-        }
-        /// <summary>
-        /// 当前页数据
-        /// </summary>
-        public List<T> CurrentPage
-        {
-            get { return currentPage; }
-            set
-            {
-                currentPage = value;
-            }
+            total = counts;
+            rows = page;
         }
     }
 
@@ -162,9 +122,8 @@ namespace Ecore.Frame
     {
         public PagePars()
         {
-
             Where = new Dictionary<string, object>();
-        }     
+        }
 
         public Dictionary<string, object> Where { get; set; }
 

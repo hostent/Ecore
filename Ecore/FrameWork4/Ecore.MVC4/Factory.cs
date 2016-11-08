@@ -130,11 +130,24 @@ namespace Ecore.MVC4
 
         }
 
+        public static string BaseDirectory
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Config.Default.GetAppSetting("BaseDirectory")))
+                {
+                    return AppDomain.CurrentDomain.BaseDirectory + "bin\\";
+                }
+                return Config.Default.GetAppSetting("BaseDirectory");
+
+            }
+        }
+
         public T CreateInstance()
         {
             //controller           
 
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "bin\\" + ControllerDll + ".dll"))
+            if (File.Exists(BaseDirectory + ControllerDll + ".dll"))
             {
                 Assembly cAss = LoadAss(this.ControllerDll);
                 Type classType = cAss.GetType(this.ControllerClass);
@@ -148,7 +161,7 @@ namespace Ecore.MVC4
             }
 
             //logic
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "bin\\" + LogicDll + ".dll"))
+            if (File.Exists(BaseDirectory + LogicDll + ".dll"))
             {
                 Assembly cAss = LoadAss(this.LogicDll);
                 Type classType = cAss.GetType(this.LogicClass);
@@ -162,7 +175,7 @@ namespace Ecore.MVC4
             }
 
             //Proxy
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "bin\\" + ProxyDll + ".dll"))
+            if (File.Exists(BaseDirectory + ProxyDll + ".dll"))
             {
                 Assembly cAss = LoadAss(this.ProxyDll);
                 Type classType = cAss.GetType(this.ProxyClass);
@@ -184,7 +197,7 @@ namespace Ecore.MVC4
         {
             //controller           
 
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "bin\\" + ControllerDll + ".dll"))
+            if (File.Exists(BaseDirectory + ControllerDll + ".dll"))
             {
                 Assembly cAss = LoadAss(this.ControllerDll);
                 Type classType = cAss.GetType(this.ControllerClass);
@@ -195,7 +208,7 @@ namespace Ecore.MVC4
             }
 
             //logic
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "bin\\" + LogicDll + ".dll"))
+            if (File.Exists(BaseDirectory + LogicDll + ".dll"))
             {
                 Assembly cAss = LoadAss(this.LogicDll);
                 Type classType = cAss.GetType(this.LogicClass);
@@ -206,7 +219,7 @@ namespace Ecore.MVC4
             }
 
             //Proxy
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "bin\\" + ProxyDll + ".dll"))
+            if (File.Exists(BaseDirectory + ProxyDll + ".dll"))
             {
                 Assembly cAss = LoadAss(this.ProxyDll);
                 Type classType = cAss.GetType(this.ProxyClass);

@@ -61,7 +61,7 @@ namespace Ecore.Sql4.XmlSql
                     }
 
                     int start = (pageIndex - 1) * pageSize;
-                    reportsql = reportsql + @"  order by {0} OFFSET {1} ROWS FETCH NEXT {2} ROWS ONLY";
+                    reportsql = reportsql + @"  order by {0} limit {1},{2}";
 
                     reportsql = string.Format(reportsql, order, start, pageSize);
                 }

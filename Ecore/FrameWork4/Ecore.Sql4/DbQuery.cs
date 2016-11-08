@@ -292,9 +292,9 @@ namespace Ecore.Sql4
             BuildOrder("");
             BuildLimit("");
 
-            var count = Dapper.SqlMapper.ExecuteScalar<int>(Conn, trackSql, args, BaseModule.GetTran());
+            var exist = Dapper.SqlMapper.ExecuteScalar<int>(Conn, trackSql, args, BaseModule.GetTran());
 
-            return count > 0;
+            return exist > 0;
         }
 
         internal List<T> ToAll()
