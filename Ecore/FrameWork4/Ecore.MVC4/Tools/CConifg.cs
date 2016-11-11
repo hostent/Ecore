@@ -36,44 +36,70 @@ namespace Ecore.MVC4.Tools
             return ConfigurationManager.ConnectionStrings[connName].ConnectionString;
         }
 
-        public LangItem GetLangItem(string keyLang)
+
+        public T GetConfigFile<T>(string fileKey) where T : class, new()
         {
-            string filePath = AppDomain.CurrentDomain.BaseDirectory + @"bin\langSource.json";
-
-            List<LangItem> list = null;
-
-            if (Cache.ContainsKey("GetLangItem"))
+            string cacheKey = "CConifg.ConfigFile." + fileKey;
+            if (Cache.ContainsKey(cacheKey))
             {
-                list = Cache["GetLangItem"] as List<LangItem>;
+                return (T)Cache[cacheKey];
             }
-            else
+        
+            T result = default(T);
+
+            lock (_lock)
             {
-                lock (_lock)
+                if (!Cache.ContainsKey(cacheKey))
                 {
-                    if (!Cache.ContainsKey("GetLangItem"))
+                    string path = AppDomain.CurrentDomain.BaseDirectory + @"Config\" + fileKey + ".json";
+
+                    if (File.Exists(path))
                     {
-                        if(File.Exists(filePath))
-                        {
-                            string json = File.ReadAllText(filePath);
-                            list = Newtonsoft.Json.JsonConvert.DeserializeObject<List<LangItem>>(json);
-                        }                       
-                        if(list==null)
-                        {
-                            list = new List<LangItem>();
-                        }
-                        Cache.Add("GetLangItem", list);
+                        string json = File.ReadAllText(path);
+                        result = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
                     }
+
+                    if (result == null)
+                    {
+                        result = new T();
+                    }
+                    Cache.Add(cacheKey, result);
                 }
             }
+            return result;
 
-            LangItem item = list.Where(q => q.zh_CN == keyLang).FirstOrDefault();
-            if (item == null)
+        }
+
+        public string GetConfigFile(string fileKey)
+        {
+
+            string cacheKey = "CConifg.ConfigFile." + fileKey;
+            if (Cache.ContainsKey(cacheKey))
             {
-                return new LangItem() { zh_CN = keyLang };
+                return (string)Cache[cacheKey];
             }
 
-            return item;
+            string result = "";
 
+            lock (_lock)
+            {
+                if (!Cache.ContainsKey(cacheKey))
+                {
+                    string path = AppDomain.CurrentDomain.BaseDirectory + @"Config\" + fileKey + ".json";
+                    if (File.Exists(path))
+                    {
+                        result = File.ReadAllText(path);
+                    }
+                    path = AppDomain.CurrentDomain.BaseDirectory + @"Config\" + fileKey + ".xml";
+                    if (File.Exists(path))
+                    {
+                        result = File.ReadAllText(path);
+                    }
+
+                    Cache.Add(cacheKey, result);
+                }
+            }
+            return result;
         }
     }
 }

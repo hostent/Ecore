@@ -12,41 +12,60 @@ namespace Ecore.Frame
             return new Language(cultureInfo);
         }
 
-        public Language(Culture cultureInfo = Culture.zh_CN)
+        Language(Culture cultureInfo = Culture.zh_cn)
         {
             ((ILanguage)this).CurrentCultureInfo = cultureInfo;
- 
+
         }
 
         Culture ILanguage.CurrentCultureInfo { get; set; }
 
         string ILanguage.Get(string keyLang)
         {
-            var item = Config.Default.GetLangItem(keyLang);
+            List<LangItem> list = Config.Default.GetConfigFile<List<LangItem>>("langSource");
 
-            switch (((ILanguage)this).CurrentCultureInfo)
+            LangItem item = list.Where(q => q.zh_cn.ToLower() == keyLang.ToLower()).FirstOrDefault();
+            if (item == null)
             {
-                case Culture.zh_CN:
-                    return item.zh_CN;
-                case Culture.en:
-                    return item.en;
-                case Culture.ja_JP:
-                    return item.ja_JP;
-                case Culture.ko_KR:
-                    return item.ko_KR;
+                return keyLang;
             }
-            return "";
+
+            var dict = item.ToDictList().Where(q => q.Key == ((ILanguage)this).CurrentCultureInfo.ToString()).FirstOrDefault();
+            return dict.Value;
 
         }
 
+        List<LangScriptItem> ILanguage.GetScript()
+        {
+            List<LangItem> list = Config.Default.GetConfigFile<List<LangItem>>("langSource");
+
+            List<LangScriptItem> langScriptList = new List<LangScriptItem>();
+
+            foreach (var item in list)
+            {
+                langScriptList.Add(new LangScriptItem()
+                {
+                    Key = item.zh_cn,
+                    Value = item.ToDictList().Where(q => q.Key == ((ILanguage)this).CurrentCultureInfo.ToString()).FirstOrDefault().Value,
+                });
+            }
+
+            return langScriptList;
+
+        }
+    }
+    public class LangScriptItem
+    {
+        public string Key { get; set; }
+        public string Value { get; set; }
     }
 
     public enum Culture
     {
-        zh_CN,
-        en,
-        ja_JP,
-        ko_KR
+        zh_cn,
+        en_us,
+        ja_jp,
+        ko_kr
 
     }
 
@@ -55,7 +74,29 @@ namespace Ecore.Frame
         Culture CurrentCultureInfo { get; set; }
 
         string Get(string keyLang);
+
+        List<LangScriptItem> GetScript();
     }
 
+    public class LangItem
+    {
+        public string zh_cn { get; set; }
+        public string en_us { get; set; }
+        public string ja_jp { get; set; }
+        public string ko_kr { get; set; }
+
+        public List<KeyValuePair<string, string>> ToDictList()
+        {
+            List<KeyValuePair<string, string>> dl = new List<KeyValuePair<string, string>>();
+
+            dl.Add(new KeyValuePair<string, string>("zh_cn", zh_cn));
+            dl.Add(new KeyValuePair<string, string>("en_us", en_us));
+            dl.Add(new KeyValuePair<string, string>("ja_jp", ja_jp));
+            dl.Add(new KeyValuePair<string, string>("ko_kr", ko_kr));
+
+            return dl;
+
+        }
+    }
 
 }
