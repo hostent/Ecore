@@ -88,8 +88,11 @@ namespace Ecore.MVC4.Web
 
                         controllerObj.CurrentContext = httpContent;
                         controllerObj.OnControllerCreate(httpContent);
-
-                        result = (PageResult)Action.Invoke(controllerObj, null);
+                        result = controllerObj.OnActionExecting(httpContent);
+                        if (result == null)
+                        {
+                            result = (PageResult)Action.Invoke(controllerObj, null);
+                        }
 
                         Cache.Default.Add(key, result, DateTime.Now.AddSeconds(CacheSecond));
                     }
@@ -124,16 +127,27 @@ namespace Ecore.MVC4.Web
                     temp = ee;
                 }
 
-                httpContent.Response.Write("错误信息：" + ee.Message + "\r\n <p/>");
+                Log.Default.Error(ee);
 
-                httpContent.Response.Write("堆栈信息：" + ee.StackTrace + "\r\n <p/>");
+                if (Config.Default.GetAppSetting("IsDebug") == "1")
+                {
+                    httpContent.Response.Write("错误信息：" + ee.Message + "\r\n <p/>");
 
-                httpContent.Response.Write("所有信息：" + ee.ToString() + "\r\n <p/>");
+                    httpContent.Response.Write("堆栈信息：" + ee.StackTrace + "\r\n <p/>");
+
+                    httpContent.Response.Write("所有信息：" + ee.ToString() + "\r\n <p/>");
+                }
+                else
+                {
+                    httpContent.Response.Write("系统错误，请找管理员查看");
+                }
+
+
                 httpContent.Response.Charset = "utf-8";
                 httpContent.Response.ContentEncoding = Encoding.UTF8;
                 httpContent.Response.ContentType = "text/html";
                 httpContent.Response.StatusCode = 200;
-               
+
             }
 
         }

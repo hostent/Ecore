@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
@@ -38,7 +39,9 @@ namespace Ecore.MVC4.Web
                 }
             }
 
-            throw new Exception("url error");
+            httpContent.Response.Write("地址错误");
+            httpContent.Response.ContentType = "text/html";
+            httpContent.Response.ContentEncoding = Encoding.UTF8;
 
         }
     }

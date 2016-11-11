@@ -46,6 +46,11 @@ namespace Ecore.MVC4.Api
         {
             Request req = Newtonsoft.Json.JsonConvert.DeserializeObject<Request>(json);
 
+            if(string.IsNullOrEmpty( req.Method ))
+            {
+                throw new Exception("参数错误");
+            }
+
             List<object> objList = new List<object>();
 
             object obj = null;
@@ -60,6 +65,11 @@ namespace Ecore.MVC4.Api
             }
 
             MethodInfo methodInfo = obj.GetType().GetMethod(AssemblyHelp.GetMethodName(req.Method));
+
+            if(methodInfo==null)
+            {
+                throw (new Exception("参数错误，找不到方法"));
+            }           
 
             ParameterInfo[] tArr = methodInfo.GetParameters();
 

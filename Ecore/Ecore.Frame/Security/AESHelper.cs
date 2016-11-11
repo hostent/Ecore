@@ -17,25 +17,21 @@ namespace Ecore.Frame.Security
         {
             get
             {
-                return "amoyx.com.568333";    
+                return "amoyx.com.568333";    ////必须是16位
             }
         }
         //默认密钥向量 
-        private static byte[] _key1 = Encoding.UTF8.GetBytes(""); //"www.amoyx.com.cn" 默认空
+        private static byte[] _key1 = Encoding.UTF8.GetBytes("www.amoyx.com.cn");
         /// <summary>
         /// AES加密算法
         /// </summary>
         /// <param name="plainText">明文字符串</param>
         /// <returns>将加密后的密文转换为Base64编码，以便显示</returns>
-        public static string AESEncrypt(string plainText, string key="")
+        public static string AESEncrypt(string plainText)
         {
-            if(key== "")
-            {
-                key = Key;
-            }
             try
             {
-                byte[] keyArray = Convert.FromBase64String(key);
+                byte[] keyArray = UTF8Encoding.UTF8.GetBytes(Key);
                 byte[] ivArray = _key1;
                 byte[] toEncryptArray = UTF8Encoding.UTF8.GetBytes(plainText);
 
@@ -57,15 +53,11 @@ namespace Ecore.Frame.Security
         /// </summary>
         /// <param name="cipherText">密文字符串</param>
         /// <returns>返回解密后的明文字符串</returns>
-        public static string AESDecrypt(string showText, string key = "")
+        public static string AESDecrypt(string showText)
         {
-            if (key == "")
-            {
-                key = Key;
-            }
             try
             {
-                byte[] keyArray = Convert.FromBase64String(key);
+                byte[] keyArray = UTF8Encoding.UTF8.GetBytes(Key);
                 byte[] ivArray = _key1;
                 byte[] toEncryptArray = Convert.FromBase64String(showText);
 

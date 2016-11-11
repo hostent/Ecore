@@ -16,24 +16,33 @@ namespace Ecore.MVC4.Api
 
             HttpContext httpContent = context as HttpContext;
             Response result = null;
+            string resultJson = "";
+            string requestjson = "";
             try
             {
 
 
                 StreamReader streamReader = new StreamReader(httpContent.Request.InputStream, Encoding.UTF8);
-                string json = streamReader.ReadToEnd();
+                requestjson = streamReader.ReadToEnd();
 
-                result = Response.GetResponse(json);
+                result = Response.GetResponse(requestjson);
+
+                resultJson = Newtonsoft.Json.JsonConvert.SerializeObject(result);
+
+                Log.Default.Msg("请求：\r\n" + requestjson + "\r\n响应：" + resultJson);
             }
             catch (Exception ee)
             {
                 result = new Response();
                 result.Error = ee.Message;
+
+                Log.Default.Error(requestjson, ee);
             }
+
             httpContent.Response.Charset = "utf-8";
             httpContent.Response.ContentType = "application/json";
 
-            httpContent.Response.Write(Newtonsoft.Json.JsonConvert.SerializeObject(result));
+            httpContent.Response.Write(resultJson);
             httpContent.Response.End();
 
 
