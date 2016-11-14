@@ -16,7 +16,6 @@ namespace Ecore.MVC4.Api
 
         public object[] Params { get; set; }
 
-        public RpcAuth Auth { get; set; }
     }
 
 
@@ -42,13 +41,22 @@ namespace Ecore.MVC4.Api
 
         private static Dictionary<string, object> objCache = new Dictionary<string, object>();
 
-        public static Response GetResponse(string json)
+        public static Response GetResponse(string json, RpcAuth auth = null)
         {
             Request req = Newtonsoft.Json.JsonConvert.DeserializeObject<Request>(json);
 
-            if(string.IsNullOrEmpty( req.Method ))
+            if (string.IsNullOrEmpty(req.Method))
             {
                 throw new Exception("参数错误");
+            }
+
+            if (auth != null)
+            {
+                Ecore.Frame.Result authResult = auth.Check(json);
+                if (authResult.Tag != 1)
+                {
+                    throw new Exception(authResult.Message);
+                }
             }
 
             List<object> objList = new List<object>();
@@ -66,10 +74,10 @@ namespace Ecore.MVC4.Api
 
             MethodInfo methodInfo = obj.GetType().GetMethod(AssemblyHelp.GetMethodName(req.Method));
 
-            if(methodInfo==null)
+            if (methodInfo == null)
             {
                 throw (new Exception("参数错误，找不到方法"));
-            }           
+            }
 
             ParameterInfo[] tArr = methodInfo.GetParameters();
 

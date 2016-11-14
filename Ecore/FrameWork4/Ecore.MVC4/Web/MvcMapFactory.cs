@@ -112,6 +112,8 @@ namespace Ecore.MVC4.Web
                     result = (PageResult)Action.Invoke(controllerObj, null);
                 }
 
+                controllerObj.OnResultExecting(httpContent, result);
+
                 result.RenderResult(httpContent);
             }
             catch (Exception ee)
@@ -146,7 +148,7 @@ namespace Ecore.MVC4.Web
                 httpContent.Response.Charset = "utf-8";
                 httpContent.Response.ContentEncoding = Encoding.UTF8;
                 httpContent.Response.ContentType = "text/html";
-                httpContent.Response.StatusCode = 200;
+               //httpContent.Response.StatusCode = 200;
 
             }
 

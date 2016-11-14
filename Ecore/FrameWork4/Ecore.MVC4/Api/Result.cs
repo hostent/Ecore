@@ -56,7 +56,7 @@ namespace Ecore.MVC4.Api
 
         public override void RenderResult(HttpContext httpContent)
         {
-            httpContent.Response.Redirect(Url);             
+            httpContent.Response.Redirect(Url);
         }
     }
 
@@ -74,13 +74,25 @@ namespace Ecore.MVC4.Api
         public string ContentType { get; set; }
 
 
-        public virtual void OverHead() { }
+        public virtual void AddHead(HttpContext httpContent, KeyValuePair<string, string> kv)
+        {
+            httpContent.Response.Headers.Add(kv.Key, kv.Value);
+        }
 
         public virtual void RenderResult(HttpContext httpContent)
         {
+            string match = httpContent.Request.Headers["If-None-Match"] ?? Guid.NewGuid().ToString();
+            string etag = httpContent.Response.Headers["Etag"] ?? Guid.NewGuid().ToString();
+            if (match == etag)
+            {
+                httpContent.Response.StatusCode = 304;
+            }
+            else
+            {
+                httpContent.Response.StatusCode = 200;
+            }
 
             httpContent.Response.ContentType = ContentType;
-            httpContent.Response.StatusCode = 200;
 
             httpContent.Response.ContentEncoding = Encoding.UTF8;
             httpContent.Response.Write(Data);

@@ -22,12 +22,14 @@ namespace Ecore.MVC4.Web
         }
 
 
-        protected string Render(string templateName, object model)
+        public virtual string Render(string templateName, object model)
         {
-
             return ViewEngine.RazorEngine.Render(templateName, model);
+        }
 
-
+        public virtual string Render(string templateName, object model, IDictionary<string, object> viewBag)
+        {
+            return ViewEngine.RazorEngine.Render(templateName, model, viewBag);
         }
 
         public virtual void OnControllerCreate(HttpContext CurrentContext)
@@ -38,6 +40,11 @@ namespace Ecore.MVC4.Web
         public virtual PageResult OnActionExecting(HttpContext CurrentContext)
         {
             return null;
+        }
+
+        public virtual void OnResultExecting(HttpContext CurrentContext, PageResult result)
+        {
+
         }
 
     }

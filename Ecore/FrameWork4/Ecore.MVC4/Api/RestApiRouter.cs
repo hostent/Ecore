@@ -25,7 +25,16 @@ namespace Ecore.MVC4.Api
                 StreamReader streamReader = new StreamReader(httpContent.Request.InputStream, Encoding.UTF8);
                 requestjson = streamReader.ReadToEnd();
 
-                result = Response.GetResponse(requestjson);
+                RpcAuth rpcAuth = null;
+                if (!Config.IsDebug)
+                {
+                    rpcAuth = new RpcAuth();
+                    rpcAuth.Key = httpContent.Request.QueryString["key"];
+                    rpcAuth.Sign = httpContent.Request.QueryString["sign"];
+                    rpcAuth.Timestamp = Convert.ToInt64(httpContent.Request.QueryString["ts"]);
+                }
+
+                result = Response.GetResponse(requestjson, rpcAuth);
 
                 resultJson = Newtonsoft.Json.JsonConvert.SerializeObject(result);
 

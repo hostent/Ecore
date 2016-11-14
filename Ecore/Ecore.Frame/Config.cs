@@ -8,6 +8,16 @@ namespace Ecore.Frame
     public class Config
     {
         public static IConfig Default { get; set; }
+
+        public static bool IsDebug
+        {
+            get
+            {
+                string isdebug = Default.GetAppSetting("IsDebug");
+
+                return isdebug == "1";
+            }
+        }
     }
 
     public interface IConfig

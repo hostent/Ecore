@@ -14,8 +14,10 @@ namespace Ecore.Frame
     public interface IViewEngine
     {
         string Render(string templateName, object model);
+
+        string Render(string templateName, object model, IDictionary<string, object> viewBag);
     }
 
 
-    
+
 }
