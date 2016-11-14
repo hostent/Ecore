@@ -50,12 +50,16 @@ namespace Ecore.MVC4.Api
                 throw new Exception("参数错误");
             }
 
+            Response result = new Response();
+            result.Id = req.Id;
+
             if (auth != null)
             {
                 Ecore.Frame.Result authResult = auth.Check(json);
                 if (authResult.Tag != 1)
                 {
-                    throw new Exception(authResult.Message);
+                    result.Error = authResult.Message;
+                    return result;
                 }
             }
 
@@ -76,7 +80,9 @@ namespace Ecore.MVC4.Api
 
             if (methodInfo == null)
             {
-                throw (new Exception("参数错误，找不到方法"));
+                result.Error = "参数错误，找不到方法";
+                return result;
+                 
             }
 
             ParameterInfo[] tArr = methodInfo.GetParameters();
@@ -97,8 +103,7 @@ namespace Ecore.MVC4.Api
                 objList.Add(par);
             }
 
-            Response result = new Response();
-            result.Id = req.Id;
+           
 
             try
             {

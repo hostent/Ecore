@@ -33,25 +33,25 @@ namespace Ecore.MVC4.Api
 
             var dt = MyFormat.UnixTimestampToDateTime(Timestamp);
 
-            if (dt > DateTime.Now)
+            if (dt > DateTime.Now || dt < DateTime.Now.AddMinutes(-2))
             {
-                Result.Failure("时间戳错误，无法调用接口");
+                return Result.Failure("时间戳错误，无法调用接口:" + dt.ToString());
             }
             if (dt.AddMinutes(2) < DateTime.Now)
             {
-                Result.Failure("参数时间过期，无法调用接口");
+                return Result.Failure("参数时间过期，无法调用接口:" + dt.ToString());
             }
 
             var calcSign = MD5Helper.Encrypt_MD5(json + Key + Secret + Timestamp.ToString());
 
             if (string.IsNullOrEmpty(Secret))
             {
-                Result.Failure("账号不存在，无法调用接口");
+                return Result.Failure("账号不存在，无法调用接口");
             }
 
             if (Sign != calcSign)
             {
-                Result.Failure("签名错误，无法调用接口");
+                return Result.Failure("签名错误，无法调用接口:" + calcSign);
             }
             return Result.Succeed(); ;
         }

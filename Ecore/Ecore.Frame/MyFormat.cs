@@ -15,7 +15,9 @@ namespace Ecore.Frame
         public static long DateTimeToUnixTimestamp(DateTime dateTime)
         {
             var start = new DateTime(1970, 1, 1, 0, 0, 0, DateTime.Now.Kind);
-            return Convert.ToInt64((dateTime - start).TotalSeconds);
+
+            return Convert.ToInt64((DateTime.Now.ToUniversalTime() - start).TotalSeconds);
+
         }
 
         /// <summary>
@@ -26,6 +28,8 @@ namespace Ecore.Frame
         public static DateTime UnixTimestampToDateTime(long timestamp)
         {
             var start = new DateTime(1970, 1, 1, 0, 0, 0, DateTime.Now.Kind);
+            start = start.Add(DateTime.Now.TimeOfDay - DateTime.UtcNow.TimeOfDay);
+
             return start.AddSeconds(timestamp);
         }
     }

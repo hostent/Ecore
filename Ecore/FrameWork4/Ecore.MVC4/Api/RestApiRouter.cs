@@ -44,7 +44,7 @@ namespace Ecore.MVC4.Api
             {
                 result = new Response();
                 result.Error = ee.Message;
-
+                resultJson = Newtonsoft.Json.JsonConvert.SerializeObject(result);
                 Log.Default.Error(requestjson, ee);
             }
 
