@@ -131,7 +131,7 @@ namespace Ecore.MVC4.Web
 
                 Log.Default.Error(ee);
 
-                if (Config.Default.GetAppSetting("IsDebug") == "1")
+                if (Config.IsDebug)
                 {
                     httpContent.Response.Write("错误信息：" + ee.Message + "\r\n <p/>");
 

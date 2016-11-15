@@ -35,22 +35,32 @@ namespace Ecore.Frame
 
         }
 
-        List<LangScriptItem> ILanguage.GetScript()
+        string ILanguage.GetScript()
         {
             List<LangItem> list = Config.Default.GetConfigFile<List<LangItem>>("langSource");
 
             List<LangScriptItem> langScriptList = new List<LangScriptItem>();
 
+            string result = "";
+
             foreach (var item in list)
             {
-                langScriptList.Add(new LangScriptItem()
-                {
-                    Key = item.zh_cn,
-                    Value = item.ToDictList().Where(q => q.Key == ((ILanguage)this).CurrentCultureInfo.ToString()).FirstOrDefault().Value,
-                });
+
+                result = result + "\"" + item.zh_cn.Replace("\"", "") + "\"";
+                result = result + ":";
+                result = result + "\"" + item.ToDictList().Where(q => q.Key == ((ILanguage)this).CurrentCultureInfo.ToString()).FirstOrDefault().Value.Replace("\"", "") + "\"";
+                result = result + ",";
+
+                //langScriptList.Add(new LangScriptItem()
+                //{
+                //    Key = item.zh_cn,
+                //    Value = item.ToDictList().Where(q => q.Key == ((ILanguage)this).CurrentCultureInfo.ToString()).FirstOrDefault().Value,
+                //});
             }
 
-            return langScriptList;
+            result = "{" + result.Trim(',') + "}";
+
+            return result;
 
         }
     }
@@ -75,7 +85,7 @@ namespace Ecore.Frame
 
         string Get(string keyLang);
 
-        List<LangScriptItem> GetScript();
+        string GetScript();
     }
 
     public class LangItem
