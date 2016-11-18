@@ -1,11 +1,13 @@
 ﻿using Ecore.Frame;
 using Ecore.Frame.Security;
 using Ecore.MVC.Api;
+using Ecore.MVC.Web;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Ecore.MVC
@@ -36,7 +38,7 @@ namespace Ecore.MVC
                 {
                     foreach (var action in controllerItem.GetMethods())
                     {
-                        MappingAttribute map = action.GetCustomAttribute<MappingAttribute>();
+                        MappingAttribute map = (MappingAttribute)action.GetCustomAttributes(typeof(MappingAttribute), false).FirstOrDefault();//.GetCustomAttribute<MappingAttribute>();
 
                         if (map == null)
                         {
@@ -86,8 +88,12 @@ namespace Ecore.MVC
                         controllerObj = (BaseController)Assembly.GetEntryAssembly().CreateInstance(Controller.FullName);
 
                         controllerObj.CurrentContext = httpContent;
-
-                        result = (PageResult)Action.Invoke(controllerObj, null);
+                        controllerObj.OnControllerCreate(httpContent);
+                        result = controllerObj.OnActionExecting(httpContent);
+                        if (result == null)
+                        {
+                            result = (PageResult)Action.Invoke(controllerObj, null);
+                        }
 
                         Cache.Default.Add(key, result, DateTime.Now.AddSeconds(CacheSecond));
                     }
@@ -98,21 +104,49 @@ namespace Ecore.MVC
                 controllerObj = (BaseController)Assembly.GetEntryAssembly().CreateInstance(Controller.FullName);
 
                 controllerObj.CurrentContext = httpContent;
+                controllerObj.OnControllerCreate(httpContent);
 
-                result = (PageResult)Action.Invoke(controllerObj, null);
+                result = controllerObj.OnActionExecting(httpContent);
+                if (result == null)
+                {
+                    result = (PageResult)Action.Invoke(controllerObj, null);
+                }
+
+                controllerObj.OnResultExecting(httpContent, result);
 
                 return result.RenderResult(httpContent);
+
             }
             catch (Exception ee)
             {
+                Exception temp = null;
+
                 if (ee.InnerException != null)
                 {
-                    throw ee.InnerException;
+                    temp = ee.InnerException;
                 }
                 else
                 {
-                    throw ee;
+                    temp = ee;
                 }
+
+                Log.Default.Error(ee);
+
+                httpContent.Response.ContentType = "text/html";
+                if (Config.IsDebug)
+                {
+                    string strResult =
+                        "错误信息：" + ee.Message + "\r\n <p/>" +
+                        "堆栈信息：" + ee.StackTrace + "\r\n <p/>" +
+                        "所有信息：" + ee.ToString() + "\r\n <p/>";
+
+                    return httpContent.Response.WriteAsync(strResult, Encoding.UTF8);
+                }
+                else
+                {
+                    return httpContent.Response.WriteAsync("系统错误，请找管理员查看", Encoding.UTF8);
+                }
+
             }
 
         }

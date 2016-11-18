@@ -10,7 +10,7 @@ namespace Ecore.Redis
     public class Manager
     {
 
-        ConnectionMultiplexer _redis = null;
+        static ConnectionMultiplexer _redis = null;
 
         public ConnectionMultiplexer RedisManager
         {

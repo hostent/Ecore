@@ -16,7 +16,6 @@ namespace Ecore.MVC.Api
 
         public object[] Params { get; set; }
 
-        public RpcAuth Auth { get; set; }
     }
 
 
@@ -40,15 +39,52 @@ namespace Ecore.MVC.Api
         public string Error { get; set; }
 
 
-        public static Response GetResponse(string json)
+
+        private static Dictionary<string, object> objCache = new Dictionary<string, object>();
+
+        public static Response GetResponse(string json, RpcAuth auth = null)
         {
             Request req = Newtonsoft.Json.JsonConvert.DeserializeObject<Request>(json);
 
+            if (string.IsNullOrEmpty(req.Method))
+            {
+                throw new Exception("参数错误");
+            }
+
+            Response result = new Response();
+            result.Id = req.Id;
+
+            if (auth != null)
+            {
+                Ecore.Frame.Result authResult = auth.Check(json);
+                if (authResult.Tag != 1)
+                {
+                    result.Error = authResult.Message;
+                    return result;
+                }
+            }
+
             List<object> objList = new List<object>();
 
-            object obj = AssemblyHelp.GetImpObj(req.Method);
+            object obj = null;
+            if (objCache.ContainsKey(req.Method))
+            {
+                obj = objCache[req.Method];
+            }
+            else
+            {
+                obj = AssemblyHelp.GetImpObj(req.Method);
+                objCache.Add(req.Method, obj);
+            }
 
             MethodInfo methodInfo = obj.GetType().GetMethod(AssemblyHelp.GetMethodName(req.Method));
+
+            if (methodInfo == null)
+            {
+                result.Error = "参数错误，找不到方法";
+                return result;
+
+            }
 
             ParameterInfo[] tArr = methodInfo.GetParameters();
 
@@ -68,8 +104,7 @@ namespace Ecore.MVC.Api
                 objList.Add(par);
             }
 
-            Response result = new Response();
-            result.Id = req.Id;
+
 
             try
             {

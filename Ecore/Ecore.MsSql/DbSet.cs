@@ -206,8 +206,10 @@ namespace Ecore.MsSql
         {
             PageData<T> result = new PageData<T>();
             int totalCount = 0;
-            result.CurrentPage = ComplexSqlHelp.GetReportData<T>(Conn, reportName, param.PageSize, param.PageIndex, param.Order, param.Where, true, out totalCount);
-            result.TotalCounts = totalCount;
+            result.rows = ComplexSqlHelp.GetReportData<T>(Conn, reportName, param.PageSize, param.PageIndex, param.Order, param.Where, true, out totalCount);
+            result.total = totalCount;
+            result.current = param.PageIndex;
+            result.rowCount = param.PageSize;
             return result;
         }
 

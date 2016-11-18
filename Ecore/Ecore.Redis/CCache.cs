@@ -25,7 +25,7 @@ namespace Ecore.Redis
 
             db.StringSet(key, json);
 
-            redisClient.CloseAsync();
+            //redisClient.CloseAsync();
 
         }
 
@@ -38,7 +38,7 @@ namespace Ecore.Redis
 
             db.StringSet(key, json, limitTime - DateTime.Now);
 
-            redisClient.CloseAsync();
+            //redisClient.CloseAsync();
         }
 
         public void Add(string key, object data, int second)
@@ -50,12 +50,12 @@ namespace Ecore.Redis
 
             db.StringSet(key, json, TimeSpan.FromSeconds(second));
 
-            redisClient.CloseAsync();
+            //redisClient.CloseAsync();
         }
 
         public List<string> FindKeys(string prefix)
         {
-            
+
             throw new NotImplementedException();
         }
 
@@ -64,9 +64,9 @@ namespace Ecore.Redis
             var redisClient = new Manager().RedisManager;
             var db = redisClient.GetDatabase(DatabaseName);
 
-            var item= db.StringGet(key);
+            var item = db.StringGet(key);
 
-            redisClient.CloseAsync();
+            //redisClient.CloseAsync();
 
             return item.HasValue ? item.ToString() : null;
         }
@@ -76,9 +76,9 @@ namespace Ecore.Redis
             var redisClient = new Manager().RedisManager;
             var db = redisClient.GetDatabase(DatabaseName);
 
-            var  json = db.StringGet(key);
+            var json = db.StringGet(key);
 
-            redisClient.CloseAsync();
+            // redisClient.CloseAsync();
 
             if (!json.HasValue)
             {
@@ -95,7 +95,7 @@ namespace Ecore.Redis
 
             db.KeyDelete(key);
 
-            redisClient.CloseAsync();
+            //redisClient.CloseAsync();
         }
     }
 }

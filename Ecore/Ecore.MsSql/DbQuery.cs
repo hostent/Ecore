@@ -151,9 +151,15 @@ namespace Ecore.MsSql
 
             ConditionBuilder conditionBuilder = new ConditionBuilder();
             conditionBuilder.Build(orderExp.Body);
-
-            trackSql = trackSql.Replace("{order}", string.Format(" order by [{0}] {1} ", conditionBuilder.Condition, order));
-
+            if (SqlType == DbType.Sql)
+            {
+                trackSql = trackSql.Replace("{order}", string.Format(" order by [{0}] {1} ", conditionBuilder.Condition, order));
+            }
+            else
+            {
+                trackSql = trackSql.Replace("{order}", string.Format(" order by `{0}` {1} ", conditionBuilder.Condition, order));
+            }
+ 
         }
 
         private void BuildLimit(string limit = null)
@@ -288,14 +294,14 @@ namespace Ecore.MsSql
                 return this.ToQueryable().Any();
             }
 
-            BuildColumns(" exists(0) ");
+            BuildColumns(" count(0) ");
             BuildWhere();
             BuildOrder("");
             BuildLimit("");
 
-            var exist = Dapper.SqlMapper.ExecuteScalar<bool>(Conn, trackSql, args, BaseModule.GetTran());
+            var exist = Dapper.SqlMapper.ExecuteScalar<int>(Conn, trackSql, args, BaseModule.GetTran());
 
-            return exist;
+            return exist > 0;
         }
 
         internal List<T> ToAll()

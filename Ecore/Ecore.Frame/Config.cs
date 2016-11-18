@@ -18,6 +18,20 @@ namespace Ecore.Frame
                 return isdebug == "1";
             }
         }
+
+        public static string Version
+        {
+            get
+            {
+                string version = Default.GetAppSetting("Version");
+                if (string.IsNullOrEmpty(version))
+                {
+                    version = "0.0.0";
+                }
+
+                return version;
+            }
+        }
     }
 
     public interface IConfig

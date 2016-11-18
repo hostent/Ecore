@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ecore.MVC
+namespace Ecore.MVC.Tools
 {
     public class CLoginContext : ILoginContext
     {
@@ -22,7 +22,7 @@ namespace Ecore.MVC
             {
                 return null;
             }
-            userid = AESHelper.AESDecrypt(MyEncoding.Default.UrlDecode(userid));
+            userid = AESHelper.AESDecrypt(Ecore.Frame.MyEncoding.Default.UrlDecode(userid));
 
             User user = Cache.Default.Get<User>(userid);
             if (user == null)
@@ -93,7 +93,7 @@ namespace Ecore.MVC
             //写入缓存
             Cache.Default.Add("LoginContext.User." + user.UserId, user);
             //写cookie
-            Cookie.Default.SetCookie("login-uid", MyEncoding.Default.UrlEncode(AESHelper.AESEncrypt(user.UserId)));
+            Cookie.Default.SetCookie("login-uid", Ecore.Frame.MyEncoding.Default.UrlEncode(AESHelper.AESEncrypt(user.UserId)));
         }
     }
 }

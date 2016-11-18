@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Ecore.Frame;
 using Ecore.MVC.Api;
+using Ecore.MVC.Tools;
 using Ecore.Proxy;
 using System;
 using System.Collections.Generic;
@@ -67,7 +68,7 @@ namespace Ecore.MVC
             UContainer.Factory = new Factory();
             Ecore.Frame.Weixin.Account = new Ecore.MVC.Weixin.Manager();
             Config.Default = new Tools.CConifg();
-            MyEncoding.Default = new Ecore.MVC.Tools.MyEncoding();
+            Frame.MyEncoding.Default = new Ecore.MVC.Tools.MyEncoding();
 
             Router.MvcHandle = new MvcRouter();
             Router.RestApiHandle = new RestApiRouter();

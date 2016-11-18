@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -36,7 +37,8 @@ namespace Ecore.MVC
                 }
             }
 
-            throw new Exception("url error");
+            httpContent.Response.ContentType = "text/html";
+            return httpContent.Response.WriteAsync("地址错误", Encoding.UTF8);
 
         }
     }

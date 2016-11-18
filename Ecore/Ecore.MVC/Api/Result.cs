@@ -76,7 +76,10 @@ namespace Ecore.MVC.Api
         public string ContentType { get; set; }
 
 
-        public virtual void OverHead() { }
+        public virtual void AddHead(HttpContext httpContent, KeyValuePair<string, string> kv)
+        {
+            httpContent.Response.Headers.Add(kv.Key, kv.Value);
+        }
 
         public virtual Task RenderResult(HttpContext httpContent)
         {
