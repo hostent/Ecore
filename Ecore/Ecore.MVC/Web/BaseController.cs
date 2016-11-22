@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Ecore.Frame;
-using Ecore.MVC.Tools;
 using Ecore.MVC.Api;
 
 namespace Ecore.MVC.Web

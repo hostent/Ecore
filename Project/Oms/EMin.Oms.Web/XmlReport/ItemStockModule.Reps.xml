@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Reps>
+  <Rep key="ItemStockModule.ItemStockModuleFunction" Remark="商品库存" tables="">
+    <ReportSql>
+      <![CDATA[	  
+        select 
+          s.Id,
+          s.SkuCode,
+          i.ItemName,
+          (select BrandName from brand where BrandId = i.BrandId) as BrandName,
+          (select WhsName from warehouse where WhsId = s.WhsId) as WmsName,
+          (select count(0) from stock_batchlocation where SkuCode = s.SkuCode) as InCount,
+          s.Quantity,
+          s.OnLock,
+          (select Sum(Quantity) from stock_stockkjtoutrecord where ItemCode = i.ItemCode) as OutQuantity,
+          s.Available,
+          s.MinStock,
+          u.ItemId
+         from stock s
+        join sku u on u.SkuCode = s.SkuCode
+        join item i on i.ItemId = u.ItemId where @Param1
+		  ]]>
+    </ReportSql>
+    <TotalSql>
+      <![CDATA[	
+        select count(0) from stock s
+        join sku u on u.SkuCode = s.SkuCode
+        join item i on i.ItemId = u.ItemId where @Param1
+    ]]>
+    </TotalSql>
+    <Dynamic property="@Param1">
+      <c property="Key" prepend="AND" type="Like">
+        <![CDATA[ (i.ItemName like @Key or s.SkuCode like @Key)  ]]>
+      </c>
+      <c property="WhsId" prepend="AND" type="">
+        <![CDATA[ s.WhsId = @WhsId  ]]>
+      </c>
+      <c property="ItemId" prepend="AND" type="">
+        <![CDATA[ u.ItemId = @ItemId  ]]>
+      </c>
+      <c property="SupplierCode" prepend="AND" type="">
+        <![CDATA[ u.SupplierCode = @SupplierCode  ]]>
+      </c>
+    </Dynamic>
+  </Rep>
+</Reps>

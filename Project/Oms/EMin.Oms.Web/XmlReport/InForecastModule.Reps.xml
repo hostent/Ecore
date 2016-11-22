@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Reps>
+  <Rep key="InForecastModule.CheckItemFirstCategory" Remark="检查一级商品品类" tables="">
+    <ReportSql>
+      <![CDATA[	  
+         select 
+          count(0)
+         from lrd_WebSite where @Param1
+		  ]]>
+    </ReportSql>
+    <Dynamic property="@Param1">
+      <c property="Value" prepend="AND" type="">
+        <![CDATA[ Name like @Value  ]]>
+      </c>
+    </Dynamic>
+  </Rep>
+</Reps>

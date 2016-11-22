@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Reps>
+  <Rep key="ItemDetailModule.InBatchModuleFunction" Remark="入库批次" tables="">
+    <ReportSql>
+      <![CDATA[	  
+        select 
+          g.SerialNumbers,
+          i.ItemCode,
+          g.State,
+          g.ItemName,
+          g.Quantity,
+          g.CheckQuantity,
+					(select Quantity from stock where SkuCode = g.SkuCode) as SurplusQuantity,
+          (select SendInTime from stock_batchlocation where SerialNumbers = g.SerialNumbers) as SendInTime,
+					(select WhsName from warehouse where WhsId = g.WmsId) as WmsName
+        from goodsreceiptline g
+				join Item i on i.ItemId = g.ItemId where @Param1
+		  ]]>
+    </ReportSql>
+    <TotalSql>
+      <![CDATA[
+       select count(0) from goodsreceiptline g
+				join Item i on i.ItemId = g.ItemId where @Param1
+    ]]>
+    </TotalSql>
+    <Dynamic property="@Param1">
+      <c property="ItemId" prepend="AND" type="">
+        <![CDATA[ g.ItemId = @ItemId  ]]>
+      </c>
+    </Dynamic>
+  </Rep>
+  <Rep key="ItemDetailModule.OutModuleFunction" Remark="出库详情" tables="">
+    <ReportSql>
+      <![CDATA[	  
+       select 
+         s.LogisticsNumber,
+         s.LineName,
+         s.ItemCode,
+         s.ItemName,
+         s.UnitPrice,
+         s.Quantity,
+         s.Consignee,
+         s.ConsigneePhone
+       from stock_stockkjtoutrecord s where RecordType = 3 and @Param1
+		  ]]>
+    </ReportSql>
+    <TotalSql>
+      <![CDATA[
+       select count(0) from stock_stockkjtoutrecord s where RecordType = 3 and @Param1
+    ]]>
+    </TotalSql>
+    <Dynamic property="@Param1">
+      <c property="ItemCode" prepend="AND" type="">
+        <![CDATA[ s.ItemCode = @ItemCode  ]]>
+      </c>
+    </Dynamic>
+  </Rep>
+</Reps>

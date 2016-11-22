@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Ecore.Frame": "1.0.0-*",
+    "NETStandard.Library": "1.6.0",
+    "Autofac": "4.0.0",
+    "Ecore.Mongodb": "1.0.0-*",
+    "Ecore.MsSql": "1.0.0-*",
+    "Ecore.MVC": "1.0.0-*",
+    "Ecore.Proxy": "1.0.0-*",
+    "Ecore.Razor": "1.0.0-*",
+    "Ecore.Redis": "1.0.0-*",
+    "Ecore.WebUtility": "1.0.0-*"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}

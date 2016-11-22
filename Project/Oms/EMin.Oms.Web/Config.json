@@ -1,0 +1,9 @@
+﻿{
+  "AppSetting": {
+    "key": false
+  },
+  "ConnString": {
+    "mongodb.SaleDb": "mongodb://127.0.0.1:27017"
+
+  }
+}

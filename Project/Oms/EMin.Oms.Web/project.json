@@ -1,0 +1,60 @@
+{
+  "dependencies": {
+    "Microsoft.NETCore.App": {
+      "version": "1.0.0",
+      "type": "platform"
+    },
+    "Microsoft.AspNetCore.Diagnostics": "1.0.0",
+    "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
+    "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
+    "Microsoft.Extensions.Logging.Console": "1.0.0",
+    "Ecore.Frame": "1.0.0-*",
+    "Ecore.Mongodb": "1.0.0-*",
+    "Ecore.MsSql": "1.0.0-*",
+    "Ecore.MVC": "1.0.0-*",
+    "Ecore.Redis": "1.0.0-*",
+    "Microsoft.AspNetCore.WebSockets.Server": "0.1.0",
+    "Ecore.Aop": "1.0.0-*",
+    "Ecore.Razor": "1.0.0-*",
+    "Ecore.Proxy": "1.0.0-*",
+    "Ecore.WebUtility": "1.0.0-*"
+  },
+
+  "tools": {
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools": "1.0.0-preview2-final"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ]
+    }
+  },
+
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true
+  },
+
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
+    }
+  },
+
+  "publishOptions": {
+    "include": [
+      "XmlReport",
+      "Config",
+      "wwwroot",
+      "web.config",
+      "Config.json"
+    ]
+  },
+
+  "scripts": {
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+  }
+}

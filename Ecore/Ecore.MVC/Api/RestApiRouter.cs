@@ -1,11 +1,11 @@
 ﻿using Ecore.Frame;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace Ecore.MVC.Api
 {
@@ -15,7 +15,7 @@ namespace Ecore.MVC.Api
         {
             return Task.Run(() =>
             {
-                HttpContext httpContent = context as HttpContext;
+                var httpContent = context as HttpContext;
 
                 Response result = null;
                 string resultJson = "";

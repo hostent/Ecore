@@ -15,6 +15,7 @@ namespace EMin.Sale.Web.Controllers
         public BuyController()
         {
             shoppingCart = UContainer.Get<IShoppingCart>();
+
         }
 
         public IActionResult Index()

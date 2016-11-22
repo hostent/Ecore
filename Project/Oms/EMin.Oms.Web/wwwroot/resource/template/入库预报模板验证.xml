@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<validrules>
+  <filed name="境外快递单号" datatype="string" require="false" length="0" regular="" values="" validMethod="" />
+  <filed name="入库货站名称" require="true"  validMethod="CheckWareHouse" />
+  <filed name="预计抵达时间" datatype="datetime" require="true" />
+  <filed name="SKU号" require="true" />
+  <filed name="商品编码(UPC)" require="true" />
+  <filed name="商品名称" require="true" />
+  <filed name="一级商品类名" require="true" validMethod="CheckItemFirstCategory" />
+  <filed name="二级商品类名" require="true" validMethod="CheckItemSecondCategory" />
+  <filed name="品牌" require="true" />
+  <filed name="规格" require="false" />
+  <filed name="型号" require="false" />
+  <filed name="材质" require="false" />
+  <filed name="单价（CNY）" datatype="double" require="true" />
+  <filed name="重量(KG)" datatype="double" require="true" />
+  <filed name="入库数量" datatype="double" require="true" />
+</validrules>

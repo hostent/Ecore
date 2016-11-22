@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Reps>
+  <Rep key="InManageModule.InManageModuleFunction" Remark="入库管理" tables="">
+    <ReportSql>
+      <![CDATA[	  
+        select 
+          g.ReceiptId,
+          g.SerialNumbers,
+          g.SkuCode,
+          g.State,
+          g.ItemName,
+          g.Quantity,
+          g.CheckQuantity,
+          (select SendInTime from stock_batchlocation where SerialNumbers = g.SerialNumbers) as SendInTime,
+					(select WhsName from warehouse where WhsId = g.WmsId) as WmsName
+        from goodsreceiptline g 
+        join sku s on s.SkuCode = g.SkuCode where @Param1
+		  ]]>
+    </ReportSql>
+    <TotalSql>
+      <![CDATA[	
+        select count(0) from goodsreceiptline g 
+        join sku s on s.SkuCode = g.SkuCode where @Param1
+    ]]>
+    </TotalSql>
+    <Dynamic property="@Param1">
+      <c property="Key" prepend="AND" type="Like">
+        <![CDATA[ (g.SerialNumbers like @Key or g.SkuCode like @Key)  ]]>
+      </c>
+      <c property="State" prepend="AND" type="">
+        <![CDATA[ g.State = @State  ]]>
+      </c>
+      <c property="StartTime" prepend="AND" type="">
+        <![CDATA[ g.CreateTime >= @StartTime  ]]>
+      </c>
+      <c property="EndTime" prepend="AND" type="">
+        <![CDATA[ g.CreateTime <= @EndTime  ]]>
+      </c>
+      <c property="SupplierCode" prepend="AND" type="">
+        <![CDATA[ s.SupplierCode = @SupplierCode  ]]>
+      </c>
+    </Dynamic>
+  </Rep>
+</Reps>

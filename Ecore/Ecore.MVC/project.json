@@ -3,15 +3,10 @@
 
   "dependencies": {
     "Ecore.Frame": "1.0.0-*",
+    "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
     "NETStandard.Library": "1.6.0",
-    "Microsoft.AspNetCore.Mvc": "1.0.0",
-    "Autofac": "4.0.0",
-    "Ecore.Mongodb": "1.0.0-*",
-    "Ecore.MsSql": "1.0.0-*",
-    "Ecore.Redis": "1.0.0-*",
-    "Ecore.Weixin": "1.0.0-*",
-    "Ecore.Proxy": "1.0.0-*"
- 
+      
+    "Newtonsoft.Json": "9.0.1"
   },
 
   "frameworks": {

@@ -1,0 +1,524 @@
+﻿[
+  {
+    "zh_cn": "请选择上传文件！",
+    "en_us": "Please choose to upload files!",
+    "ja_jp": "アップロードファイルを選んでください",
+    "ko_kr": "업로드 파일을 선택하세요!"
+  },
+  {
+    "zh_cn": "正在努力加载Excel文件...",
+    "en_us": "Trying to load the Excel file...",
+    "ja_jp": "Excelファイルをロードしています",
+    "ko_kr": "Excel파일 로딩 중... "
+  },
+  {
+    "zh_cn": "请选择",
+    "en_us": "Select",
+    "ja_jp": "ご選択ください",
+    "ko_kr": "선택하세요"
+  },
+  {
+    "zh_cn": "确定要存入数据库吗？",
+    "en_us": "Are you sure you want to deposit the database?",
+    "ja_jp": "データベースに保存されるかどうかご確認ください。",
+    "ko_kr": "데이터 베이스에 저장하시겠어요?"
+  },
+  {
+    "zh_cn": "正在努力存储数据...",
+    "en_us": "Trying to store data...",
+    "ja_jp": "データを保存しています。",
+    "ko_kr": "데이터 저장 중…"
+  },
+  {
+    "zh_cn": "请选择文件",
+    "en_us": "Select",
+    "ja_jp": "ファイルを選んでください。",
+    "ko_kr": "파일을 등록해주세요"
+  },
+  {
+    "zh_cn": "确认保存",
+    "en_us": "Save",
+    "ja_jp": "ご確認ください。",
+    "ko_kr": "저장 확인"
+  },
+  {
+    "zh_cn": "下载模板",
+    "en_us": "Templates",
+    "ja_jp": "テンプレートをダウンロードください。",
+    "ko_kr": "양식 다운로드"
+  },
+  {
+    "zh_cn": "入库预报模板.xls",
+    "en_us": "Forecast template.xls",
+    "ja_jp": "入庫フォーキャストテンプレート.xls",
+    "ko_kr": "입고 예정 양식.xls"
+  },
+  {
+    "zh_cn": "上传文件不能为空！",
+    "en_us": "Upload files can not be empty!",
+    "ja_jp": "アップロードファイルはブランクとダメです。",
+    "ko_kr": "업로드 파일이 없습니다!"
+  },
+  {
+    "zh_cn": "文件类型不对，只能导入xls和xlsx格式的文件",
+    "en_us": "Can only import XLS and xlsx format file",
+    "ja_jp": "ファイルの格式間違い、xlsとxlsxのような格式しかないファイルをアップロードください。",
+    "ko_kr": "문서 형식 오류, xls,xlsx 파일만 등록 가능합니다."
+  },
+  {
+    "zh_cn": "上传文件超过4M，不能上传",
+    "en_us": "Upload files more than 4M, can not be uploaded",
+    "ja_jp": "ファイル4Mを超えるとアップロードできない",
+    "ko_kr": "4M이내의 파일만 등록 가능"
+  },
+  {
+    "zh_cn": "保存失败！",
+    "en_us": "Save failed!",
+    "ja_jp": "エラー",
+    "ko_kr": "파일 저장 실패"
+  },
+  {
+    "zh_cn": "保存成功！",
+    "en_us": "Save success!",
+    "ja_jp": "保存しました。",
+    "ko_kr": "파일 저장 성공"
+  },
+  {
+    "zh_cn": "确认异常",
+    "en_us": "Abnormal",
+    "ja_jp": "異常な状況をご確認ください。",
+    "ko_kr": "오류 확인"
+  },
+  {
+    "zh_cn": "您预报的数量与实际数量不符，您确定我们清点数量为实际入库库存，请点击确定。如有疑问请联系客服！",
+    "en_us": "You predict the number of inconsistent with the actual number, you determine the number of our inventory for the actual inventory, please click ok. If you have any questions, please contact customer service!",
+    "ja_jp": "フォーキャスト数量と実際数量と間違いだから、整理した数量と実際入庫数量とピッタリ合うかどうかご確認ください。もし、問題があれば、カスタマー・サービスをご連絡ください。",
+    "ko_kr": "입고 예정량과 실제 입고량이 상이합니다. 점검량이 실제 입고량이면 확인을 누르시고  아니면 연락 바랍니다."
+  },
+  {
+    "zh_cn": "所有状态",
+    "en_us": "All States",
+    "ja_jp": "すべての状況",
+    "ko_kr": "모든 상태"
+  },
+  {
+    "zh_cn": "待入库",
+    "en_us": "",
+    "ja_jp": "入庫を待っています。",
+    "ko_kr": "입고 대기"
+  },
+  {
+    "zh_cn": "入库异常",
+    "en_us": "",
+    "ja_jp": "入庫エラー",
+    "ko_kr": "입고 오류"
+  },
+  {
+    "zh_cn": "可操作",
+    "en_us": "Operable",
+    "ja_jp": "操作できる",
+    "ko_kr": "작업 가능"
+  },
+  {
+    "zh_cn": "待核实",
+    "en_us": "",
+    "ja_jp": "確認中",
+    "ko_kr": "심사 대기"
+  },
+  {
+    "zh_cn": "已核实",
+    "en_us": "",
+    "ja_jp": "確認しました",
+    "ko_kr": "심사 완료"
+  },
+  {
+    "zh_cn": "预报时间",
+    "en_us": "Forecast Time",
+    "ja_jp": "フォーキャスト時間",
+    "ko_kr": "예정 시간"
+  },
+  {
+    "zh_cn": "开始时间",
+    "en_us": "StartTime",
+    "ja_jp": "開始時間",
+    "ko_kr": "시작 시간"
+  },
+  {
+    "zh_cn": "结束时间",
+    "en_us": "EndTime",
+    "ja_jp": "終了時間",
+    "ko_kr": "종료 시간"
+  },
+  {
+    "zh_cn": "仓储编号或SKU号",
+    "en_us": "Storage number or SKU",
+    "ja_jp": "倉庫に置かれるところのナンバーあるいはSKU",
+    "ko_kr": "재고 관리 코드 혹은 SKU번호"
+  },
+  {
+    "zh_cn": "搜索",
+    "en_us": "Search",
+    "ja_jp": "検索",
+    "ko_kr": "검색"
+  },
+  {
+    "zh_cn": "正在努力地加载数据中，请稍候……",
+    "en_us": "Trying to load data, please wait......",
+    "ja_jp": "データをロードしていますので、しばらくお待ちください。",
+    "ko_kr": "로딩 중, 조금만 기다려 주세요"
+  },
+  {
+    "zh_cn": "仓储编号",
+    "en_us": "Storage Number",
+    "ja_jp": "倉庫に置かれるところのナンバー",
+    "ko_kr": "재고 관리 코드"
+  },
+  {
+    "zh_cn": "SKU号",
+    "en_us": "SKU",
+    "ja_jp": "SKU",
+    "ko_kr": "SKU 번호"
+  },
+  {
+    "zh_cn": "状态",
+    "en_us": "States",
+    "ja_jp": "状況",
+    "ko_kr": "상태"
+  },
+  {
+    "zh_cn": "商品名",
+    "en_us": "ProductName",
+    "ja_jp": "商品名",
+    "ko_kr": "상품명"
+  },
+  {
+    "zh_cn": "预报数量",
+    "en_us": "Forecast Quantity",
+    "ja_jp": "フォーキャスト数量",
+    "ko_kr": "예정 수량"
+  },
+  {
+    "zh_cn": "入库数量",
+    "en_us": "Storage Quantity",
+    "ja_jp": "入庫数量",
+    "ko_kr": "입고 수량"
+  },
+  {
+    "zh_cn": "签收货站",
+    "en_us": "Receipt Station",
+    "ja_jp": "受け取り貨物ターミナル",
+    "ko_kr": "수령 창고"
+  },
+  {
+    "zh_cn": "签收时间",
+    "en_us": "Receipt Time",
+    "ja_jp": "受け取り時間",
+    "ko_kr": "수령 시간"
+  },
+  {
+    "zh_cn": "操作",
+    "en_us": "Operation",
+    "ja_jp": "操作",
+    "ko_kr": "작업"
+  },
+  {
+    "zh_cn": "入库",
+    "en_us": "Storage",
+    "ja_jp": "入庫",
+    "ko_kr": "입고"
+  },
+  {
+    "zh_cn": "编辑",
+    "en_us": "Edit",
+    "ja_jp": "編集",
+    "ko_kr": "편집"
+  },
+  {
+    "zh_cn": "库存编辑",
+    "en_us": "Inventory Editing",
+    "ja_jp": "在庫品編集",
+    "ko_kr": "재고 편집"
+  },
+  {
+    "zh_cn": "入库确认",
+    "en_us": "Sure Storage",
+    "ja_jp": "入庫確認",
+    "ko_kr": "입고 확인"
+  },
+  {
+    "zh_cn": "确定要提交保存吗？",
+    "en_us": "Are you sure you want to submit it?",
+    "ja_jp": "保存を提出するかどうかご確認ください。",
+    "ko_kr": "저장 확인?"
+  },
+  {
+    "zh_cn": "所有商家",
+    "en_us": "All Merchant",
+    "ja_jp": "全てのお客様",
+    "ko_kr": "모든 업체"
+  },
+  {
+    "zh_cn": "商品编码",
+    "en_us": "ProductCode",
+    "ja_jp": "商品コード",
+    "ko_kr": "상품 코드"
+  },
+  {
+    "zh_cn": "商家",
+    "en_us": "Merchant",
+    "ja_jp": "お客様",
+    "ko_kr": "업체명"
+  },
+  {
+    "zh_cn": "联系电话",
+    "en_us": "Phone",
+    "ja_jp": "電話ナンバー",
+    "ko_kr": "연락처"
+  },
+  {
+    "zh_cn": "预报库存",
+    "en_us": "Forecast Stock",
+    "ja_jp": "フォーキャストストック",
+    "ko_kr": "예정 재고"
+  },
+  {
+    "zh_cn": "清点库存",
+    "en_us": "See Stock",
+    "ja_jp": "在庫を整理する",
+    "ko_kr": "재고 점검"
+  },
+  {
+    "zh_cn": "库位号",
+    "en_us": "",
+    "ja_jp": "倉庫に置かれるところナンバー",
+    "ko_kr": "로케이션 번호"
+  },
+  {
+    "zh_cn": "提交",
+    "en_us": "Submit",
+    "ja_jp": "提出",
+    "ko_kr": "제출"
+  },
+  {
+    "zh_cn": "取消",
+    "en_us": "Cancel",
+    "ja_jp": "キャンセル",
+    "ko_kr": "취소"
+  },
+  {
+    "zh_cn": "商品详情",
+    "en_us": "Product Detail",
+    "ja_jp": "商品の詳しい情報",
+    "ko_kr": "상품 정보"
+  },
+  {
+    "zh_cn": "返回列表",
+    "en_us": "Return List",
+    "ja_jp": "リストに戻る",
+    "ko_kr": "이전 메뉴"
+  },
+  {
+    "zh_cn": "一级分类",
+    "en_us": "First Category",
+    "ja_jp": "一級分類",
+    "ko_kr": "대분류"
+  },
+  {
+    "zh_cn": "二级分类",
+    "en_us": "Second Category",
+    "ja_jp": "二級分類",
+    "ko_kr": "중분류"
+  },
+  {
+    "zh_cn": "规格",
+    "en_us": "Specifications",
+    "ja_jp": "規格",
+    "ko_kr": "규격"
+  },
+  {
+    "zh_cn": "型号",
+    "en_us": "Model",
+    "ja_jp": "モデル",
+    "ko_kr": "모델명"
+  },
+  {
+    "zh_cn": "材质",
+    "en_us": "Material",
+    "ja_jp": "材質",
+    "ko_kr": "재질"
+  },
+  {
+    "zh_cn": "单价(元)",
+    "en_us": "Unit Price (yuan)",
+    "ja_jp": "単価（元）",
+    "ko_kr": "단가(위안)"
+  },
+  {
+    "zh_cn": "重量(单件)",
+    "en_us": "Weight (single piece)",
+    "ja_jp": "重量（個）",
+    "ko_kr": "무게(건)"
+  },
+  {
+    "zh_cn": "品牌",
+    "en_us": "Brand",
+    "ja_jp": "ブランド",
+    "ko_kr": "브랜드"
+  },
+  {
+    "zh_cn": "所在仓库",
+    "en_us": "Warehouse",
+    "ja_jp": "倉庫に置かれるナンバーは何ですか",
+    "ko_kr": "창고명"
+  },
+  {
+    "zh_cn": "入库批次数",
+    "en_us": "Batch number of storage",
+    "ja_jp": "入庫ロット",
+    "ko_kr": "입고 차수 번호"
+  },
+  {
+    "zh_cn": "实际库存",
+    "en_us": "",
+    "ja_jp": "実際ストック",
+    "ko_kr": "실제 재고"
+  },
+  {
+    "zh_cn": "订单占用库存",
+    "en_us": "",
+    "ja_jp": "注文はストックの何分を取りましたか。",
+    "ko_kr": "주문 대기 수량"
+  },
+  {
+    "zh_cn": "已出库存",
+    "en_us": "",
+    "ja_jp": "出荷数量",
+    "ko_kr": "출고 완료 재고"
+  },
+  {
+    "zh_cn": "可用库存",
+    "en_us": "",
+    "ja_jp": "倉庫での利用できる数量",
+    "ko_kr": "현재고"
+  },
+  {
+    "zh_cn": "安全库存",
+    "en_us": "Safety Stock",
+    "ja_jp": "安定な在庫",
+    "ko_kr": "안전 재고"
+  },
+  {
+    "zh_cn": "库存信息",
+    "en_us": "Inventory Information",
+    "ja_jp": "在庫情報",
+    "ko_kr": "재고 정보"
+  },
+  {
+    "zh_cn": "入库批次",
+    "en_us": "Batch Storage",
+    "ja_jp": "入庫ロット",
+    "ko_kr": "입고 차수"
+  },
+  {
+    "zh_cn": "出库详情",
+    "en_us": "",
+    "ja_jp": "出荷詳しい情報",
+    "ko_kr": "출고 정보"
+  },
+  {
+    "zh_cn": "剩余数量",
+    "en_us": "Residual Quantity",
+    "ja_jp": "残る数量",
+    "ko_kr": "잔여 수량"
+  },
+  {
+    "zh_cn": "物流单号",
+    "en_us": "Logistics Number",
+    "ja_jp": "トラッキングナンバー",
+    "ko_kr": "운송장 번호"
+  },
+  {
+    "zh_cn": "线路",
+    "en_us": "Line",
+    "ja_jp": "ルート",
+    "ko_kr": "항구 코스"
+  },
+  {
+    "zh_cn": "出库数量",
+    "en_us": "Out Quantity",
+    "ja_jp": "出荷数量",
+    "ko_kr": "출고 수량"
+  },
+  {
+    "zh_cn": "收件人",
+    "en_us": "Addressee",
+    "ja_jp": "受取人",
+    "ko_kr": "수취인 "
+  },
+  {
+    "zh_cn": "收件人电话",
+    "en_us": "Recipient Phone",
+    "ja_jp": "受取人の電話番号",
+    "ko_kr": "수취인 연락처"
+  },
+  {
+    "zh_cn": "详情",
+    "en_us": "Details",
+    "ja_jp": "詳しい情報",
+    "ko_kr": "세부 사항"
+  },
+  {
+    "zh_cn": "全部仓库",
+    "en_us": "All Warehouse",
+    "ja_jp": "すべての倉庫",
+    "ko_kr": "전부 재고"
+  },
+  {
+    "zh_cn": "SKU号或名称",
+    "en_us": "SKU or Name",
+    "ja_jp": "SKUあるいは商品名称",
+    "ko_kr": "SKU번호 혹은 상품명"
+  },
+  {
+    "zh_cn": "设置安全库存",
+    "en_us": "Set safety stock",
+    "ja_jp": "安定な在庫情報をセットしてください。",
+    "ko_kr": "안전재고 설정"
+  },
+  {
+    "zh_cn": "加载中...",
+    "en_us": "Load in...",
+    "ja_jp": "ロードしています",
+    "ko_kr": "로딩 중…"
+  },
+  {
+    "zh_cn": "暂无任何数据！",
+    "en_us": "There is no data!",
+    "ja_jp": "データはありません。",
+    "ko_kr": "데이터가 없습니다.!"
+  },
+  {
+    "zh_cn": "刷新",
+    "en_us": "Refresh",
+    "ja_jp": "アップデート",
+    "ko_kr": "새로 고침"
+  },
+  {
+    "zh_cn": "商品名称",
+    "en_us": "ProductName",
+    "ja_jp": "商品名",
+    "ko_kr": "상품명"
+  },
+  {
+    "zh_cn": "商品编号",
+    "en_us": "ProductCode",
+    "ja_jp": "商品番号",
+    "ko_kr": "상품 번호"
+  },
+  {
+    "zh_cn": "显示第 {{ctx.start}} 到第 {{ctx.end}} 条记录，总共 {{ctx.total}} 条记录",
+    "en_us": "Displays the {{ctx.start}} to Section {{ctx.end}} records,a total of {{ctx.total}} records",
+    "ja_jp": "第 {{ctx.start}} ページから第 {{ctx.end}} ページまでの記録を示してください。総合 {{ctx.total}} ページ記録",
+    "ko_kr": "{{ctx.start}} 부터 {{ctx.end}} 까지 기록, 총 {{ctx.total}} 개 기록 "
+  }
+]

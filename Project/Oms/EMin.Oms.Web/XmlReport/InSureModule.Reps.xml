@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Reps>
+  <Rep key="InSureModule.InSureModuleFunction" Remark="入库确认" tables="">
+    <ReportSql>
+      <![CDATA[	  
+        select 
+          g.ReceiptId,
+          g.SerialNumbers,
+          g.SkuCode,
+          i.ItemCode,
+          g.State,
+          g.ItemName,
+          g.Quantity,
+          g.CheckQuantity,
+          s.SupplierName,
+          s.Mobile,
+					g.TempLocation as Location,
+          t.Quantity as SJQuantity
+        from goodsreceiptline g
+        join item i on i.ItemId = g.ItemId
+        join supplier s on s.SupplierId = i.SupplierId
+        join stock t on t.SkuCode = g.SkuCode where @Param1
+		  ]]>
+    </ReportSql>
+    <TotalSql>
+      <![CDATA[	
+        select count(0) from goodsreceiptline g
+        join item i on i.ItemId = g.ItemId
+        join supplier s on s.SupplierId = i.SupplierId
+        join stock t on t.SkuCode = g.SkuCode where @Param1
+    ]]>
+    </TotalSql>
+    <Dynamic property="@Param1">
+      <c property="ItemCode" prepend="AND" type="Like">
+        <![CDATA[ i.ItemCode like @ItemCode  ]]>
+      </c>
+      <c property="SupplierId" prepend="AND" type="">
+        <![CDATA[ s.SupplierId=@SupplierId  ]]>
+      </c>
+      <c property="State" prepend="AND" type="">
+        <![CDATA[ g.State=@State  ]]>
+      </c>
+      <c property="WhsCode" prepend="AND" type="">
+        <![CDATA[ g.WmsId=(select WhsId from warehouse where WhsCode=@WhsCode)  ]]>
+      </c>
+    </Dynamic>
+  </Rep>
+</Reps>
