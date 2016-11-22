@@ -57,5 +57,22 @@ namespace Ecore.Redis
 
             redisClient.CloseAsync();
         }
+
+        public long Push(string queueKey, string value)
+        {
+            var redisClient = new Manager().RedisManager;
+            var index = redisClient.GetDatabase(DatabaseName).ListLeftPush(queueKey, value);
+            redisClient.CloseAsync();
+            return index;
+        }
+
+        public string Pop(string queueKey)
+        {
+            var redisClient = new Manager().RedisManager;
+            var val = redisClient.GetDatabase(DatabaseName).ListRightPop(queueKey);
+            redisClient.CloseAsync();
+
+            return val;
+        }
     }
 }

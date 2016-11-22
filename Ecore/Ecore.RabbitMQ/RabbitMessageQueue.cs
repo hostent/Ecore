@@ -92,5 +92,35 @@ namespace Ecore.RabbitMQ
         {
             throw new NotImplementedException();
         }
+
+        public long Push(string queueKey, string value)
+        {
+            IModel channel = Conn.CreateModel();
+
+            channel.QueueDeclare(queueKey, false, false, false, null);
+            byte[] message = Encoding.UTF8.GetBytes(value);
+            channel.BasicPublish(string.Empty, queueKey, null, message);
+
+            channel.Close();
+
+            return 1;
+        }
+
+        public string Pop(string queueKey)
+        {
+            IModel channel = Conn.CreateModel();
+            channel.QueueDeclare(queueKey, false, false, false, null);
+            BasicGetResult result = channel.BasicGet(queueKey, true);
+
+            channel.Close();
+            if (result != null)
+            {
+                string message = Encoding.UTF8.GetString(result.Body);
+
+                return message;
+            }
+
+            return "";
+        }
     }
 }

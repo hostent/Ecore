@@ -19,6 +19,11 @@ namespace Ecore.Frame
 
         T Pop<T>(string queueKey);
 
+
+        long Push(string queueKey, string value);
+
+        string Pop(string queueKey);
+
         #endregion
 
         #region 发布订阅模式
