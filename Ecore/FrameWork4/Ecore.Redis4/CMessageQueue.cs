@@ -57,5 +57,15 @@ namespace Ecore.Redis4
 
             redisClient.CloseAsync();
         }
+
+        public long Push(string queueKey, string value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Pop(string queueKey)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

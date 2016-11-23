@@ -12,7 +12,7 @@ namespace Ecore.MVC.Api
 
         public static Assembly LoadAss(string impDllNameWeb)
         {
-            if (!File.Exists(AppContext.BaseDirectory + @"bin\" + impDllNameWeb + ".dll"))
+            if (!File.Exists(AppContext.BaseDirectory + @"\" + impDllNameWeb + ".dll"))
             {
                 return null;
             }

@@ -37,7 +37,8 @@ namespace Ecore.MVC
                 }
             }
 
-            httpContent.Response.ContentType = "text/html";
+            httpContent.Response.ContentType = "text/html; charset=utf-8";
+ 
             return httpContent.Response.WriteAsync("地址错误", Encoding.UTF8);
 
         }

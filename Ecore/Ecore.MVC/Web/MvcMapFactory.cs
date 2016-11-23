@@ -132,7 +132,7 @@ namespace Ecore.MVC
 
                 Log.Default.Error(ee);
 
-                httpContent.Response.ContentType = "text/html";
+                httpContent.Response.ContentType = "text/html; charset=utf-8";
                 if (Config.IsDebug)
                 {
                     string strResult =

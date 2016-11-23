@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0/",
-    "signature": "9809b4a2005801929f6c51b0ca476dbfc1179253"
+    "signature": "986ebdbdb7a728645f4ebdb60e97097c58cc99fb"
   },
   "compilationOptions": {
     "defines": [
@@ -42,15 +42,6 @@
         },
         "compile": {
           "EMin.Sale.Web.dll": {}
-        }
-      },
-      "Autofac/4.0.0": {
-        "dependencies": {
-          "NETStandard.Library": "1.6.0",
-          "System.ComponentModel": "4.0.1"
-        },
-        "compile": {
-          "lib/netstandard1.1/Autofac.dll": {}
         }
       },
       "Dapper/1.50.2": {
@@ -2969,13 +2960,9 @@
       "Ecore.MVC/1.0.0": {
         "dependencies": {
           "Ecore.Frame": "1.0.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
           "NETStandard.Library": "1.6.0",
-          "Microsoft.AspNetCore.Mvc": "1.0.0",
-          "Autofac": "4.0.0",
-          "Ecore.Mongodb": "1.0.0",
-          "Ecore.MsSql": "1.0.0",
-          "Ecore.Redis": "1.0.0",
-          "Ecore.Weixin": "1.0.0"
+          "Newtonsoft.Json": "9.0.1"
         },
         "compile": {
           "Ecore.MVC.dll": {}
@@ -2994,7 +2981,9 @@
       },
       "Ecore.Weixin/1.0.0": {
         "dependencies": {
-          "NETStandard.Library": "1.6.0"
+          "NETStandard.Library": "1.6.0",
+          "Microsoft.AspNetCore.Mvc": "1.0.0",
+          "Ecore.Frame": "1.0.0"
         },
         "compile": {
           "Ecore.Weixin.dll": {}
@@ -3073,15 +3062,6 @@
         },
         "runtime": {
           "EMin.Sale.Web.dll": {}
-        }
-      },
-      "Autofac/4.0.0": {
-        "dependencies": {
-          "NETStandard.Library": "1.6.0",
-          "System.ComponentModel": "4.0.1"
-        },
-        "runtime": {
-          "lib/netstandard1.1/Autofac.dll": {}
         }
       },
       "Dapper/1.50.2": {
@@ -5883,13 +5863,9 @@
       "Ecore.MVC/1.0.0": {
         "dependencies": {
           "Ecore.Frame": "1.0.0",
+          "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
           "NETStandard.Library": "1.6.0",
-          "Microsoft.AspNetCore.Mvc": "1.0.0",
-          "Autofac": "4.0.0",
-          "Ecore.Mongodb": "1.0.0",
-          "Ecore.MsSql": "1.0.0",
-          "Ecore.Redis": "1.0.0",
-          "Ecore.Weixin": "1.0.0"
+          "Newtonsoft.Json": "9.0.1"
         },
         "runtime": {
           "Ecore.MVC.dll": {}
@@ -5908,7 +5884,9 @@
       },
       "Ecore.Weixin/1.0.0": {
         "dependencies": {
-          "NETStandard.Library": "1.6.0"
+          "NETStandard.Library": "1.6.0",
+          "Microsoft.AspNetCore.Mvc": "1.0.0",
+          "Ecore.Frame": "1.0.0"
         },
         "runtime": {
           "Ecore.Weixin.dll": {}
@@ -5964,11 +5942,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "Autofac/4.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-SCKzdkxEhyP0ahU4j2Fl3SQEO3BzAgGl1WpXe7oNHdDiVKRJ6DRpumfSekABPaBygeWwjDt88PBqe2nRToRrYA=="
     },
     "Dapper/1.50.2": {
       "type": "package",

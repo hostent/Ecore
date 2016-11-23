@@ -18,7 +18,7 @@ namespace Ecore.MVC.Web
 
         public string Render(string templateName, object model, IDictionary<string, object> viewBag)
         {
-            templateName = AppContext.BaseDirectory + @"View\" + templateName + ".cshtml";
+            templateName = AppContext.BaseDirectory + @"\View\" + templateName + ".cshtml";
 
 
             string template = File.ReadAllText(templateName);

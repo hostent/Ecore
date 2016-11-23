@@ -13,14 +13,14 @@ namespace Ecore.MVC.Api
 
         public JsonResult() : base()
         {
-            ContentType = "application/json";
+            ContentType = "application/json; charset=utf-8";
         }
 
         public JsonResult(object jsonObj) : base()
         {
             Obj = jsonObj;
             Data = Newtonsoft.Json.JsonConvert.SerializeObject(Obj);
-            ContentType = "application/json";
+            ContentType = "application/json; charset=utf-8";
 
         }
 
@@ -33,13 +33,13 @@ namespace Ecore.MVC.Api
 
         public StringResult() : base()
         {
-            ContentType = "text/html";
+            ContentType = "text/html; charset=utf-8";
         }
 
         public StringResult(string stringContext) : base()
         {
             Data = stringContext;
-            ContentType = "text/html";
+            ContentType = "text/html; charset=utf-8";
         }
 
     }

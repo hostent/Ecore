@@ -2367,6 +2367,20 @@
         "runtime": {
           "netstandard1.6/Ecore.MsSql.dll": {}
         }
+      },
+      "EMin.Oms.Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "Ecore.Frame": "1.0.0",
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "netstandard1.6/EMin.Oms.Model.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/EMin.Oms.Model.dll": {}
+        }
       }
     }
   },
@@ -7038,10 +7052,16 @@
       "type": "project",
       "path": "../../../Ecore/Ecore.MsSql/project.json",
       "msbuildProject": "../../../Ecore/Ecore.MsSql/Ecore.MsSql.xproj"
+    },
+    "EMin.Oms.Model/1.0.0": {
+      "type": "project",
+      "path": "../EMin.Oms.Model/project.json",
+      "msbuildProject": "../EMin.Oms.Model/EMin.Oms.Model.xproj"
     }
   },
   "projectFileDependencyGroups": {
     "": [
+      "EMin.Oms.Model >= 1.0.0-*",
       "Ecore.Frame >= 1.0.0-*",
       "Ecore.MsSql >= 1.0.0-*",
       "NETStandard.Library >= 1.6.0"

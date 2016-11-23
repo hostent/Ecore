@@ -4,6 +4,7 @@
   "dependencies": {
     "Ecore.Frame": "1.0.0-*",
     "Ecore.MsSql": "1.0.0-*",
+    "EMin.Oms.Model": "1.0.0-*",
     "NETStandard.Library": "1.6.0"
   },
 

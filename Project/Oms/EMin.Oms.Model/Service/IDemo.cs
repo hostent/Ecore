@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EMin.Oms.Logic
+namespace EMin.Oms.Model.Service
 {
-    public class Class1
+    public interface IDemo
     {
-        public Class1()
-        {
-        }
+        string test01(string input);
+        
     }
 }

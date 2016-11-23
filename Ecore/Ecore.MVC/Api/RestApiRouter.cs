@@ -37,8 +37,7 @@ namespace Ecore.MVC.Api
                     resultJson = Newtonsoft.Json.JsonConvert.SerializeObject(result);
                     Log.Default.Error(requestjson, ee);
                 }
-
-                httpContent.Response.ContentType = "application/json";
+                httpContent.Response.ContentType = "application/json; charset=utf-8";
 
                 httpContent.Response.WriteAsync(resultJson, Encoding.UTF8);
             });

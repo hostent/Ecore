@@ -64,7 +64,7 @@ namespace Ecore.WebUtility
             {
                 if (!Cache.ContainsKey(cacheKey))
                 {
-                    string path = AppContext.BaseDirectory + @"Config\" + fileKey + ".json";
+                    string path = AppContext.BaseDirectory + @"\Config\" + fileKey + ".json";
 
                     if (File.Exists(path))
                     {
@@ -98,12 +98,12 @@ namespace Ecore.WebUtility
             {
                 if (!Cache.ContainsKey(cacheKey))
                 {
-                    string path = AppContext.BaseDirectory + @"Config\" + fileKey + ".json";
+                    string path = AppContext.BaseDirectory + @"\Config\" + fileKey + ".json";
                     if (File.Exists(path))
                     {
                         result = File.ReadAllText(path);
                     }
-                    path = AppContext.BaseDirectory + @"Config\" + fileKey + ".xml";
+                    path = AppContext.BaseDirectory + @"\Config\" + fileKey + ".xml";
                     if (File.Exists(path))
                     {
                         result = File.ReadAllText(path);

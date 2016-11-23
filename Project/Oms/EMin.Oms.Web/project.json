@@ -17,7 +17,11 @@
     "Ecore.Aop": "1.0.0-*",
     "Ecore.Razor": "1.0.0-*",
     "Ecore.Proxy": "1.0.0-*",
-    "Ecore.WebUtility": "1.0.0-*"
+    "Ecore.WebUtility": "1.0.0-*",
+    "EMin.Model": "1.0.0-*",
+    "EMin.Logic": "1.0.0-*",
+    "EMin.Oms.Model": "1.0.0-*",
+    "EMin.Oms.Logic": "1.0.0-*"
   },
 
   "tools": {
@@ -49,6 +53,7 @@
       "XmlReport",
       "Config",
       "wwwroot",
+      "View",
       "web.config",
       "Config.json"
     ]

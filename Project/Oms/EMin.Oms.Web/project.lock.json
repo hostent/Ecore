@@ -3616,6 +3616,66 @@
         "runtime": {
           "netstandard1.6/Ecore.WebUtility.dll": {}
         }
+      },
+      "EMin.Logic/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "EMin.Model": "1.0.0",
+          "Ecore.Frame": "1.0.0",
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "netstandard1.6/EMin.Logic.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/EMin.Logic.dll": {}
+        }
+      },
+      "EMin.Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "Ecore.Frame": "1.0.0",
+          "NETStandard.Library": "1.6.0",
+          "System.Xml.XDocument": "4.0.11"
+        },
+        "compile": {
+          "netstandard1.6/EMin.Model.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/EMin.Model.dll": {}
+        }
+      },
+      "EMin.Oms.Logic/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "EMin.Oms.Model": "1.0.0",
+          "Ecore.Frame": "1.0.0",
+          "Ecore.MsSql": "1.0.0",
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "netstandard1.6/EMin.Oms.Logic.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/EMin.Oms.Logic.dll": {}
+        }
+      },
+      "EMin.Oms.Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "Ecore.Frame": "1.0.0",
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "netstandard1.6/EMin.Oms.Model.dll": {}
+        },
+        "runtime": {
+          "netstandard1.6/EMin.Oms.Model.dll": {}
+        }
       }
     }
   },
@@ -9560,10 +9620,34 @@
       "type": "project",
       "path": "../../../Ecore/Ecore.WebUtility/project.json",
       "msbuildProject": "../../../Ecore/Ecore.WebUtility/Ecore.WebUtility.xproj"
+    },
+    "EMin.Logic/1.0.0": {
+      "type": "project",
+      "path": "../../../Share/EMin.Logic/project.json",
+      "msbuildProject": "../../../Share/EMin.Logic/EMin.Logic.xproj"
+    },
+    "EMin.Model/1.0.0": {
+      "type": "project",
+      "path": "../../../Share/EMin.Model/project.json",
+      "msbuildProject": "../../../Share/EMin.Model/EMin.Model.xproj"
+    },
+    "EMin.Oms.Logic/1.0.0": {
+      "type": "project",
+      "path": "../EMin.Oms.Logic/project.json",
+      "msbuildProject": "../EMin.Oms.Logic/EMin.Oms.Logic.xproj"
+    },
+    "EMin.Oms.Model/1.0.0": {
+      "type": "project",
+      "path": "../EMin.Oms.Model/project.json",
+      "msbuildProject": "../EMin.Oms.Model/EMin.Oms.Model.xproj"
     }
   },
   "projectFileDependencyGroups": {
     "": [
+      "EMin.Logic >= 1.0.0-*",
+      "EMin.Model >= 1.0.0-*",
+      "EMin.Oms.Logic >= 1.0.0-*",
+      "EMin.Oms.Model >= 1.0.0-*",
       "Ecore.Aop >= 1.0.0-*",
       "Ecore.Frame >= 1.0.0-*",
       "Ecore.MVC >= 1.0.0-*",

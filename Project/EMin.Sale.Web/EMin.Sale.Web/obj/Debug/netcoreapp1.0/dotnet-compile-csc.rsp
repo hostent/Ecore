@@ -9,7 +9,6 @@
 -nologo
 "D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Web\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
 -out:"D:\code\MyProject\Ecore\Project\EMin.Sale.Web\EMin.Sale.Web\bin\Debug\netcoreapp1.0\EMin.Sale.Web.dll"
--r:"C:\Users\anyone\.nuget\packages\Autofac\4.0.0\lib\netstandard1.1\Autofac.dll"
 -r:"C:\Users\anyone\.nuget\packages\Dapper\1.50.2\lib\netstandard1.3\Dapper.dll"
 -r:"C:\Users\anyone\.nuget\packages\Google.Protobuf\3.0.0\lib\netstandard1.0\Google.Protobuf.dll"
 -r:"C:\Users\anyone\.nuget\packages\Microsoft.AspNetCore.Antiforgery\1.0.0\lib\netstandard1.3\Microsoft.AspNetCore.Antiforgery.dll"

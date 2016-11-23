@@ -33,7 +33,7 @@ namespace Ecore.MVC4.Api
 
             var dt = MyFormat.UnixTimestampToDateTime(Timestamp);
 
-            if (dt > DateTime.Now || dt < DateTime.Now.AddMinutes(-2))
+            if (dt < DateTime.Now.AddMinutes(-2))
             {
                 return Result.Failure("时间戳错误，无法调用接口:" + dt.ToString());
             }
