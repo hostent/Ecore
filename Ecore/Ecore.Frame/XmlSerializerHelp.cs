@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Ecore.Frame
@@ -13,6 +14,9 @@ namespace Ecore.Frame
     public interface IXmlSerializer
     {
         T StringToXmlObject<T>(string xml);
-        string XmlObjectToString(object sourceObj, string xmlRootName = "");
+        string XmlObjectToString(object sourceObj, Encoding encoding = null, string namespacesKey = null, string namespacesValue = null);
+
+        IXmlSerializer Get();
+
     }
 }
