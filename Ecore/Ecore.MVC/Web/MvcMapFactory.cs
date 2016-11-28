@@ -56,6 +56,31 @@ namespace Ecore.MVC
                 }
             }
         }
+
+
+        public static async Task Hander(HttpContext context)
+        {
+            if (context.WebSockets.IsWebSocketRequest)
+            {
+                await Router.WebSocketHandle.Exec(context);
+            }
+            else
+            {
+                switch (Router.AssHttpRequest(context.Request.Path.Value))
+                {
+                    case RequestWay.Heartbeat:
+                        await context.Response.WriteAsync("Hello World!");
+                        break;
+                    case RequestWay.RestApi:
+                        await Router.RestApiHandle.Exec(context);
+                        break;
+                    case RequestWay.MVC:
+                        await Router.MvcHandle.Exec(context);
+                        break;
+
+                }
+            }
+        }
     }
 
     public class MappingStore : MappingAttribute

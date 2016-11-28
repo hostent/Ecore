@@ -7,14 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System.Net.WebSockets;
-using System.Threading;
-using System.Text;
-using Ecore.Frame;
-using Ecore.MVC;
-using Ecore.Aop;
 
-namespace EMin.Oms.Web
+namespace Ecore.Job.Web
 {
     public class Startup
     {
@@ -27,24 +21,16 @@ namespace EMin.Oms.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseWebSockets();
-
             loggerFactory.AddConsole();
 
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            Factory.Init();
-
-            MvcMapFactory.AddMvc("EMin.Oms.Web.Controller", "EMin.Oms.Web");
-
-
 
             app.Run(async (context) =>
             {
-                await MvcMapFactory.Hander(context);
-
+                await context.Response.WriteAsync("Hello World!");
             });
         }
     }
