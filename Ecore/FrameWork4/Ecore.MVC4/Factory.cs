@@ -76,6 +76,8 @@ namespace Ecore.MVC4
 
             Ecore.Frame.ViewEngine.RazorEngine = new MyRazorEngine();
 
+            XmlSerializerHelp.Default = new Tools.XmlHelp();
+
         }
     }
 

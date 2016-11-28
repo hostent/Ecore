@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Ecore.Frame
 {
-    public class XmlSerializer
+    public class XmlSerializerHelp
     {
         public static IXmlSerializer Default { get; set; }
     }
