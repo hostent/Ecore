@@ -63,7 +63,7 @@ namespace Ecore.MVC4
             Log.Default = new Tools.CLog4net();
             //LoginContext.Default = new CLoginContext();
             MessageQueue.Default = new Ecore.Redis4.CMessageQueue();
-            //MyHttpClient.Default = new Ecore.MVC.Tools.HttpClientHelp();
+            MyHttpClient.Default = new Ecore.MVC4.Tools.HttpClientHelp();
             UContainer.Factory = new Factory();
             //Ecore.Frame.Weixin.Account = new Ecore.MVC.Weixin.Manager();
             Config.Default = new Tools.CConifg();

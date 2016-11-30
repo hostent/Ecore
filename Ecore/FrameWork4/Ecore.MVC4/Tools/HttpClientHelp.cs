@@ -1,7 +1,10 @@
 ﻿using Ecore.Frame;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Ecore.MVC4.Tools
@@ -89,4 +92,46 @@ namespace Ecore.MVC4.Tools
     //        return msg.Result.Content.ReadAsStringAsync().Result;
     //    }
     //}
+
+    public class HttpClientHelp : IHttpClient
+    {
+        public string Get(string url, IDictionary<string, string> par, IDictionary<string, string> head = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string Post(string url, string body, IDictionary<string, string> head = null)
+        {
+            string ret = string.Empty;
+            try
+            {
+                byte[] byteArray = Encoding.UTF8.GetBytes(body); //转化
+                HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(new Uri(url));
+                webReq.Method = "POST";
+                webReq.ContentType = "application/x-www-form-urlencoded";
+
+                webReq.ContentLength = byteArray.Length;
+                Stream newStream = webReq.GetRequestStream();
+                newStream.Write(byteArray, 0, byteArray.Length);//写入参数
+                newStream.Close();
+                HttpWebResponse response = (HttpWebResponse)webReq.GetResponse();
+                StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.Default);
+                ret = sr.ReadToEnd();
+                sr.Close();
+                response.Close();
+                newStream.Close();
+            }
+            catch (Exception ex)
+            {
+                Ecore.Frame.Log.Default.Error(ex);
+                throw ex;
+            }
+            return ret;
+        }
+
+        public string Post(string url, IDictionary<string, string> body, IDictionary<string, string> head = null)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
