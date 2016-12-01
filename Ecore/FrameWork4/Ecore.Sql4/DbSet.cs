@@ -44,7 +44,7 @@ namespace Ecore.Sql4
             {
                 return minfos.Where(q =>
                 {
-                    var keyAttr = (KeyAttribute)t.GetCustomAttributes(typeof(KeyAttribute), false).FirstOrDefault();
+                    var keyAttr = (KeyAttribute)q.GetCustomAttributes(typeof(KeyAttribute), false).FirstOrDefault();
                     //q.GetCustomAttribute<KeyAttribute>();
                     if (keyAttr != null)
                     {
@@ -200,14 +200,14 @@ namespace Ecore.Sql4
         public IList<T> QueryXml(string reportName, IDictionary<string, object> par)
         {
             int totalCount = 0;
-            return ComplexSqlHelp.GetReportData<T>(Conn, reportName, 0, 0, "", par, false, out totalCount);
+            return ComplexSqlHelp.GetReportData<T>(Conn, SqlType, reportName, 0, 0, "", par, false, out totalCount);
         }
 
         public PageData<T> QueryXml(string reportName, PagePars param)
         {
             PageData<T> result = new PageData<T>();
             int totalCount = 0;
-            result.rows = ComplexSqlHelp.GetReportData<T>(Conn, reportName, param.PageSize, param.PageIndex, param.Order, param.Where, true, out totalCount);
+            result.rows = ComplexSqlHelp.GetReportData<T>(Conn, SqlType, reportName, param.PageSize, param.PageIndex, param.Order, param.Where, true, out totalCount);
             result.total = totalCount;
             result.current = param.PageIndex;
             result.rowCount = param.PageSize;

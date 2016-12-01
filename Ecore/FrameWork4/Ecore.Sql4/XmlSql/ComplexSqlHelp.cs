@@ -14,7 +14,7 @@ namespace Ecore.Sql4.XmlSql
     {
 
 
-        public static List<T> GetReportData<T>(IDbConnection conn, string reportName, int pageSize, int pageIndex, string order, IDictionary<string, object> where, bool isPage, out int totalCount)
+        public static List<T> GetReportData<T>(IDbConnection conn, DbType sqlType, string reportName, int pageSize, int pageIndex, string order, IDictionary<string, object> where, bool isPage, out int totalCount)
         {
 
             try
@@ -61,7 +61,14 @@ namespace Ecore.Sql4.XmlSql
                     }
 
                     int start = (pageIndex - 1) * pageSize;
-                    reportsql = reportsql + @"  order by {0} limit {1},{2}";
+                    if(sqlType== DbType.Sql)
+                    {
+                        reportsql = reportsql + @"  order by {0} OFFSET {1} ROWS FETCH NEXT {2} ROWS ONLY";
+                    }
+                    else
+                    {
+                        reportsql = reportsql + @"  order by {0} limit {1},{2}";
+                    }                    
 
                     reportsql = string.Format(reportsql, order, start, pageSize);
                 }
@@ -135,7 +142,7 @@ namespace Ecore.Sql4.XmlSql
 
         }
 
-        public static int ExecReport(IDbConnection conn, string reportName, IDictionary<string, object> where)
+        public static int ExecReport(IDbConnection conn, DbType sqlType, string reportName, IDictionary<string, object> where)
         {
             XElement root = XmlConfigManager.GetRepsConfig();
             XElement rep = root.Elements("Rep").Where(q => q.Attribute("key").Value == reportName).FirstOrDefault();
