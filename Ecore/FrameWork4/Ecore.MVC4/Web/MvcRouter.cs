@@ -17,6 +17,17 @@ namespace Ecore.MVC4.Web
 
             string rawUrl = httpContent.Request.Path.Trim('/').ToLower();
 
+            if (string.IsNullOrEmpty(rawUrl))
+            {//未指明具体地址
+                var defaultHomePage = Config.Default.GetAppSetting("DefaultHomePage") ;
+                if (string.IsNullOrEmpty(defaultHomePage))
+                {
+                    defaultHomePage = "index.html";
+                }
+
+                rawUrl = defaultHomePage;
+            }
+
             var list = MvcMapFactory.Store.OrderBy(q => q.Index).ToList();
             //container
             foreach (var item in list)
