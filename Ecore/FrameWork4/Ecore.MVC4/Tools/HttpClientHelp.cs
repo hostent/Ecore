@@ -105,14 +105,20 @@ namespace Ecore.MVC4.Tools
             string ret = string.Empty;
             try
             {
-                byte[] byteArray = Encoding.UTF8.GetBytes(body); //转化
+                
                 HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(new Uri(url));
                 webReq.Method = "POST";
                 webReq.ContentType = "application/x-www-form-urlencoded";
 
-                webReq.ContentLength = byteArray.Length;
+                byte[] bytes = Encoding.UTF8.GetBytes(body); //转化
+                var text = Convert.ToBase64String(bytes);
+                text = Frame.MyEncoding.Default.UrlEncode(text);
+                text = "data=" + text;
+                bytes = Encoding.UTF8.GetBytes(text);
+
+                webReq.ContentLength = bytes.Length;
                 Stream newStream = webReq.GetRequestStream();
-                newStream.Write(byteArray, 0, byteArray.Length);//写入参数
+                newStream.Write(bytes, 0, bytes.Length);//写入参数
                 newStream.Close();
                 HttpWebResponse response = (HttpWebResponse)webReq.GetResponse();
                 StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.Default);
