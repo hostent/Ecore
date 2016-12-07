@@ -39,7 +39,7 @@ namespace Ecore.MVC4.Api
         public string Error { get; set; }
 
 
-        private static Dictionary<string, object> objCache = new Dictionary<string, object>();
+        private static Dictionary<string, Type> objCache = new Dictionary<string, Type>();
 
         public static Response GetResponse(string json, RpcAuth auth = null)
         {
@@ -49,65 +49,90 @@ namespace Ecore.MVC4.Api
             {
                 throw new Exception("参数错误");
             }
-
+            if (!req.Method.StartsWith("EMin.Api.Model.Service."))
+            {
+                req.Method = "EMin.Api.Model.Service." + req.Method;
+            }
             Response result = new Response();
-            result.Id = req.Id;
-
-            if (auth != null)
+            try
             {
-                Ecore.Frame.Result authResult = auth.Check(json);
-                if (authResult.Tag != 1)
+                result.Id = req.Id;
+
+                if (auth != null)
                 {
-                    result.Error = authResult.Message;
-                    return result;
+                    Ecore.Frame.Result authResult = auth.Check(json);
+                    if (authResult.Tag != 1)
+                    {
+                        result.Error = authResult.Message;
+                        return result;
+                    }
                 }
-            }
 
-            List<object> objList = new List<object>();
+                List<object> objList = new List<object>();
 
-            object obj = null;
-            if (objCache.ContainsKey(req.Method))
-            {
-                obj = objCache[req.Method];
-            }
-            else
-            {
-                obj = AssemblyHelp.GetImpObj(req.Method);
-                objCache.Add(req.Method, obj);
-            }
-
-            MethodInfo methodInfo = obj.GetType().GetMethod(AssemblyHelp.GetMethodName(req.Method));
-
-            if (methodInfo == null)
-            {
-                result.Error = "参数错误，找不到方法";
-                return result;
-                 
-            }
-
-            ParameterInfo[] tArr = methodInfo.GetParameters();
-
-            for (int i = 0; i < tArr.Length; i++)
-            {
-                object par = null;
-
-                if (req.Params[i] is Newtonsoft.Json.Linq.JToken)
+                Type objType = null;
+                if (objCache.ContainsKey(req.Method))
                 {
-                    par = ((Newtonsoft.Json.Linq.JToken)req.Params[i]).ToObject(tArr[i].ParameterType);
+                    objType = objCache[req.Method];
                 }
                 else
                 {
-                    par = req.Params[i];
+                    objType = AssemblyHelp.GetImpObjType(req.Method);
+                    objCache.Add(req.Method, objType);
                 }
 
-                objList.Add(par);
-            }
+                var instance = objType.Assembly.CreateInstance(objType.FullName);
 
-           
+                if (objType.IsSubclassOf(typeof(BaseApiController)))
+                {
+                    ((BaseApiController)instance).OnControllerCreate(req);
+                }
 
-            try
-            {
-                result.Result = methodInfo.Invoke(obj, objList.ToArray());
+                MethodInfo methodInfo = objType.GetMethod(AssemblyHelp.GetMethodName(req.Method));
+
+                if (methodInfo == null)
+                {
+                    result.Error = "参数错误，找不到方法";
+                    return result;
+
+                }
+
+                ParameterInfo[] tArr = methodInfo.GetParameters();
+
+                for (int i = 0; i < tArr.Length; i++)
+                {
+                    object par = null;
+
+                    if (req.Params[i] is Newtonsoft.Json.Linq.JToken)
+                    {
+                        par = ((Newtonsoft.Json.Linq.JToken)req.Params[i]).ToObject(tArr[i].ParameterType);
+                    }
+                    else
+                    {
+                        par = req.Params[i];
+                    }
+
+                    objList.Add(par);
+                }
+
+                Response responseBefour = null;
+
+                if (objType.IsSubclassOf(typeof(BaseApiController)))
+                {
+                    responseBefour = ((BaseApiController)instance).OnActionExecting(req, objList);
+                }
+                if (responseBefour != null)
+                {
+                    result = responseBefour;
+                }
+                else
+                {
+                    result.Result = methodInfo.Invoke(instance, objList.ToArray());
+                }
+                if (objType.IsSubclassOf(typeof(BaseApiController)))
+                {
+                    ((BaseApiController)instance).OnResultExecting(req, result);
+                }
             }
             catch (Exception ee)
             {

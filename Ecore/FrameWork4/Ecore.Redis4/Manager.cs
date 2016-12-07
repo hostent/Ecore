@@ -10,7 +10,9 @@ namespace Ecore.Redis4
     public class Manager
     {
 
-       static  ConnectionMultiplexer _redis = null;
+        static ConnectionMultiplexer _redis = null;
+
+        static object lockObj = new object();
 
         public ConnectionMultiplexer RedisManager
         {
@@ -18,8 +20,16 @@ namespace Ecore.Redis4
             {
                 if (_redis == null)
                 {
-                    _redis = GetManager();
+                    lock (lockObj)
+                    {
+                        if (_redis == null)
+                        {
+                            _redis = GetManager();
+                        }
+                    }
+                   
                 }
+                    
 
                 return _redis;
             }
@@ -61,7 +71,7 @@ namespace Ecore.Redis4
 
             }
 
-            
+
 
             return ConnectionMultiplexer.Connect(connectionString);
         }

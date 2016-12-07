@@ -21,7 +21,6 @@ namespace Ecore.MVC4.Api
             try
             {
 
-
                 StreamReader streamReader = new StreamReader(httpContent.Request.InputStream, Encoding.UTF8);
                 requestjson = streamReader.ReadToEnd();
 

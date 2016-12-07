@@ -80,6 +80,51 @@ namespace Ecore.MVC4.Api
 
         }
 
+        public static Type GetImpObjType(string apiKey)
+        {
+            var strList = apiKey.Split('.').ToList();
+
+            string methodName = strList.Last();
+
+            strList.RemoveAt(strList.Count - 1);
+
+            string interfaceName = strList.Last();
+
+            strList.RemoveAt(strList.Count - 1);
+
+            string impDllNameWeb = strList[0] + "." + strList[1] + ".Web";
+            string impInterfaceFullNameWeb = string.Join(".", strList).Replace(".Model.Service", ".Web.Controller") + ("." + interfaceName).Replace(".I", ".C");
+
+            Assembly cAss = AssemblyHelp.LoadAss(impDllNameWeb);
+
+            object resultObj = null;
+            if (cAss != null && cAss.GetTypes().Any(q => q.FullName == impInterfaceFullNameWeb))
+            {
+                return cAss.GetType(impInterfaceFullNameWeb);
+                //resultObj = cAss.CreateInstance(impInterfaceFullNameWeb);
+                //return resultObj;
+            }
+            else
+            {
+                impDllNameWeb = strList[0] + "." + strList[1] + ".Logic";
+                impInterfaceFullNameWeb = string.Join(".", strList).Replace(".Model.Service", ".Logic") + ("." + interfaceName).Replace(".I", ".C");
+
+                Assembly cAssLogic = AssemblyHelp.LoadAss(impDllNameWeb);
+                if (cAssLogic != null && cAssLogic.GetTypes().Any(q => q.FullName == impInterfaceFullNameWeb))
+                {
+                    return cAss.GetType(impInterfaceFullNameWeb);
+                    //resultObj = cAssLogic.CreateInstance(impInterfaceFullNameWeb);
+                    //return resultObj;
+                }
+                else
+                {
+                    throw new Exception("Interface imp is not exist");
+                }
+            }
+
+
+        }
+
         public static string GetMethodName(string apiKey)
         {
             return apiKey.Split('.').Last();
