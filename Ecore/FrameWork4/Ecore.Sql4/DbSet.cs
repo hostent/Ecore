@@ -16,68 +16,6 @@ namespace Ecore.Sql4
         {
         }
 
-
-        string GetKey()
-        {
-            var t = typeof(T);
-            PropertyInfo[] minfos = t.GetProperties();
-
-            string key = minfos.Where(q =>
-            {
-                var keyAttr = (KeyAttribute)q.GetCustomAttributes(typeof(KeyAttribute), false).FirstOrDefault();// q.GetCustomAttribute<KeyAttribute>();
-                if (keyAttr != null)
-                {
-                    return true;
-                }
-                return false;
-            }).Select(q => string.Format("{0}", q.Name)).FirstOrDefault();
-
-            return key;
-        }
-
-        private string[] GetColumns(bool isIncludeID)
-        {
-            var t = typeof(T);
-            PropertyInfo[] minfos = t.GetProperties();
-
-            if (isIncludeID == false)
-            {
-                return minfos.Where(q =>
-                {
-                    var keyAttr = (KeyAttribute)q.GetCustomAttributes(typeof(KeyAttribute), false).FirstOrDefault();
-                    //q.GetCustomAttribute<KeyAttribute>();
-                    if (keyAttr != null)
-                    {
-                        return false;
-                    }
-                    return true;
-                }).Select(q => q.Name).ToArray();
-            }
-            else
-            {
-                return minfos.Select(q => q.Name).ToArray();
-            }
-
-        }
-
-        private string GetCacheTag()
-        {
-            return "table:" + typeof(T).FullName;
-        }
-
-        private bool CanCache()
-        {
-            var t = typeof(T);
-            CacheAttribute ca = (CacheAttribute)t.GetCustomAttributes(typeof(CacheAttribute), false).FirstOrDefault();
-            if (ca == null)
-            {
-                return false;
-            }
-            return true;
-        }
-
-
-
         object ICommand<T>.Add(T t)
         {
             string sql = "insert into {table} ( {columns} ) values ( {values} );"; // select @@IDENTITY;
@@ -131,8 +69,6 @@ namespace Ecore.Sql4
 
 
         }
-
-
 
         int ICommand<T>.Delete(object id)
         {

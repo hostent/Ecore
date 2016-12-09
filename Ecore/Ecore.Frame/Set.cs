@@ -24,6 +24,7 @@ namespace Ecore.Frame
 
         IQuery<T> Distinct();
 
+        
 
 
         T First();
@@ -42,6 +43,9 @@ namespace Ecore.Frame
 
         bool Exist();
 
+        T Get(object id);
+
+        T GetUnique(string uniqueCode);
 
         // Group , avi, sum  统计类,用sql
 
@@ -74,6 +78,10 @@ namespace Ecore.Frame
         string Id { get; set; }
     }
 
+    [AttributeUsage(AttributeTargets.Property)]
+    public class UniqueAttribute : Attribute
+    {
+    }
 
     [AttributeUsage(AttributeTargets.Property)]
     public class KeyAttribute : Attribute

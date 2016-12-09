@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Ecore.Sql4
 {
-    public class DbQuery<T> : IQuery<T> where T : class, new()
+    public class DbQuery<T> : Entity<T>, IQuery<T> where T : class, new()
     {
 
         protected IDbConnection Conn = null;
@@ -45,22 +45,7 @@ namespace Ecore.Sql4
         private DynamicParameters args = new DynamicParameters();
 
 
-
-        public IQuery<T> OrderBy(Expression<Func<T, object>> exp)
-        {
-            orderExp = exp;
-            order = "asc";
-
-            return this;
-        }
-
-        public IQuery<T> OrderByDesc(Expression<Func<T, object>> exp)
-        {
-            order = "desc";
-            orderExp = exp;
-
-            return this;
-        }
+        #region Build
 
         private void BuildColumns(string cols = null)
         {
@@ -158,7 +143,7 @@ namespace Ecore.Sql4
             {
                 trackSql = trackSql.Replace("{order}", string.Format(" order by `{0}` {1} ", conditionBuilder.Condition, order));
             }
-               
+
 
         }
 
@@ -188,31 +173,24 @@ namespace Ecore.Sql4
 
         }
 
-        private string GetCacheKey(string method)
+        #endregion
+
+        #region IQuery
+
+        public IQuery<T> OrderBy(Expression<Func<T, object>> exp)
         {
-            string keyFormat = "Table.{table}:{sql.par.method}";
+            orderExp = exp;
+            order = "asc";
 
-            keyFormat = keyFormat.Replace("{table}", typeof(T).Name);
-
-            string str = trackSql;
-            foreach (var item in args.ParameterNames)
-            {
-                str += item;
-                str += args.Get<object>(item).ToString();
-            }
-            str += method;
-
-            keyFormat = keyFormat.Replace("{where.order.orderWay.limitForm.limitLength.method}", Frame.Security.MD5Helper.Encrypt_MD5(str));
-
-            return keyFormat;
-
-
+            return this;
         }
 
-
-        private string GetCacheTag()
+        public IQuery<T> OrderByDesc(Expression<Func<T, object>> exp)
         {
-            return "table:" + typeof(T).FullName;
+            order = "desc";
+            orderExp = exp;
+
+            return this;
         }
 
         public IQuery<T> Where(Expression<Func<T, bool>> exp)
@@ -229,7 +207,6 @@ namespace Ecore.Sql4
 
             return this;
         }
-
 
         public T First()
         {
@@ -302,64 +279,6 @@ namespace Ecore.Sql4
             var exist = Dapper.SqlMapper.ExecuteScalar<int>(Conn, trackSql, args, BaseModule.GetTran());
 
             return exist > 0;
-        }
-
-        internal List<T> ToAll()
-        {
-            BuildColumns("*");
-            BuildWhere("");
-            BuildOrder("");
-            BuildLimit("");
-
-            var list = Dapper.SqlMapper.Query<T>(Conn, trackSql, args, BaseModule.GetTran()).ToList();
-
-            return list;
-        }
-
-        internal IEnumerable<T> ToQueryable()
-        {
-            List<T> data = Cache.Default.Get<List<T>>(GetCacheTag());
-            if (data == null)
-            {
-                data = this.ToAll();
-                Cache.Default.Add(GetCacheTag(), data, DateTime.Now.AddMinutes(20));
-            }
-
-            var query = data.Where(whereExp.Compile());
-
-            if (whereExp != null)
-            {
-                query = query.Where(whereExp.Compile());
-            }
-
-            if (order == "asc")
-            {
-                query.OrderBy(orderExp.Compile());
-            }
-            else if (order == "desc")
-            {
-                query.OrderByDescending(orderExp.Compile());
-            }
-
-            if (limitLength != null)
-            {
-                query.Skip(limitForm ?? 0).Take(limitLength.Value);
-            }
-
-            return query;
-
-        }
-
-        private bool CanCache()
-        {
-            var t = typeof(T);
-            CacheAttribute ca = (CacheAttribute)t.GetCustomAttributes(typeof(CacheAttribute), false).FirstOrDefault();
-            //t.DeclaringType.GetTypeInfo().GetCustomAttribute<CacheAttribute>();
-            if (ca == null)
-            {
-                return false;
-            }
-            return true;
         }
 
         public IQuery<T> Distinct()
@@ -465,6 +384,108 @@ namespace Ecore.Sql4
 
             return list;
         }
+
+        public T Get(object id)
+        {
+            if (CanCache())
+            {
+                return this.ToQueryable().FirstOrDefault();
+            }
+
+            string key = base.GetKey();
+
+            string whereStr = string.Format(" {0}={1} ", key, id.ToString());
+
+            limitForm = 0;
+            limitLength = 1;
+
+            BuildColumns();
+            BuildWhere(whereStr);
+            BuildOrder();
+            BuildLimit();
+
+            var obj = Dapper.SqlMapper.QueryFirstOrDefault<T>(Conn, trackSql, args, BaseModule.GetTran());
+
+            return obj;
+        }
+
+        public T GetUnique(string uniqueCode)
+        {
+            if (CanCache())
+            {
+                return this.ToQueryable().FirstOrDefault();
+            }
+
+            string uniqueKey = base.GetUniqueKey();
+            if(string.IsNullOrEmpty(uniqueKey))
+            {
+                return default(T);
+            }
+
+            string whereStr = string.Format(" {0}={1} ", uniqueKey, uniqueCode);
+
+            limitForm = 0;
+            limitLength = 1;
+
+            BuildColumns();
+            BuildWhere(whereStr);
+            BuildOrder();
+            BuildLimit();
+
+            var obj = Dapper.SqlMapper.QueryFirstOrDefault<T>(Conn, trackSql, args, BaseModule.GetTran());
+
+            return obj;
+        }
+
+
+        #endregion
+
+        internal List<T> ToAll()
+        {
+            BuildColumns("*");
+            BuildWhere("");
+            BuildOrder("");
+            BuildLimit("");
+
+            var list = Dapper.SqlMapper.Query<T>(Conn, trackSql, args, BaseModule.GetTran()).ToList();
+
+            return list;
+        }
+
+        internal IEnumerable<T> ToQueryable()
+        {
+            List<T> data = Cache.Default.Get<List<T>>(GetCacheTag());
+            if (data == null)
+            {
+                data = this.ToAll();
+                Cache.Default.Add(GetCacheTag(), data, DateTime.Now.AddMinutes(20));
+            }
+
+            var query = data.Where(whereExp.Compile());
+
+            if (whereExp != null)
+            {
+                query = query.Where(whereExp.Compile());
+            }
+
+            if (order == "asc")
+            {
+                query.OrderBy(orderExp.Compile());
+            }
+            else if (order == "desc")
+            {
+                query.OrderByDescending(orderExp.Compile());
+            }
+
+            if (limitLength != null)
+            {
+                query.Skip(limitForm ?? 0).Take(limitLength.Value);
+            }
+
+            return query;
+
+        }
+
 
 
     }
