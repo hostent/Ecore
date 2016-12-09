@@ -37,7 +37,7 @@ namespace Ecore.MVC4.Api
 
                 resultJson = Newtonsoft.Json.JsonConvert.SerializeObject(result);
 
-                Log.Default.Msg("请求：\r\n" + requestjson + "\r\n响应：" + resultJson);
+                Log.Default.Msg("请求：" + httpContent.Request.Url.ToString() + "\r\n" + requestjson + "\r\n响应：" + resultJson);
             }
             catch (Exception ee)
             {
