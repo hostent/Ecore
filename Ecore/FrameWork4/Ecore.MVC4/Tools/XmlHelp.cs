@@ -28,16 +28,24 @@ namespace Ecore.MVC4.Tools
                     XmlWriterSettings settings = new XmlWriterSettings();
                     settings.Encoding = encoding;
 
-                    //OmitXmlDeclaration表示不生成声明头，默认是false，OmitXmlDeclaration为true，会去掉<?xml version="1.0" encoding="UTF-8"?>
-                    //settings.OmitXmlDeclaration = true;
-
-                    XmlWriter writer = XmlWriter.Create(stream, settings);
-
                     //强制指定命名空间，覆盖默认的命名空间，可以添加多个，如果要在xml节点上添加指定的前缀，
                     //可以在跟节点的类上面添加[XmlRoot(Namespace = "http://www.w3.org/2001/XMLSchema-instance", IsNullable = false)]，Namespace指定哪个值，xml节点添加的前缀就是哪个命名空间(这里会添加ceb)
                     XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
-                    namespaces.Add(namespacesKey, namespacesValue);
-                    namespaces.Add("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+                    if (!string.IsNullOrEmpty(namespacesKey))
+                    {
+                        namespaces.Add(namespacesKey, namespacesValue);
+                        namespaces.Add("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+                    }
+                    else
+                    {
+                        //OmitXmlDeclaration表示不生成声明头，默认是false，OmitXmlDeclaration为true，会去掉<?xml version="1.0" encoding="UTF-8"?>
+                        //settings.OmitXmlDeclaration = true;
+                        settings.OmitXmlDeclaration = true;
+
+                        namespaces.Add(string.Empty, string.Empty);
+                    }
+
+                    XmlWriter writer = XmlWriter.Create(stream, settings);
 
                     XmlSerializer serializer = new XmlSerializer(sourceObj.GetType());
                     serializer.Serialize(writer, sourceObj, namespaces);

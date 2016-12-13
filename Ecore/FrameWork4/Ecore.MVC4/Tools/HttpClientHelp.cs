@@ -105,7 +105,7 @@ namespace Ecore.MVC4.Tools
             string ret = string.Empty;
             try
             {
-                
+
                 HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(new Uri(url));
                 webReq.Method = "POST";
                 webReq.ContentType = "application/x-www-form-urlencoded";
@@ -137,7 +137,49 @@ namespace Ecore.MVC4.Tools
 
         public string Post(string url, IDictionary<string, string> body, IDictionary<string, string> head = null)
         {
-            throw new NotImplementedException();
+            string ret = string.Empty;
+            try
+            {
+                var parStr = "";
+
+                foreach (var item in body)
+                {
+                    parStr = parStr + "&" + item.Key + "=" + item.Value;
+                }
+                parStr = parStr.Trim('&');
+
+
+                HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(new Uri(url));
+                webReq.Method = "POST";
+                webReq.ContentType = "application/x-www-form-urlencoded";
+
+                if (head != null)
+                {//不为null
+                    foreach (var item in head)
+                    {
+                        webReq.Headers.Add(item.Key, item.Value);
+                    }
+                }
+
+                byte[] bytes = Encoding.UTF8.GetBytes(parStr); //转化
+
+                webReq.ContentLength = bytes.Length;
+                Stream newStream = webReq.GetRequestStream();
+                newStream.Write(bytes, 0, bytes.Length);//写入参数
+                newStream.Close();
+                HttpWebResponse response = (HttpWebResponse)webReq.GetResponse();
+                StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.Default);
+                ret = sr.ReadToEnd();
+                sr.Close();
+                response.Close();
+                newStream.Close();
+            }
+            catch (Exception ex)
+            {
+                Ecore.Frame.Log.Default.Error(ex);
+                throw ex;
+            }
+            return ret;
         }
     }
 }
