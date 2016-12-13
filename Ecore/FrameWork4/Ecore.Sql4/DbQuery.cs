@@ -394,15 +394,15 @@ namespace Ecore.Sql4
 
             string key = base.GetKey();
 
-            string whereStr = string.Format(" {0}={1} ", key, id.ToString());
+            string whereStr = string.Format(" where {0}={1} ", key, id.ToString());
 
             limitForm = 0;
             limitLength = 1;
 
             BuildColumns();
             BuildWhere(whereStr);
-            BuildOrder();
-            BuildLimit();
+            BuildOrder("");
+            BuildLimit("");
 
             var obj = Dapper.SqlMapper.QueryFirstOrDefault<T>(Conn, trackSql, args, BaseModule.GetTran());
 
@@ -422,15 +422,15 @@ namespace Ecore.Sql4
                 return default(T);
             }
 
-            string whereStr = string.Format(" {0}={1} ", uniqueKey, uniqueCode);
+            string whereStr = string.Format(" where {0}={1} ", uniqueKey, uniqueCode);
 
             limitForm = 0;
             limitLength = 1;
 
             BuildColumns();
             BuildWhere(whereStr);
-            BuildOrder();
-            BuildLimit();
+            BuildOrder("");
+            BuildLimit("");
 
             var obj = Dapper.SqlMapper.QueryFirstOrDefault<T>(Conn, trackSql, args, BaseModule.GetTran());
 

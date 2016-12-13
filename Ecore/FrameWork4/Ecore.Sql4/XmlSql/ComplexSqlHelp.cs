@@ -61,14 +61,14 @@ namespace Ecore.Sql4.XmlSql
                     }
 
                     int start = (pageIndex - 1) * pageSize;
-                    //if(sqlType== DbType.Sql)
-                    //{
+                    if (sqlType == DbType.Sql)
+                    {
                         reportsql = reportsql + @"  order by {0} OFFSET {1} ROWS FETCH NEXT {2} ROWS ONLY";
-                    //}
-                    //else
-                    //{
-                    //    reportsql = reportsql + @"  order by {0} limit {1},{2}";
-                    //}                    
+                    }
+                    else
+                    {
+                        reportsql = reportsql + @"  order by {0} limit {1},{2}";
+                    }
 
                     reportsql = string.Format(reportsql, order, start, pageSize);
                 }
