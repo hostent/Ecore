@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -180,6 +182,49 @@ namespace Ecore.MVC4.Tools
                 throw ex;
             }
             return ret;
+        }
+
+        public string Post(string url, string json)
+        {
+            try
+            {
+                HttpWebRequest request = null;
+                HttpWebResponse response = null;
+
+                if (url.ToLower().StartsWith("https://"))
+                {
+                    ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
+                }
+
+                request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "POST";
+                request.ContentType = "application/json;charset=UTF-8";
+                request.KeepAlive = false;
+                request.ProtocolVersion = HttpVersion.Version10;
+                //向请求添加表单数据
+                byte[] postdatabyte = Encoding.UTF8.GetBytes(json);
+                request.ContentLength = postdatabyte.Length;
+                Stream stream = request.GetRequestStream();
+                stream.Write(postdatabyte, 0, postdatabyte.Length); //设置请求主体的内容
+                stream.Close();
+
+                response = (HttpWebResponse)request.GetResponse();
+                Stream responseStream = response.GetResponseStream();
+                StreamReader responseReader = new StreamReader(responseStream);
+                return responseReader.ReadToEnd();
+            }
+            catch (Exception e)
+            {
+                Ecore.Frame.Log.Default.Error(e);         
+                return "";
+            }
+        }
+
+
+        public static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
+        {
+            //直接确认，否则打不开    
+            return true;
         }
     }
 }

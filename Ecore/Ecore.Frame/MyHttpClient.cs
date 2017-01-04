@@ -22,6 +22,7 @@ namespace Ecore.Frame
 
         string Post(string url, string body, IDictionary<string, string> head = null);
 
+        string Post(string url, string json);
     }
 
  
