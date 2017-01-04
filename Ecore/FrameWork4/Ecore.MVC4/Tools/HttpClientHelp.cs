@@ -184,7 +184,7 @@ namespace Ecore.MVC4.Tools
             return ret;
         }
 
-        public string Post(string url, string json)
+        public string PostJson(string url, string json)
         {
             try
             {
