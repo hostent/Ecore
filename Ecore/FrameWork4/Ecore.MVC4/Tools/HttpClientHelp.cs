@@ -123,7 +123,7 @@ namespace Ecore.MVC4.Tools
                 newStream.Write(bytes, 0, bytes.Length);//写入参数
                 newStream.Close();
                 HttpWebResponse response = (HttpWebResponse)webReq.GetResponse();
-                StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.Default);
+                StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
                 ret = sr.ReadToEnd();
                 sr.Close();
                 response.Close();
@@ -170,7 +170,7 @@ namespace Ecore.MVC4.Tools
                 newStream.Write(bytes, 0, bytes.Length);//写入参数
                 newStream.Close();
                 HttpWebResponse response = (HttpWebResponse)webReq.GetResponse();
-                StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.Default);
+                StreamReader sr = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
                 ret = sr.ReadToEnd();
                 sr.Close();
                 response.Close();
