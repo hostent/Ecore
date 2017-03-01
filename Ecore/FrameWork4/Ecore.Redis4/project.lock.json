@@ -306,7 +306,6 @@
   "projectFileDependencyGroups": {
     "": [
       "Ecore.Frame >= 1.0.0-*",
-      "NETStandard.Library >= 1.6.0",
       "Newtonsoft.Json >= 6.0.6",
       "StackExchange.Redis >= 1.1.604-alpha"
     ],

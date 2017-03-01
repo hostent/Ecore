@@ -89,5 +89,10 @@ namespace Ecore.WebUtility
 
             return msg.Result.Content.ReadAsStringAsync().Result;
         }
+
+        public string PostJson(string url, string json)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

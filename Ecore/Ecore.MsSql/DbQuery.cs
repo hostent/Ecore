@@ -13,7 +13,7 @@ using System.Data;
 
 namespace Ecore.MsSql
 {
-    public class DbQuery<T> : IQuery<T> where T : class, new()
+    public class DbQuery<T> : Entity<T>, IQuery<T> where T : class, new()
     {
 
         protected IDbConnection Conn = null;
@@ -210,11 +210,6 @@ namespace Ecore.MsSql
         }
 
 
-        private string GetCacheTag()
-        {
-            return "table:" + typeof(T).FullName;
-        }
-
         public IQuery<T> Where(Expression<Func<T, bool>> exp)
         {
             whereExp = exp;
@@ -350,16 +345,6 @@ namespace Ecore.MsSql
 
         }
 
-        private bool CanCache()
-        {
-            var t = typeof(T);
-            CacheAttribute ca = t.DeclaringType.GetTypeInfo().GetCustomAttribute<CacheAttribute>();
-            if (ca == null)
-            {
-                return false;
-            }
-            return true;
-        }
 
         public IQuery<T> Distinct()
         {
@@ -465,6 +450,58 @@ namespace Ecore.MsSql
             return list;
         }
 
+
+        public T Get(object id)
+        {
+            if (CanCache())
+            {
+                return this.ToQueryable().FirstOrDefault();
+            }
+
+            string key = base.GetKey();
+
+            string whereStr = string.Format(" where {0}='{1}' ", key, id.ToString());
+
+            limitForm = 0;
+            limitLength = 1;
+
+            BuildColumns();
+            BuildWhere(whereStr);
+            BuildOrder("");
+            BuildLimit("");
+
+            var obj = Dapper.SqlMapper.QueryFirstOrDefault<T>(Conn, trackSql, args, BaseModule.GetTran());
+
+            return obj;
+        }
+
+        public T GetUnique(string uniqueCode)
+        {
+            if (CanCache())
+            {
+                return this.ToQueryable().FirstOrDefault();
+            }
+
+            string uniqueKey = base.GetUniqueKey();
+            if (string.IsNullOrEmpty(uniqueKey))
+            {
+                return default(T);
+            }
+
+            string whereStr = string.Format(" where {0}='{1}' ", uniqueKey, uniqueCode);
+
+            limitForm = 0;
+            limitLength = 1;
+
+            BuildColumns();
+            BuildWhere(whereStr);
+            BuildOrder("");
+            BuildLimit("");
+
+            var obj = Dapper.SqlMapper.QueryFirstOrDefault<T>(Conn, trackSql, args, BaseModule.GetTran());
+
+            return obj;
+        }
 
     }
 }

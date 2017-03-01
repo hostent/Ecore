@@ -35,6 +35,7 @@ namespace Ecore.MVC4.Tools
                     {
                         namespaces.Add(namespacesKey, namespacesValue);
                         namespaces.Add("xsi", "http://www.w3.org/2001/XMLSchema-instance");
+
                     }
                     else
                     {

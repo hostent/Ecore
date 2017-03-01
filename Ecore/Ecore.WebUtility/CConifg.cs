@@ -32,7 +32,7 @@ namespace Ecore.WebUtility
 
         public CConifg()
         {
-            var builder = new ConfigurationBuilder().AddJsonFile(AppContext.BaseDirectory + "/config.json");
+            var builder = new ConfigurationBuilder().AddJsonFile(AppContext.BaseDirectory + "/Conifg/config.json");
 
             Configuration = builder.Build();
         }

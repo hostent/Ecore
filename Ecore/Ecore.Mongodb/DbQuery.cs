@@ -199,5 +199,15 @@ namespace Ecore.Mongodb
 
             return finder.As<R>().ToList();
         }
+
+        public T Get(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T GetUnique(string uniqueCode)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
