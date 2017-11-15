@@ -32,6 +32,14 @@ namespace Ecore.Frame
                 return version;
             }
         }
+
+        public static string LogicClassify
+        {
+            get
+            {
+                return Default.GetAppSetting("LogicClassify");
+            }           
+        }
     }
 
     public interface IConfig

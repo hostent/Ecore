@@ -105,6 +105,14 @@ namespace Ecore.MVC4
                 ControllerDll = string.Format("EMin.{0}.Web", Module);
                 ControllerClass = string.Format("{0}.Controller.{1}", ControllerDll, subClass);
 
+                if (!String.IsNullOrEmpty(Config.LogicClassify))
+                {
+                    //LogicClassify
+                    LogicClassifyDll = string.Format("EMin.{0}.Logic." + Config.LogicClassify, Module);
+                    LogicClassifyClass = string.Format("{0}.{1}", LogicClassifyDll, subClass);
+
+                }
+
                 //Logic
                 LogicDll = string.Format("EMin.{0}.Logic", Module);
                 LogicClass = string.Format("{0}.{1}", LogicDll, subClass);
@@ -161,6 +169,22 @@ namespace Ecore.MVC4
                     return (T)cAss.CreateInstance(CurrentClass);
                 }
             }
+            //LogicClassify
+            if (!String.IsNullOrEmpty(Config.LogicClassify))
+            {
+                if (File.Exists(BaseDirectory + LogicClassifyDll + ".dll"))
+                {
+                    Assembly cAss = LoadAss(this.LogicClassifyDll);
+                    Type classType = cAss.GetType(this.LogicClassifyClass);
+                    if (classType != null && classType.GetInterfaces().Contains(typeof(T)))
+                    {
+                        CurrentDll = LogicClassifyDll;
+                        CurrentClass = LogicClassifyClass;
+
+                        return (T)cAss.CreateInstance(CurrentClass);
+                    }
+                }
+            }
 
             //logic
             if (File.Exists(BaseDirectory + LogicDll + ".dll"))
@@ -208,6 +232,21 @@ namespace Ecore.MVC4
                     return classType;
                 }
             }
+
+            //LogicClassify
+            if (!String.IsNullOrEmpty(Config.LogicClassify))
+            {
+                if (File.Exists(BaseDirectory + LogicClassifyDll + ".dll"))
+                {
+                    Assembly cAss = LoadAss(this.LogicClassifyDll);
+                    Type classType = cAss.GetType(this.LogicClassifyClass);
+                    if (classType != null && classType.GetInterfaces().Contains(typeof(T)))
+                    {
+                        return classType;
+                    }
+                }
+            }
+                
 
             //logic
             if (File.Exists(BaseDirectory + LogicDll + ".dll"))
@@ -260,9 +299,15 @@ namespace Ecore.MVC4
         string ControllerClass { get; set; }
 
 
+
         string LogicDll { get; set; }
 
         string LogicClass { get; set; }
+
+
+        string LogicClassifyDll { get; set; }
+
+        string LogicClassifyClass { get; set; }
 
 
         string ProxyDll { get; set; }
